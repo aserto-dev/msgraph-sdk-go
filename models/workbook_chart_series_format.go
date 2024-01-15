@@ -7,7 +7,7 @@ import (
 // WorkbookChartSeriesFormat 
 type WorkbookChartSeriesFormat struct {
     Entity
-    // Represents the fill format of a chart series, which includes background formating information. Read-only.
+    // Represents the fill format of a chart series, which includes background formatting information. Read-only.
     fill WorkbookChartFillable
     // Represents line formatting. Read-only.
     line WorkbookChartLineFormatable
@@ -48,7 +48,7 @@ func (m *WorkbookChartSeriesFormat) GetFieldDeserializers()(map[string]func(i878
     }
     return res
 }
-// GetFill gets the fill property value. Represents the fill format of a chart series, which includes background formating information. Read-only.
+// GetFill gets the fill property value. Represents the fill format of a chart series, which includes background formatting information. Read-only.
 func (m *WorkbookChartSeriesFormat) GetFill()(WorkbookChartFillable) {
     return m.fill
 }
@@ -76,7 +76,7 @@ func (m *WorkbookChartSeriesFormat) Serialize(writer i878a80d2330e89d26896388a3f
     }
     return nil
 }
-// SetFill sets the fill property value. Represents the fill format of a chart series, which includes background formating information. Read-only.
+// SetFill sets the fill property value. Represents the fill format of a chart series, which includes background formatting information. Read-only.
 func (m *WorkbookChartSeriesFormat) SetFill(value WorkbookChartFillable)() {
     m.fill = value
 }

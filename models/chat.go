@@ -24,6 +24,8 @@ type Chat struct {
     messages []ChatMessageable
     // Represents details about an online meeting. If the chat isn't associated with an online meeting, the property is empty. Read-only.
     onlineMeetingInfo TeamworkOnlineMeetingInfoable
+    // A collection of permissions granted to apps for the chat.
+    permissionGrants []ResourceSpecificPermissionGrantable
     // A collection of all the pinned messages in the chat. Nullable.
     pinnedMessages []PinnedChatMessageInfoable
     // A collection of all the tabs in the chat. Nullable.
@@ -87,7 +89,9 @@ func (m *Chat) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
         if val != nil {
             res := make([]TeamsAppInstallationable, len(val))
             for i, v := range val {
-                res[i] = v.(TeamsAppInstallationable)
+                if v != nil {
+                    res[i] = v.(TeamsAppInstallationable)
+                }
             }
             m.SetInstalledApps(res)
         }
@@ -121,7 +125,9 @@ func (m *Chat) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
         if val != nil {
             res := make([]ConversationMemberable, len(val))
             for i, v := range val {
-                res[i] = v.(ConversationMemberable)
+                if v != nil {
+                    res[i] = v.(ConversationMemberable)
+                }
             }
             m.SetMembers(res)
         }
@@ -135,7 +141,9 @@ func (m *Chat) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
         if val != nil {
             res := make([]ChatMessageable, len(val))
             for i, v := range val {
-                res[i] = v.(ChatMessageable)
+                if v != nil {
+                    res[i] = v.(ChatMessageable)
+                }
             }
             m.SetMessages(res)
         }
@@ -151,6 +159,22 @@ func (m *Chat) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
         }
         return nil
     }
+    res["permissionGrants"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateResourceSpecificPermissionGrantFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]ResourceSpecificPermissionGrantable, len(val))
+            for i, v := range val {
+                if v != nil {
+                    res[i] = v.(ResourceSpecificPermissionGrantable)
+                }
+            }
+            m.SetPermissionGrants(res)
+        }
+        return nil
+    }
     res["pinnedMessages"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetCollectionOfObjectValues(CreatePinnedChatMessageInfoFromDiscriminatorValue)
         if err != nil {
@@ -159,7 +183,9 @@ func (m *Chat) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
         if val != nil {
             res := make([]PinnedChatMessageInfoable, len(val))
             for i, v := range val {
-                res[i] = v.(PinnedChatMessageInfoable)
+                if v != nil {
+                    res[i] = v.(PinnedChatMessageInfoable)
+                }
             }
             m.SetPinnedMessages(res)
         }
@@ -173,7 +199,9 @@ func (m *Chat) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
         if val != nil {
             res := make([]TeamsTabable, len(val))
             for i, v := range val {
-                res[i] = v.(TeamsTabable)
+                if v != nil {
+                    res[i] = v.(TeamsTabable)
+                }
             }
             m.SetTabs(res)
         }
@@ -245,6 +273,10 @@ func (m *Chat) GetMessages()([]ChatMessageable) {
 func (m *Chat) GetOnlineMeetingInfo()(TeamworkOnlineMeetingInfoable) {
     return m.onlineMeetingInfo
 }
+// GetPermissionGrants gets the permissionGrants property value. A collection of permissions granted to apps for the chat.
+func (m *Chat) GetPermissionGrants()([]ResourceSpecificPermissionGrantable) {
+    return m.permissionGrants
+}
 // GetPinnedMessages gets the pinnedMessages property value. A collection of all the pinned messages in the chat. Nullable.
 func (m *Chat) GetPinnedMessages()([]PinnedChatMessageInfoable) {
     return m.pinnedMessages
@@ -291,7 +323,9 @@ func (m *Chat) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
     if m.GetInstalledApps() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetInstalledApps()))
         for i, v := range m.GetInstalledApps() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("installedApps", cast)
         if err != nil {
@@ -313,7 +347,9 @@ func (m *Chat) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
     if m.GetMembers() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetMembers()))
         for i, v := range m.GetMembers() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("members", cast)
         if err != nil {
@@ -323,7 +359,9 @@ func (m *Chat) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
     if m.GetMessages() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetMessages()))
         for i, v := range m.GetMessages() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("messages", cast)
         if err != nil {
@@ -336,10 +374,24 @@ func (m *Chat) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
             return err
         }
     }
+    if m.GetPermissionGrants() != nil {
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPermissionGrants()))
+        for i, v := range m.GetPermissionGrants() {
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
+        }
+        err = writer.WriteCollectionOfObjectValues("permissionGrants", cast)
+        if err != nil {
+            return err
+        }
+    }
     if m.GetPinnedMessages() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPinnedMessages()))
         for i, v := range m.GetPinnedMessages() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("pinnedMessages", cast)
         if err != nil {
@@ -349,7 +401,9 @@ func (m *Chat) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
     if m.GetTabs() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetTabs()))
         for i, v := range m.GetTabs() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("tabs", cast)
         if err != nil {
@@ -414,6 +468,10 @@ func (m *Chat) SetMessages(value []ChatMessageable)() {
 func (m *Chat) SetOnlineMeetingInfo(value TeamworkOnlineMeetingInfoable)() {
     m.onlineMeetingInfo = value
 }
+// SetPermissionGrants sets the permissionGrants property value. A collection of permissions granted to apps for the chat.
+func (m *Chat) SetPermissionGrants(value []ResourceSpecificPermissionGrantable)() {
+    m.permissionGrants = value
+}
 // SetPinnedMessages sets the pinnedMessages property value. A collection of all the pinned messages in the chat. Nullable.
 func (m *Chat) SetPinnedMessages(value []PinnedChatMessageInfoable)() {
     m.pinnedMessages = value
@@ -450,6 +508,7 @@ type Chatable interface {
     GetMembers()([]ConversationMemberable)
     GetMessages()([]ChatMessageable)
     GetOnlineMeetingInfo()(TeamworkOnlineMeetingInfoable)
+    GetPermissionGrants()([]ResourceSpecificPermissionGrantable)
     GetPinnedMessages()([]PinnedChatMessageInfoable)
     GetTabs()([]TeamsTabable)
     GetTenantId()(*string)
@@ -464,6 +523,7 @@ type Chatable interface {
     SetMembers(value []ConversationMemberable)()
     SetMessages(value []ChatMessageable)()
     SetOnlineMeetingInfo(value TeamworkOnlineMeetingInfoable)()
+    SetPermissionGrants(value []ResourceSpecificPermissionGrantable)()
     SetPinnedMessages(value []PinnedChatMessageInfoable)()
     SetTabs(value []TeamsTabable)()
     SetTenantId(value *string)()

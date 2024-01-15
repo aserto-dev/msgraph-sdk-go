@@ -28,7 +28,7 @@ func NewChatMessagePolicyViolationPolicyTip()(*ChatMessagePolicyViolationPolicyT
 func CreateChatMessagePolicyViolationPolicyTipFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewChatMessagePolicyViolationPolicyTip(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ChatMessagePolicyViolationPolicyTip) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -67,7 +67,9 @@ func (m *ChatMessagePolicyViolationPolicyTip) GetFieldDeserializers()(map[string
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetMatchedConditionDescriptions(res)
         }
@@ -131,7 +133,7 @@ func (m *ChatMessagePolicyViolationPolicyTip) Serialize(writer i878a80d2330e89d2
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ChatMessagePolicyViolationPolicyTip) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }

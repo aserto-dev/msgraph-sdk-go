@@ -7,7 +7,7 @@ import (
 // OutlookCategory 
 type OutlookCategory struct {
     Entity
-    // A pre-set color constant that characterizes a category, and that is mapped to one of 25 predefined colors. See the note below.
+    // A pre-set color constant that characterizes a category, and that is mapped to one of 25 predefined colors. For more details, see the following note.
     color *CategoryColor
     // A unique name that identifies a category in the user's mailbox. After a category is created, the name cannot be changed. Read-only.
     displayName *string
@@ -23,7 +23,7 @@ func NewOutlookCategory()(*OutlookCategory) {
 func CreateOutlookCategoryFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewOutlookCategory(), nil
 }
-// GetColor gets the color property value. A pre-set color constant that characterizes a category, and that is mapped to one of 25 predefined colors. See the note below.
+// GetColor gets the color property value. A pre-set color constant that characterizes a category, and that is mapped to one of 25 predefined colors. For more details, see the following note.
 func (m *OutlookCategory) GetColor()(*CategoryColor) {
     return m.color
 }
@@ -77,7 +77,7 @@ func (m *OutlookCategory) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
     }
     return nil
 }
-// SetColor sets the color property value. A pre-set color constant that characterizes a category, and that is mapped to one of 25 predefined colors. See the note below.
+// SetColor sets the color property value. A pre-set color constant that characterizes a category, and that is mapped to one of 25 predefined colors. For more details, see the following note.
 func (m *OutlookCategory) SetColor(value *CategoryColor)() {
     m.color = value
 }

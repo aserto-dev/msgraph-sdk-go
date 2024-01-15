@@ -9,7 +9,7 @@ type TeamworkHostedContent struct {
     Entity
     // Write only. Bytes for the hosted content (such as images).
     contentBytes []byte
-    // Write only. Content type. sicj as image/png, image/jpg.
+    // Write only. Content type. such as image/png, image/jpg.
     contentType *string
 }
 // NewTeamworkHostedContent instantiates a new teamworkHostedContent and sets the default values.
@@ -45,7 +45,7 @@ func CreateTeamworkHostedContentFromDiscriminatorValue(parseNode i878a80d2330e89
 func (m *TeamworkHostedContent) GetContentBytes()([]byte) {
     return m.contentBytes
 }
-// GetContentType gets the contentType property value. Write only. Content type. sicj as image/png, image/jpg.
+// GetContentType gets the contentType property value. Write only. Content type. such as image/png, image/jpg.
 func (m *TeamworkHostedContent) GetContentType()(*string) {
     return m.contentType
 }
@@ -98,7 +98,7 @@ func (m *TeamworkHostedContent) Serialize(writer i878a80d2330e89d26896388a3f487e
 func (m *TeamworkHostedContent) SetContentBytes(value []byte)() {
     m.contentBytes = value
 }
-// SetContentType sets the contentType property value. Write only. Content type. sicj as image/png, image/jpg.
+// SetContentType sets the contentType property value. Write only. Content type. such as image/png, image/jpg.
 func (m *TeamworkHostedContent) SetContentType(value *string)() {
     m.contentType = value
 }

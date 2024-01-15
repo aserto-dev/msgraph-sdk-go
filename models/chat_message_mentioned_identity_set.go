@@ -10,7 +10,7 @@ type ChatMessageMentionedIdentitySet struct {
     // If present, represents a conversation (for example, team or channel) @mentioned in a message.
     conversation TeamworkConversationIdentityable
 }
-// NewChatMessageMentionedIdentitySet instantiates a new ChatMessageMentionedIdentitySet and sets the default values.
+// NewChatMessageMentionedIdentitySet instantiates a new chatMessageMentionedIdentitySet and sets the default values.
 func NewChatMessageMentionedIdentitySet()(*ChatMessageMentionedIdentitySet) {
     m := &ChatMessageMentionedIdentitySet{
         IdentitySet: *NewIdentitySet(),

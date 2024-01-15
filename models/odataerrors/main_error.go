@@ -12,8 +12,8 @@ type MainError struct {
     code *string
     // The details property
     details []ErrorDetailsable
-    // The innererror property
-    innererror InnerErrorable
+    // The innerError property
+    innerError InnerErrorable
     // The message property
     message *string
     // The target property
@@ -30,7 +30,7 @@ func NewMainError()(*MainError) {
 func CreateMainErrorFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewMainError(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *MainError) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -63,19 +63,21 @@ func (m *MainError) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689
         if val != nil {
             res := make([]ErrorDetailsable, len(val))
             for i, v := range val {
-                res[i] = v.(ErrorDetailsable)
+                if v != nil {
+                    res[i] = v.(ErrorDetailsable)
+                }
             }
             m.SetDetails(res)
         }
         return nil
     }
-    res["innererror"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+    res["innerError"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetObjectValue(CreateInnerErrorFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetInnererror(val.(InnerErrorable))
+            m.SetInnerError(val.(InnerErrorable))
         }
         return nil
     }
@@ -101,9 +103,9 @@ func (m *MainError) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689
     }
     return res
 }
-// GetInnererror gets the innererror property value. The innererror property
-func (m *MainError) GetInnererror()(InnerErrorable) {
-    return m.innererror
+// GetInnerError gets the innerError property value. The innerError property
+func (m *MainError) GetInnerError()(InnerErrorable) {
+    return m.innerError
 }
 // GetMessage gets the message property value. The message property
 func (m *MainError) GetMessage()(*string) {
@@ -124,7 +126,9 @@ func (m *MainError) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c0
     if m.GetDetails() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetDetails()))
         for i, v := range m.GetDetails() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err := writer.WriteCollectionOfObjectValues("details", cast)
         if err != nil {
@@ -132,7 +136,7 @@ func (m *MainError) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c0
         }
     }
     {
-        err := writer.WriteObjectValue("innererror", m.GetInnererror())
+        err := writer.WriteObjectValue("innerError", m.GetInnerError())
         if err != nil {
             return err
         }
@@ -157,7 +161,7 @@ func (m *MainError) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c0
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *MainError) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
@@ -169,9 +173,9 @@ func (m *MainError) SetCode(value *string)() {
 func (m *MainError) SetDetails(value []ErrorDetailsable)() {
     m.details = value
 }
-// SetInnererror sets the innererror property value. The innererror property
-func (m *MainError) SetInnererror(value InnerErrorable)() {
-    m.innererror = value
+// SetInnerError sets the innerError property value. The innerError property
+func (m *MainError) SetInnerError(value InnerErrorable)() {
+    m.innerError = value
 }
 // SetMessage sets the message property value. The message property
 func (m *MainError) SetMessage(value *string)() {
@@ -187,12 +191,12 @@ type MainErrorable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetCode()(*string)
     GetDetails()([]ErrorDetailsable)
-    GetInnererror()(InnerErrorable)
+    GetInnerError()(InnerErrorable)
     GetMessage()(*string)
     GetTarget()(*string)
     SetCode(value *string)()
     SetDetails(value []ErrorDetailsable)()
-    SetInnererror(value InnerErrorable)()
+    SetInnerError(value InnerErrorable)()
     SetMessage(value *string)()
     SetTarget(value *string)()
 }

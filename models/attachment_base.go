@@ -12,7 +12,7 @@ type AttachmentBase struct {
     contentType *string
     // The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     lastModifiedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The display name of the attachment. This does not need to be the actual file name.
+    // The display name of the attachment. This doesn't need to be the actual file name.
     name *string
     // The length of the attachment in bytes.
     size *int32
@@ -81,7 +81,7 @@ func (m *AttachmentBase) GetFieldDeserializers()(map[string]func(i878a80d2330e89
 func (m *AttachmentBase) GetLastModifiedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.lastModifiedDateTime
 }
-// GetName gets the name property value. The display name of the attachment. This does not need to be the actual file name.
+// GetName gets the name property value. The display name of the attachment. This doesn't need to be the actual file name.
 func (m *AttachmentBase) GetName()(*string) {
     return m.name
 }
@@ -129,7 +129,7 @@ func (m *AttachmentBase) SetContentType(value *string)() {
 func (m *AttachmentBase) SetLastModifiedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.lastModifiedDateTime = value
 }
-// SetName sets the name property value. The display name of the attachment. This does not need to be the actual file name.
+// SetName sets the name property value. The display name of the attachment. This doesn't need to be the actual file name.
 func (m *AttachmentBase) SetName(value *string)() {
     m.name = value
 }

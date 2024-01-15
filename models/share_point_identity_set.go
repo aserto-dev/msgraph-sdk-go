@@ -14,7 +14,7 @@ type SharePointIdentitySet struct {
     // The SharePoint user associated with this action. Optional.
     siteUser SharePointIdentityable
 }
-// NewSharePointIdentitySet instantiates a new SharePointIdentitySet and sets the default values.
+// NewSharePointIdentitySet instantiates a new sharePointIdentitySet and sets the default values.
 func NewSharePointIdentitySet()(*SharePointIdentitySet) {
     m := &SharePointIdentitySet{
         IdentitySet: *NewIdentitySet(),

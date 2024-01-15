@@ -25,12 +25,16 @@ func NewODataError()(*ODataError) {
 func CreateODataErrorFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewODataError(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// Error the primary error message.
+func (m *ODataError) Error()(string) {
+    return *(m.GetErrorEscaped().GetMessage())
+}
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ODataError) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetError gets the error property value. The error property
-func (m *ODataError) GetError()(MainErrorable) {
+// GetErrorEscaped gets the error property value. The error property
+func (m *ODataError) GetErrorEscaped()(MainErrorable) {
     return m.errorEscaped
 }
 // GetFieldDeserializers the deserialization information for the current model
@@ -42,7 +46,7 @@ func (m *ODataError) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
             return err
         }
         if val != nil {
-            m.SetError(val.(MainErrorable))
+            m.SetErrorEscaped(val.(MainErrorable))
         }
         return nil
     }
@@ -51,7 +55,7 @@ func (m *ODataError) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
 // Serialize serializes information the current object
 func (m *ODataError) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteObjectValue("error", m.GetError())
+        err := writer.WriteObjectValue("error", m.GetErrorEscaped())
         if err != nil {
             return err
         }
@@ -64,18 +68,18 @@ func (m *ODataError) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ODataError) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetError sets the error property value. The error property
-func (m *ODataError) SetError(value MainErrorable)() {
+// SetErrorEscaped sets the error property value. The error property
+func (m *ODataError) SetErrorEscaped(value MainErrorable)() {
     m.errorEscaped = value
 }
 // ODataErrorable 
 type ODataErrorable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetError()(MainErrorable)
-    SetError(value MainErrorable)()
+    GetErrorEscaped()(MainErrorable)
+    SetErrorEscaped(value MainErrorable)()
 }

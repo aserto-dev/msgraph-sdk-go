@@ -21,7 +21,7 @@ type Fido2AuthenticationMethod struct {
     // The manufacturer-assigned model of the FIDO2 security key.
     model *string
 }
-// NewFido2AuthenticationMethod instantiates a new Fido2AuthenticationMethod and sets the default values.
+// NewFido2AuthenticationMethod instantiates a new fido2AuthenticationMethod and sets the default values.
 func NewFido2AuthenticationMethod()(*Fido2AuthenticationMethod) {
     m := &Fido2AuthenticationMethod{
         AuthenticationMethod: *NewAuthenticationMethod(),
@@ -75,7 +75,9 @@ func (m *Fido2AuthenticationMethod) GetFieldDeserializers()(map[string]func(i878
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetAttestationCertificates(res)
         }

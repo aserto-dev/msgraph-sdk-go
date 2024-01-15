@@ -7,6 +7,8 @@ import (
 // TeamsAppInstallation 
 type TeamsAppInstallation struct {
     Entity
+    // The set of resource-specific permissions consented to while installing or upgrading the teamsApp.
+    consentedPermissionSet TeamsAppPermissionSetable
     // The app that is installed.
     teamsApp TeamsAppable
     // The details of this version of the app.
@@ -41,9 +43,23 @@ func CreateTeamsAppInstallationFromDiscriminatorValue(parseNode i878a80d2330e89d
     }
     return NewTeamsAppInstallation(), nil
 }
+// GetConsentedPermissionSet gets the consentedPermissionSet property value. The set of resource-specific permissions consented to while installing or upgrading the teamsApp.
+func (m *TeamsAppInstallation) GetConsentedPermissionSet()(TeamsAppPermissionSetable) {
+    return m.consentedPermissionSet
+}
 // GetFieldDeserializers the deserialization information for the current model
 func (m *TeamsAppInstallation) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.Entity.GetFieldDeserializers()
+    res["consentedPermissionSet"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateTeamsAppPermissionSetFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetConsentedPermissionSet(val.(TeamsAppPermissionSetable))
+        }
+        return nil
+    }
     res["teamsApp"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetObjectValue(CreateTeamsAppFromDiscriminatorValue)
         if err != nil {
@@ -81,6 +97,12 @@ func (m *TeamsAppInstallation) Serialize(writer i878a80d2330e89d26896388a3f487ee
         return err
     }
     {
+        err = writer.WriteObjectValue("consentedPermissionSet", m.GetConsentedPermissionSet())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err = writer.WriteObjectValue("teamsApp", m.GetTeamsApp())
         if err != nil {
             return err
@@ -94,6 +116,10 @@ func (m *TeamsAppInstallation) Serialize(writer i878a80d2330e89d26896388a3f487ee
     }
     return nil
 }
+// SetConsentedPermissionSet sets the consentedPermissionSet property value. The set of resource-specific permissions consented to while installing or upgrading the teamsApp.
+func (m *TeamsAppInstallation) SetConsentedPermissionSet(value TeamsAppPermissionSetable)() {
+    m.consentedPermissionSet = value
+}
 // SetTeamsApp sets the teamsApp property value. The app that is installed.
 func (m *TeamsAppInstallation) SetTeamsApp(value TeamsAppable)() {
     m.teamsApp = value
@@ -106,8 +132,10 @@ func (m *TeamsAppInstallation) SetTeamsAppDefinition(value TeamsAppDefinitionabl
 type TeamsAppInstallationable interface {
     Entityable
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetConsentedPermissionSet()(TeamsAppPermissionSetable)
     GetTeamsApp()(TeamsAppable)
     GetTeamsAppDefinition()(TeamsAppDefinitionable)
+    SetConsentedPermissionSet(value TeamsAppPermissionSetable)()
     SetTeamsApp(value TeamsAppable)()
     SetTeamsAppDefinition(value TeamsAppDefinitionable)()
 }

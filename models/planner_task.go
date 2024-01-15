@@ -18,7 +18,7 @@ type PlannerTask struct {
     assigneePriority *string
     // The set of assignees the task is assigned to.
     assignments PlannerAssignmentsable
-    // Bucket ID to which the task belongs. The bucket needs to be in the plan that the task is in. It is 28 characters long and case-sensitive. Format validation is done on the service.
+    // Bucket ID to which the task belongs. The bucket needs to be in the plan that the task is in. It's 28 characters long and case-sensitive. Format validation is done on the service.
     bucketId *string
     // Read-only. Nullable. Used to render the task correctly in the task board view when grouped by bucket.
     bucketTaskBoardFormat PlannerBucketTaskBoardTaskFormatable
@@ -34,11 +34,11 @@ type PlannerTask struct {
     createdBy IdentitySetable
     // Read-only. Date and time at which the task is created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Read-only. Nullable. Additional details about the task.
+    // Read-only. Nullable. More details about the task.
     details PlannerTaskDetailsable
     // Date and time at which the task is due. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     dueDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Read-only. Value is true if the details object of the task has a non-empty description and false otherwise.
+    // Read-only. Value is true if the details object of the task has a nonempty description and false otherwise.
     hasDescription *bool
     // Hint used to order items of this type in a list view. The format is defined as outlined here.
     orderHint *string
@@ -90,7 +90,7 @@ func (m *PlannerTask) GetAssigneePriority()(*string) {
 func (m *PlannerTask) GetAssignments()(PlannerAssignmentsable) {
     return m.assignments
 }
-// GetBucketId gets the bucketId property value. Bucket ID to which the task belongs. The bucket needs to be in the plan that the task is in. It is 28 characters long and case-sensitive. Format validation is done on the service.
+// GetBucketId gets the bucketId property value. Bucket ID to which the task belongs. The bucket needs to be in the plan that the task is in. It's 28 characters long and case-sensitive. Format validation is done on the service.
 func (m *PlannerTask) GetBucketId()(*string) {
     return m.bucketId
 }
@@ -122,7 +122,7 @@ func (m *PlannerTask) GetCreatedBy()(IdentitySetable) {
 func (m *PlannerTask) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.createdDateTime
 }
-// GetDetails gets the details property value. Read-only. Nullable. Additional details about the task.
+// GetDetails gets the details property value. Read-only. Nullable. More details about the task.
 func (m *PlannerTask) GetDetails()(PlannerTaskDetailsable) {
     return m.details
 }
@@ -385,7 +385,7 @@ func (m *PlannerTask) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
     }
     return res
 }
-// GetHasDescription gets the hasDescription property value. Read-only. Value is true if the details object of the task has a non-empty description and false otherwise.
+// GetHasDescription gets the hasDescription property value. Read-only. Value is true if the details object of the task has a nonempty description and false otherwise.
 func (m *PlannerTask) GetHasDescription()(*bool) {
     return m.hasDescription
 }
@@ -604,7 +604,7 @@ func (m *PlannerTask) SetAssigneePriority(value *string)() {
 func (m *PlannerTask) SetAssignments(value PlannerAssignmentsable)() {
     m.assignments = value
 }
-// SetBucketId sets the bucketId property value. Bucket ID to which the task belongs. The bucket needs to be in the plan that the task is in. It is 28 characters long and case-sensitive. Format validation is done on the service.
+// SetBucketId sets the bucketId property value. Bucket ID to which the task belongs. The bucket needs to be in the plan that the task is in. It's 28 characters long and case-sensitive. Format validation is done on the service.
 func (m *PlannerTask) SetBucketId(value *string)() {
     m.bucketId = value
 }
@@ -636,7 +636,7 @@ func (m *PlannerTask) SetCreatedBy(value IdentitySetable)() {
 func (m *PlannerTask) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.createdDateTime = value
 }
-// SetDetails sets the details property value. Read-only. Nullable. Additional details about the task.
+// SetDetails sets the details property value. Read-only. Nullable. More details about the task.
 func (m *PlannerTask) SetDetails(value PlannerTaskDetailsable)() {
     m.details = value
 }
@@ -644,7 +644,7 @@ func (m *PlannerTask) SetDetails(value PlannerTaskDetailsable)() {
 func (m *PlannerTask) SetDueDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.dueDateTime = value
 }
-// SetHasDescription sets the hasDescription property value. Read-only. Value is true if the details object of the task has a non-empty description and false otherwise.
+// SetHasDescription sets the hasDescription property value. Read-only. Value is true if the details object of the task has a nonempty description and false otherwise.
 func (m *PlannerTask) SetHasDescription(value *bool)() {
     m.hasDescription = value
 }

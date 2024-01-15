@@ -10,7 +10,7 @@ type SwapShiftsChangeRequest struct {
     // ShiftId for the recipient user with whom the request is to swap.
     recipientShiftId *string
 }
-// NewSwapShiftsChangeRequest instantiates a new SwapShiftsChangeRequest and sets the default values.
+// NewSwapShiftsChangeRequest instantiates a new swapShiftsChangeRequest and sets the default values.
 func NewSwapShiftsChangeRequest()(*SwapShiftsChangeRequest) {
     m := &SwapShiftsChangeRequest{
         OfferShiftRequest: *NewOfferShiftRequest(),

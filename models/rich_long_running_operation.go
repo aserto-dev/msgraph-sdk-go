@@ -16,7 +16,7 @@ type RichLongRunningOperation struct {
     // The type of the operation.
     typeEscaped *string
 }
-// NewRichLongRunningOperation instantiates a new RichLongRunningOperation and sets the default values.
+// NewRichLongRunningOperation instantiates a new richLongRunningOperation and sets the default values.
 func NewRichLongRunningOperation()(*RichLongRunningOperation) {
     m := &RichLongRunningOperation{
         LongRunningOperation: *NewLongRunningOperation(),
@@ -70,7 +70,7 @@ func (m *RichLongRunningOperation) GetFieldDeserializers()(map[string]func(i878a
             return err
         }
         if val != nil {
-            m.SetType(val)
+            m.SetTypeEscaped(val)
         }
         return nil
     }
@@ -84,8 +84,8 @@ func (m *RichLongRunningOperation) GetPercentageComplete()(*int32) {
 func (m *RichLongRunningOperation) GetResourceId()(*string) {
     return m.resourceId
 }
-// GetType gets the type property value. The type of the operation.
-func (m *RichLongRunningOperation) GetType()(*string) {
+// GetTypeEscaped gets the type property value. The type of the operation.
+func (m *RichLongRunningOperation) GetTypeEscaped()(*string) {
     return m.typeEscaped
 }
 // Serialize serializes information the current object
@@ -113,7 +113,7 @@ func (m *RichLongRunningOperation) Serialize(writer i878a80d2330e89d26896388a3f4
         }
     }
     {
-        err = writer.WriteStringValue("type", m.GetType())
+        err = writer.WriteStringValue("type", m.GetTypeEscaped())
         if err != nil {
             return err
         }
@@ -132,8 +132,8 @@ func (m *RichLongRunningOperation) SetPercentageComplete(value *int32)() {
 func (m *RichLongRunningOperation) SetResourceId(value *string)() {
     m.resourceId = value
 }
-// SetType sets the type property value. The type of the operation.
-func (m *RichLongRunningOperation) SetType(value *string)() {
+// SetTypeEscaped sets the type property value. The type of the operation.
+func (m *RichLongRunningOperation) SetTypeEscaped(value *string)() {
     m.typeEscaped = value
 }
 // RichLongRunningOperationable 
@@ -143,9 +143,9 @@ type RichLongRunningOperationable interface {
     GetError()(PublicErrorable)
     GetPercentageComplete()(*int32)
     GetResourceId()(*string)
-    GetType()(*string)
+    GetTypeEscaped()(*string)
     SetError(value PublicErrorable)()
     SetPercentageComplete(value *int32)()
     SetResourceId(value *string)()
-    SetType(value *string)()
+    SetTypeEscaped(value *string)()
 }

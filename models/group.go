@@ -8,9 +8,9 @@ import (
 // Group 
 type Group struct {
     DirectoryObject
-    // The list of users or groups that are allowed to create post's or calendar events in this group. If this list is non-empty then only users or groups listed here are allowed to post.
+    // The list of users or groups allowed to create posts or calendar events in this group. If this list is non-empty, then only users or groups listed here are allowed to post.
     acceptedSenders []DirectoryObjectable
-    // Indicates if people external to the organization can send messages to the group. Default value is false. Returned only on $select. Supported only on the Get group API (GET /groups/{ID}).
+    // Indicates if people external to the organization can send messages to the group. The default value is false. Returned only on $select. Supported only on the Get group API (GET /groups/{ID}).
     allowExternalSenders *bool
     // Represents the app roles a group has been granted for an application. Supports $expand.
     appRoleAssignments []AppRoleAssignmentable
@@ -34,7 +34,7 @@ type Group struct {
     createdOnBehalfOf DirectoryObjectable
     // An optional description for the group. Returned by default. Supports $filter (eq, ne, not, ge, le, startsWith) and $search.
     description *string
-    // The display name for the group. This property is required when a group is created and cannot be cleared during updates. Maximum length is 256 characters. Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderBy.
+    // The display name for the group. This property is required when a group is created and cannot be cleared during updates. Maximum length is 256 characters. Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderby.
     displayName *string
     // The group's default drive. Read-only.
     drive Driveable
@@ -42,27 +42,27 @@ type Group struct {
     drives []Driveable
     // The group's calendar events.
     events []Eventable
-    // Timestamp of when the group is set to expire. The value cannot be modified and is automatically populated when the group is created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Returned by default. Supports $filter (eq, ne, not, ge, le, in). Read-only.
+    // Timestamp of when the group is set to expire. It is null for security groups, but for Microsoft 365 groups, it represents when the group is set to expire as defined in the groupLifecyclePolicy. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Returned by default. Supports $filter (eq, ne, not, ge, le, in). Read-only.
     expirationDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The collection of open extensions defined for the group. Read-only. Nullable.
     extensions []Extensionable
     // The collection of lifecycle policies for this group. Read-only. Nullable.
     groupLifecyclePolicies []GroupLifecyclePolicyable
-    // Specifies the group type and its membership. If the collection contains Unified, the group is a Microsoft 365 group; otherwise, it's either a security group or distribution group. For details, see groups overview.If the collection includes DynamicMembership, the group has dynamic membership; otherwise, membership is static. Returned by default. Supports $filter (eq, not).
+    // Specifies the group type and its membership. If the collection contains Unified, the group is a Microsoft 365 group; otherwise, it's either a security group or a distribution group. For details, see groups overview.If the collection includes DynamicMembership, the group has dynamic membership; otherwise, membership is static. Returned by default. Supports $filter (eq, not).
     groupTypes []string
     // Indicates whether there are members in this group that have license errors from its group-based license assignment. This property is never returned on a GET operation. You can use it as a $filter argument to get groups that have members with license errors (that is, filter for this property being true). See an example. Supports $filter (eq).
     hasMembersWithLicenseErrors *bool
     // True if the group is not displayed in certain parts of the Outlook UI: the Address Book, address lists for selecting message recipients, and the Browse Groups dialog for searching groups; otherwise, false. Default value is false. Returned only on $select. Supported only on the Get group API (GET /groups/{ID}).
     hideFromAddressLists *bool
-    // True if the group is not displayed in Outlook clients, such as Outlook for Windows and Outlook on the web; otherwise, false. Default value is false. Returned only on $select. Supported only on the Get group API (GET /groups/{ID}).
+    // True if the group is not displayed in Outlook clients, such as Outlook for Windows and Outlook on the web; otherwise, false. The default value is false. Returned only on $select. Supported only on the Get group API (GET /groups/{ID}).
     hideFromOutlookClients *bool
-    // When a group is associated with a team this property determines whether the team is in read-only mode.To read this property, use the /group/{groupId}/team endpoint or the Get team API. To update this property, use the archiveTeam and unarchiveTeam APIs.
+    // When a group is associated with a team, this property determines whether the team is in read-only mode.To read this property, use the /group/{groupId}/team endpoint or the Get team API. To update this property, use the archiveTeam and unarchiveTeam APIs.
     isArchived *bool
-    // Indicates whether this group can be assigned to an Azure Active Directory role or not. Optional. This property can only be set while creating the group and is immutable. If set to true, the securityEnabled property must also be set to true, visibility must be Hidden, and the group cannot be a dynamic group (that is, groupTypes cannot contain DynamicMembership). Only callers in Global Administrator and Privileged Role Administrator roles can set this property. The caller must also be assigned the RoleManagement.ReadWrite.Directory permission to set this property or update the membership of such groups. For more, see Using a group to manage Azure AD role assignmentsUsing this feature requires a Azure AD Premium P1 license. Returned by default. Supports $filter (eq, ne, not).
+    // Indicates whether this group can be assigned to a Microsoft Entra role. Optional. This property can only be set while creating the group and is immutable. If set to true, the securityEnabled property must also be set to true, visibility must be Hidden, and the group cannot be a dynamic group (that is, groupTypes cannot contain DynamicMembership). Only callers in Global Administrator and Privileged Role Administrator roles can set this property. The caller must also be assigned the RoleManagement.ReadWrite.Directory permission to set this property or update the membership of such groups. For more, see Using a group to manage Microsoft Entra role assignmentsUsing this feature requires a Microsoft Entra ID P1 license. Returned by default. Supports $filter (eq, ne, not).
     isAssignableToRole *bool
-    // Indicates whether the signed-in user is subscribed to receive email conversations. Default value is true. Returned only on $select. Supported only on the Get group API (GET /groups/{ID}).
+    // Indicates whether the signed-in user is subscribed to receive email conversations. The default value is true. Returned only on $select. Supported only on the Get group API (GET /groups/{ID}).
     isSubscribedByMail *bool
-    // Indicates status of the group license assignment to all members of the group. Default value is false. Read-only. Possible values: QueuedForProcessing, ProcessingInProgress, and ProcessingComplete.Returned only on $select. Read-only.
+    // Indicates the status of the group license assignment to all group members. The default value is false. Read-only. Possible values: QueuedForProcessing, ProcessingInProgress, and ProcessingComplete.Returned only on $select. Read-only.
     licenseProcessingState LicenseProcessingStateable
     // The SMTP address for the group, for example, 'serviceadmins@contoso.onmicrosoft.com'. Returned by default. Read-only. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).
     mail *string
@@ -90,15 +90,15 @@ type Group struct {
     onPremisesNetBiosName *string
     // Errors when using Microsoft synchronization product during provisioning. Returned by default. Supports $filter (eq, not).
     onPremisesProvisioningErrors []OnPremisesProvisioningErrorable
-    // Contains the on-premises SAM account name synchronized from the on-premises directory. The property is only populated for customers who are synchronizing their on-premises directory to Azure Active Directory via Azure AD Connect.Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith). Read-only.
+    // Contains the on-premises SAM account name synchronized from the on-premises directory. The property is only populated for customers synchronizing their on-premises directory to Microsoft Entra ID via Microsoft Entra Connect.Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith). Read-only.
     onPremisesSamAccountName *string
-    // Contains the on-premises security identifier (SID) for the group that was synchronized from on-premises to the cloud. Returned by default. Supports $filter (eq including on null values). Read-only.
+    // Contains the on-premises security identifier (SID) for the group synchronized from on-premises to the cloud. Returned by default. Supports $filter (eq including on null values). Read-only.
     onPremisesSecurityIdentifier *string
     // true if this group is synced from an on-premises directory; false if this group was originally synced from an on-premises directory but is no longer synced; null if this object has never been synced from an on-premises directory (default). Returned by default. Read-only. Supports $filter (eq, ne, not, in, and eq on null values).
     onPremisesSyncEnabled *bool
     // The owners of the group. Limited to 100 owners. Nullable. If this property is not specified when creating a Microsoft 365 group, the calling user is automatically assigned as the group owner.  Supports $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1). Supports $expand including nested $select. For example, /groups?$filter=startsWith(displayName,'Role')&$select=id,displayName&$expand=owners($select=id,userPrincipalName,displayName).
     owners []DirectoryObjectable
-    // The permission that has been granted for a group to a specific application. Supports $expand.
+    // The permissionGrants property
     permissionGrants []ResourceSpecificPermissionGrantable
     // The group's profile photo
     photo ProfilePhotoable
@@ -106,20 +106,22 @@ type Group struct {
     photos []ProfilePhotoable
     // Entry-point to Planner resource that might exist for a Unified Group.
     planner PlannerGroupable
-    // The preferred data location for the Microsoft 365 group. By default, the group inherits the group creator's preferred data location. To set this property, the calling user must be assigned one of the following Azure AD roles:  Global Administrator  User Account Administrator Directory Writer  Exchange Administrator  SharePoint Administrator  For more information about this property, see OneDrive Online Multi-Geo. Nullable. Returned by default.
+    // The preferred data location for the Microsoft 365 group. By default, the group inherits the group creator's preferred data location. To set this property, the calling app must be granted the Directory.ReadWrite.All permission and the user be assigned one of the following Microsoft Entra roles:  Global Administrator  User Account Administrator Directory Writer  Exchange Administrator  SharePoint Administrator  For more information about this property, see OneDrive Online Multi-Geo. Nullable. Returned by default.
     preferredDataLocation *string
-    // The preferred language for a Microsoft 365 group. Should follow ISO 639-1 Code; for example en-US. Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).
+    // The preferred language for a Microsoft 365 group. Should follow ISO 639-1 Code; for example, en-US. Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).
     preferredLanguage *string
     // Email addresses for the group that direct to the same group mailbox. For example: ['SMTP: bob@contoso.com', 'smtp: bob@sales.contoso.com']. The any operator is required to filter expressions on multi-valued properties. Returned by default. Read-only. Not nullable. Supports $filter (eq, not, ge, le, startsWith, endsWith, /$count eq 0, /$count ne 0).
     proxyAddresses []string
-    // The list of users or groups that are not allowed to create posts or calendar events in this group. Nullable
+    // The list of users or groups not allowed to create posts or calendar events in this group. Nullable
     rejectedSenders []DirectoryObjectable
-    // Timestamp of when the group was last renewed. This cannot be modified directly and is only updated via the renew service action. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Returned by default. Supports $filter (eq, ne, not, ge, le, in). Read-only.
+    // Timestamp of when the group was last renewed. This cannot be modified directly and is only updated via the renew service action. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Returned by default. Supports $filter (eq, ne, not, ge, le, in). Read-only.
     renewedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // Specifies whether the group is a security group. Required. Returned by default. Supports $filter (eq, ne, not, in).
     securityEnabled *bool
     // Security identifier of the group, used in Windows scenarios. Returned by default.
     securityIdentifier *string
+    // Errors published by a federated service describing a non-transient, service-specific error regarding the properties or link from a group object .  Supports $filter (eq, not, for isResolved and serviceInstance).
+    serviceProvisioningErrors []ServiceProvisioningErrorable
     // Settings that can govern this group's behavior, like whether members can invite guest users to the group. Nullable.
     settings []GroupSettingable
     // The list of SharePoint sites in this group. Access the default site with /sites/root.
@@ -130,13 +132,13 @@ type Group struct {
     theme *string
     // The group's conversation threads. Nullable.
     threads []ConversationThreadable
-    // The groups that a group is a member of, either directly and through nested membership. Nullable.
+    // The groups that a group is a member of, either directly or through nested membership. Nullable.
     transitiveMemberOf []DirectoryObjectable
     // The direct and transitive members of a group. Nullable.
     transitiveMembers []DirectoryObjectable
     // Count of conversations that have received new posts since the signed-in user last visited the group. Returned only on $select. Supported only on the Get group API (GET /groups/{ID}).
     unseenCount *int32
-    // Specifies the group join policy and group content visibility for groups. Possible values are: Private, Public, or HiddenMembership. HiddenMembership can be set only for Microsoft 365 groups, when the groups are created. It can't be updated later. Other values of visibility can be updated after group creation. If visibility value is not specified during group creation on Microsoft Graph, a security group is created as Private by default and Microsoft 365 group is Public. Groups assignable to roles are always Private. See group visibility options to learn more. Returned by default. Nullable.
+    // Specifies the group join policy and group content visibility for groups. Possible values are: Private, Public, or HiddenMembership. HiddenMembership can be set only for Microsoft 365 groups when the groups are created. It can't be updated later. Other values of visibility can be updated after group creation. If visibility value is not specified during group creation on Microsoft Graph, a security group is created as Private by default, and the Microsoft 365 group is Public. Groups assignable to roles are always Private. To learn more, see group visibility options. Returned by default. Nullable.
     visibility *string
 }
 // NewGroup instantiates a new group and sets the default values.
@@ -152,11 +154,11 @@ func NewGroup()(*Group) {
 func CreateGroupFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewGroup(), nil
 }
-// GetAcceptedSenders gets the acceptedSenders property value. The list of users or groups that are allowed to create post's or calendar events in this group. If this list is non-empty then only users or groups listed here are allowed to post.
+// GetAcceptedSenders gets the acceptedSenders property value. The list of users or groups allowed to create posts or calendar events in this group. If this list is non-empty, then only users or groups listed here are allowed to post.
 func (m *Group) GetAcceptedSenders()([]DirectoryObjectable) {
     return m.acceptedSenders
 }
-// GetAllowExternalSenders gets the allowExternalSenders property value. Indicates if people external to the organization can send messages to the group. Default value is false. Returned only on $select. Supported only on the Get group API (GET /groups/{ID}).
+// GetAllowExternalSenders gets the allowExternalSenders property value. Indicates if people external to the organization can send messages to the group. The default value is false. Returned only on $select. Supported only on the Get group API (GET /groups/{ID}).
 func (m *Group) GetAllowExternalSenders()(*bool) {
     return m.allowExternalSenders
 }
@@ -204,7 +206,7 @@ func (m *Group) GetCreatedOnBehalfOf()(DirectoryObjectable) {
 func (m *Group) GetDescription()(*string) {
     return m.description
 }
-// GetDisplayName gets the displayName property value. The display name for the group. This property is required when a group is created and cannot be cleared during updates. Maximum length is 256 characters. Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderBy.
+// GetDisplayName gets the displayName property value. The display name for the group. This property is required when a group is created and cannot be cleared during updates. Maximum length is 256 characters. Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderby.
 func (m *Group) GetDisplayName()(*string) {
     return m.displayName
 }
@@ -220,7 +222,7 @@ func (m *Group) GetDrives()([]Driveable) {
 func (m *Group) GetEvents()([]Eventable) {
     return m.events
 }
-// GetExpirationDateTime gets the expirationDateTime property value. Timestamp of when the group is set to expire. The value cannot be modified and is automatically populated when the group is created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Returned by default. Supports $filter (eq, ne, not, ge, le, in). Read-only.
+// GetExpirationDateTime gets the expirationDateTime property value. Timestamp of when the group is set to expire. It is null for security groups, but for Microsoft 365 groups, it represents when the group is set to expire as defined in the groupLifecyclePolicy. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Returned by default. Supports $filter (eq, ne, not, ge, le, in). Read-only.
 func (m *Group) GetExpirationDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.expirationDateTime
 }
@@ -239,7 +241,9 @@ func (m *Group) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]DirectoryObjectable, len(val))
             for i, v := range val {
-                res[i] = v.(DirectoryObjectable)
+                if v != nil {
+                    res[i] = v.(DirectoryObjectable)
+                }
             }
             m.SetAcceptedSenders(res)
         }
@@ -263,7 +267,9 @@ func (m *Group) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]AppRoleAssignmentable, len(val))
             for i, v := range val {
-                res[i] = v.(AppRoleAssignmentable)
+                if v != nil {
+                    res[i] = v.(AppRoleAssignmentable)
+                }
             }
             m.SetAppRoleAssignments(res)
         }
@@ -277,7 +283,9 @@ func (m *Group) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]AssignedLabelable, len(val))
             for i, v := range val {
-                res[i] = v.(AssignedLabelable)
+                if v != nil {
+                    res[i] = v.(AssignedLabelable)
+                }
             }
             m.SetAssignedLabels(res)
         }
@@ -291,7 +299,9 @@ func (m *Group) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]AssignedLicenseable, len(val))
             for i, v := range val {
-                res[i] = v.(AssignedLicenseable)
+                if v != nil {
+                    res[i] = v.(AssignedLicenseable)
+                }
             }
             m.SetAssignedLicenses(res)
         }
@@ -325,7 +335,9 @@ func (m *Group) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]Eventable, len(val))
             for i, v := range val {
-                res[i] = v.(Eventable)
+                if v != nil {
+                    res[i] = v.(Eventable)
+                }
             }
             m.SetCalendarView(res)
         }
@@ -349,7 +361,9 @@ func (m *Group) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]Conversationable, len(val))
             for i, v := range val {
-                res[i] = v.(Conversationable)
+                if v != nil {
+                    res[i] = v.(Conversationable)
+                }
             }
             m.SetConversations(res)
         }
@@ -413,7 +427,9 @@ func (m *Group) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]Driveable, len(val))
             for i, v := range val {
-                res[i] = v.(Driveable)
+                if v != nil {
+                    res[i] = v.(Driveable)
+                }
             }
             m.SetDrives(res)
         }
@@ -427,7 +443,9 @@ func (m *Group) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]Eventable, len(val))
             for i, v := range val {
-                res[i] = v.(Eventable)
+                if v != nil {
+                    res[i] = v.(Eventable)
+                }
             }
             m.SetEvents(res)
         }
@@ -451,7 +469,9 @@ func (m *Group) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]Extensionable, len(val))
             for i, v := range val {
-                res[i] = v.(Extensionable)
+                if v != nil {
+                    res[i] = v.(Extensionable)
+                }
             }
             m.SetExtensions(res)
         }
@@ -465,7 +485,9 @@ func (m *Group) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]GroupLifecyclePolicyable, len(val))
             for i, v := range val {
-                res[i] = v.(GroupLifecyclePolicyable)
+                if v != nil {
+                    res[i] = v.(GroupLifecyclePolicyable)
+                }
             }
             m.SetGroupLifecyclePolicies(res)
         }
@@ -479,7 +501,9 @@ func (m *Group) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetGroupTypes(res)
         }
@@ -593,7 +617,9 @@ func (m *Group) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]DirectoryObjectable, len(val))
             for i, v := range val {
-                res[i] = v.(DirectoryObjectable)
+                if v != nil {
+                    res[i] = v.(DirectoryObjectable)
+                }
             }
             m.SetMemberOf(res)
         }
@@ -607,7 +633,9 @@ func (m *Group) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]DirectoryObjectable, len(val))
             for i, v := range val {
-                res[i] = v.(DirectoryObjectable)
+                if v != nil {
+                    res[i] = v.(DirectoryObjectable)
+                }
             }
             m.SetMembers(res)
         }
@@ -641,7 +669,9 @@ func (m *Group) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]DirectoryObjectable, len(val))
             for i, v := range val {
-                res[i] = v.(DirectoryObjectable)
+                if v != nil {
+                    res[i] = v.(DirectoryObjectable)
+                }
             }
             m.SetMembersWithLicenseErrors(res)
         }
@@ -695,7 +725,9 @@ func (m *Group) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]OnPremisesProvisioningErrorable, len(val))
             for i, v := range val {
-                res[i] = v.(OnPremisesProvisioningErrorable)
+                if v != nil {
+                    res[i] = v.(OnPremisesProvisioningErrorable)
+                }
             }
             m.SetOnPremisesProvisioningErrors(res)
         }
@@ -739,7 +771,9 @@ func (m *Group) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]DirectoryObjectable, len(val))
             for i, v := range val {
-                res[i] = v.(DirectoryObjectable)
+                if v != nil {
+                    res[i] = v.(DirectoryObjectable)
+                }
             }
             m.SetOwners(res)
         }
@@ -753,7 +787,9 @@ func (m *Group) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]ResourceSpecificPermissionGrantable, len(val))
             for i, v := range val {
-                res[i] = v.(ResourceSpecificPermissionGrantable)
+                if v != nil {
+                    res[i] = v.(ResourceSpecificPermissionGrantable)
+                }
             }
             m.SetPermissionGrants(res)
         }
@@ -777,7 +813,9 @@ func (m *Group) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]ProfilePhotoable, len(val))
             for i, v := range val {
-                res[i] = v.(ProfilePhotoable)
+                if v != nil {
+                    res[i] = v.(ProfilePhotoable)
+                }
             }
             m.SetPhotos(res)
         }
@@ -821,7 +859,9 @@ func (m *Group) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetProxyAddresses(res)
         }
@@ -835,7 +875,9 @@ func (m *Group) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]DirectoryObjectable, len(val))
             for i, v := range val {
-                res[i] = v.(DirectoryObjectable)
+                if v != nil {
+                    res[i] = v.(DirectoryObjectable)
+                }
             }
             m.SetRejectedSenders(res)
         }
@@ -871,6 +913,22 @@ func (m *Group) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         }
         return nil
     }
+    res["serviceProvisioningErrors"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateServiceProvisioningErrorFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]ServiceProvisioningErrorable, len(val))
+            for i, v := range val {
+                if v != nil {
+                    res[i] = v.(ServiceProvisioningErrorable)
+                }
+            }
+            m.SetServiceProvisioningErrors(res)
+        }
+        return nil
+    }
     res["settings"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetCollectionOfObjectValues(CreateGroupSettingFromDiscriminatorValue)
         if err != nil {
@@ -879,7 +937,9 @@ func (m *Group) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]GroupSettingable, len(val))
             for i, v := range val {
-                res[i] = v.(GroupSettingable)
+                if v != nil {
+                    res[i] = v.(GroupSettingable)
+                }
             }
             m.SetSettings(res)
         }
@@ -893,7 +953,9 @@ func (m *Group) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]Siteable, len(val))
             for i, v := range val {
-                res[i] = v.(Siteable)
+                if v != nil {
+                    res[i] = v.(Siteable)
+                }
             }
             m.SetSites(res)
         }
@@ -927,7 +989,9 @@ func (m *Group) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]ConversationThreadable, len(val))
             for i, v := range val {
-                res[i] = v.(ConversationThreadable)
+                if v != nil {
+                    res[i] = v.(ConversationThreadable)
+                }
             }
             m.SetThreads(res)
         }
@@ -941,7 +1005,9 @@ func (m *Group) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]DirectoryObjectable, len(val))
             for i, v := range val {
-                res[i] = v.(DirectoryObjectable)
+                if v != nil {
+                    res[i] = v.(DirectoryObjectable)
+                }
             }
             m.SetTransitiveMemberOf(res)
         }
@@ -955,7 +1021,9 @@ func (m *Group) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]DirectoryObjectable, len(val))
             for i, v := range val {
-                res[i] = v.(DirectoryObjectable)
+                if v != nil {
+                    res[i] = v.(DirectoryObjectable)
+                }
             }
             m.SetTransitiveMembers(res)
         }
@@ -987,7 +1055,7 @@ func (m *Group) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
 func (m *Group) GetGroupLifecyclePolicies()([]GroupLifecyclePolicyable) {
     return m.groupLifecyclePolicies
 }
-// GetGroupTypes gets the groupTypes property value. Specifies the group type and its membership. If the collection contains Unified, the group is a Microsoft 365 group; otherwise, it's either a security group or distribution group. For details, see groups overview.If the collection includes DynamicMembership, the group has dynamic membership; otherwise, membership is static. Returned by default. Supports $filter (eq, not).
+// GetGroupTypes gets the groupTypes property value. Specifies the group type and its membership. If the collection contains Unified, the group is a Microsoft 365 group; otherwise, it's either a security group or a distribution group. For details, see groups overview.If the collection includes DynamicMembership, the group has dynamic membership; otherwise, membership is static. Returned by default. Supports $filter (eq, not).
 func (m *Group) GetGroupTypes()([]string) {
     return m.groupTypes
 }
@@ -999,23 +1067,23 @@ func (m *Group) GetHasMembersWithLicenseErrors()(*bool) {
 func (m *Group) GetHideFromAddressLists()(*bool) {
     return m.hideFromAddressLists
 }
-// GetHideFromOutlookClients gets the hideFromOutlookClients property value. True if the group is not displayed in Outlook clients, such as Outlook for Windows and Outlook on the web; otherwise, false. Default value is false. Returned only on $select. Supported only on the Get group API (GET /groups/{ID}).
+// GetHideFromOutlookClients gets the hideFromOutlookClients property value. True if the group is not displayed in Outlook clients, such as Outlook for Windows and Outlook on the web; otherwise, false. The default value is false. Returned only on $select. Supported only on the Get group API (GET /groups/{ID}).
 func (m *Group) GetHideFromOutlookClients()(*bool) {
     return m.hideFromOutlookClients
 }
-// GetIsArchived gets the isArchived property value. When a group is associated with a team this property determines whether the team is in read-only mode.To read this property, use the /group/{groupId}/team endpoint or the Get team API. To update this property, use the archiveTeam and unarchiveTeam APIs.
+// GetIsArchived gets the isArchived property value. When a group is associated with a team, this property determines whether the team is in read-only mode.To read this property, use the /group/{groupId}/team endpoint or the Get team API. To update this property, use the archiveTeam and unarchiveTeam APIs.
 func (m *Group) GetIsArchived()(*bool) {
     return m.isArchived
 }
-// GetIsAssignableToRole gets the isAssignableToRole property value. Indicates whether this group can be assigned to an Azure Active Directory role or not. Optional. This property can only be set while creating the group and is immutable. If set to true, the securityEnabled property must also be set to true, visibility must be Hidden, and the group cannot be a dynamic group (that is, groupTypes cannot contain DynamicMembership). Only callers in Global Administrator and Privileged Role Administrator roles can set this property. The caller must also be assigned the RoleManagement.ReadWrite.Directory permission to set this property or update the membership of such groups. For more, see Using a group to manage Azure AD role assignmentsUsing this feature requires a Azure AD Premium P1 license. Returned by default. Supports $filter (eq, ne, not).
+// GetIsAssignableToRole gets the isAssignableToRole property value. Indicates whether this group can be assigned to a Microsoft Entra role. Optional. This property can only be set while creating the group and is immutable. If set to true, the securityEnabled property must also be set to true, visibility must be Hidden, and the group cannot be a dynamic group (that is, groupTypes cannot contain DynamicMembership). Only callers in Global Administrator and Privileged Role Administrator roles can set this property. The caller must also be assigned the RoleManagement.ReadWrite.Directory permission to set this property or update the membership of such groups. For more, see Using a group to manage Microsoft Entra role assignmentsUsing this feature requires a Microsoft Entra ID P1 license. Returned by default. Supports $filter (eq, ne, not).
 func (m *Group) GetIsAssignableToRole()(*bool) {
     return m.isAssignableToRole
 }
-// GetIsSubscribedByMail gets the isSubscribedByMail property value. Indicates whether the signed-in user is subscribed to receive email conversations. Default value is true. Returned only on $select. Supported only on the Get group API (GET /groups/{ID}).
+// GetIsSubscribedByMail gets the isSubscribedByMail property value. Indicates whether the signed-in user is subscribed to receive email conversations. The default value is true. Returned only on $select. Supported only on the Get group API (GET /groups/{ID}).
 func (m *Group) GetIsSubscribedByMail()(*bool) {
     return m.isSubscribedByMail
 }
-// GetLicenseProcessingState gets the licenseProcessingState property value. Indicates status of the group license assignment to all members of the group. Default value is false. Read-only. Possible values: QueuedForProcessing, ProcessingInProgress, and ProcessingComplete.Returned only on $select. Read-only.
+// GetLicenseProcessingState gets the licenseProcessingState property value. Indicates the status of the group license assignment to all group members. The default value is false. Read-only. Possible values: QueuedForProcessing, ProcessingInProgress, and ProcessingComplete.Returned only on $select. Read-only.
 func (m *Group) GetLicenseProcessingState()(LicenseProcessingStateable) {
     return m.licenseProcessingState
 }
@@ -1071,11 +1139,11 @@ func (m *Group) GetOnPremisesNetBiosName()(*string) {
 func (m *Group) GetOnPremisesProvisioningErrors()([]OnPremisesProvisioningErrorable) {
     return m.onPremisesProvisioningErrors
 }
-// GetOnPremisesSamAccountName gets the onPremisesSamAccountName property value. Contains the on-premises SAM account name synchronized from the on-premises directory. The property is only populated for customers who are synchronizing their on-premises directory to Azure Active Directory via Azure AD Connect.Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith). Read-only.
+// GetOnPremisesSamAccountName gets the onPremisesSamAccountName property value. Contains the on-premises SAM account name synchronized from the on-premises directory. The property is only populated for customers synchronizing their on-premises directory to Microsoft Entra ID via Microsoft Entra Connect.Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith). Read-only.
 func (m *Group) GetOnPremisesSamAccountName()(*string) {
     return m.onPremisesSamAccountName
 }
-// GetOnPremisesSecurityIdentifier gets the onPremisesSecurityIdentifier property value. Contains the on-premises security identifier (SID) for the group that was synchronized from on-premises to the cloud. Returned by default. Supports $filter (eq including on null values). Read-only.
+// GetOnPremisesSecurityIdentifier gets the onPremisesSecurityIdentifier property value. Contains the on-premises security identifier (SID) for the group synchronized from on-premises to the cloud. Returned by default. Supports $filter (eq including on null values). Read-only.
 func (m *Group) GetOnPremisesSecurityIdentifier()(*string) {
     return m.onPremisesSecurityIdentifier
 }
@@ -1087,7 +1155,7 @@ func (m *Group) GetOnPremisesSyncEnabled()(*bool) {
 func (m *Group) GetOwners()([]DirectoryObjectable) {
     return m.owners
 }
-// GetPermissionGrants gets the permissionGrants property value. The permission that has been granted for a group to a specific application. Supports $expand.
+// GetPermissionGrants gets the permissionGrants property value. The permissionGrants property
 func (m *Group) GetPermissionGrants()([]ResourceSpecificPermissionGrantable) {
     return m.permissionGrants
 }
@@ -1103,11 +1171,11 @@ func (m *Group) GetPhotos()([]ProfilePhotoable) {
 func (m *Group) GetPlanner()(PlannerGroupable) {
     return m.planner
 }
-// GetPreferredDataLocation gets the preferredDataLocation property value. The preferred data location for the Microsoft 365 group. By default, the group inherits the group creator's preferred data location. To set this property, the calling user must be assigned one of the following Azure AD roles:  Global Administrator  User Account Administrator Directory Writer  Exchange Administrator  SharePoint Administrator  For more information about this property, see OneDrive Online Multi-Geo. Nullable. Returned by default.
+// GetPreferredDataLocation gets the preferredDataLocation property value. The preferred data location for the Microsoft 365 group. By default, the group inherits the group creator's preferred data location. To set this property, the calling app must be granted the Directory.ReadWrite.All permission and the user be assigned one of the following Microsoft Entra roles:  Global Administrator  User Account Administrator Directory Writer  Exchange Administrator  SharePoint Administrator  For more information about this property, see OneDrive Online Multi-Geo. Nullable. Returned by default.
 func (m *Group) GetPreferredDataLocation()(*string) {
     return m.preferredDataLocation
 }
-// GetPreferredLanguage gets the preferredLanguage property value. The preferred language for a Microsoft 365 group. Should follow ISO 639-1 Code; for example en-US. Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).
+// GetPreferredLanguage gets the preferredLanguage property value. The preferred language for a Microsoft 365 group. Should follow ISO 639-1 Code; for example, en-US. Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).
 func (m *Group) GetPreferredLanguage()(*string) {
     return m.preferredLanguage
 }
@@ -1115,11 +1183,11 @@ func (m *Group) GetPreferredLanguage()(*string) {
 func (m *Group) GetProxyAddresses()([]string) {
     return m.proxyAddresses
 }
-// GetRejectedSenders gets the rejectedSenders property value. The list of users or groups that are not allowed to create posts or calendar events in this group. Nullable
+// GetRejectedSenders gets the rejectedSenders property value. The list of users or groups not allowed to create posts or calendar events in this group. Nullable
 func (m *Group) GetRejectedSenders()([]DirectoryObjectable) {
     return m.rejectedSenders
 }
-// GetRenewedDateTime gets the renewedDateTime property value. Timestamp of when the group was last renewed. This cannot be modified directly and is only updated via the renew service action. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Returned by default. Supports $filter (eq, ne, not, ge, le, in). Read-only.
+// GetRenewedDateTime gets the renewedDateTime property value. Timestamp of when the group was last renewed. This cannot be modified directly and is only updated via the renew service action. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Returned by default. Supports $filter (eq, ne, not, ge, le, in). Read-only.
 func (m *Group) GetRenewedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.renewedDateTime
 }
@@ -1130,6 +1198,10 @@ func (m *Group) GetSecurityEnabled()(*bool) {
 // GetSecurityIdentifier gets the securityIdentifier property value. Security identifier of the group, used in Windows scenarios. Returned by default.
 func (m *Group) GetSecurityIdentifier()(*string) {
     return m.securityIdentifier
+}
+// GetServiceProvisioningErrors gets the serviceProvisioningErrors property value. Errors published by a federated service describing a non-transient, service-specific error regarding the properties or link from a group object .  Supports $filter (eq, not, for isResolved and serviceInstance).
+func (m *Group) GetServiceProvisioningErrors()([]ServiceProvisioningErrorable) {
+    return m.serviceProvisioningErrors
 }
 // GetSettings gets the settings property value. Settings that can govern this group's behavior, like whether members can invite guest users to the group. Nullable.
 func (m *Group) GetSettings()([]GroupSettingable) {
@@ -1151,7 +1223,7 @@ func (m *Group) GetTheme()(*string) {
 func (m *Group) GetThreads()([]ConversationThreadable) {
     return m.threads
 }
-// GetTransitiveMemberOf gets the transitiveMemberOf property value. The groups that a group is a member of, either directly and through nested membership. Nullable.
+// GetTransitiveMemberOf gets the transitiveMemberOf property value. The groups that a group is a member of, either directly or through nested membership. Nullable.
 func (m *Group) GetTransitiveMemberOf()([]DirectoryObjectable) {
     return m.transitiveMemberOf
 }
@@ -1163,7 +1235,7 @@ func (m *Group) GetTransitiveMembers()([]DirectoryObjectable) {
 func (m *Group) GetUnseenCount()(*int32) {
     return m.unseenCount
 }
-// GetVisibility gets the visibility property value. Specifies the group join policy and group content visibility for groups. Possible values are: Private, Public, or HiddenMembership. HiddenMembership can be set only for Microsoft 365 groups, when the groups are created. It can't be updated later. Other values of visibility can be updated after group creation. If visibility value is not specified during group creation on Microsoft Graph, a security group is created as Private by default and Microsoft 365 group is Public. Groups assignable to roles are always Private. See group visibility options to learn more. Returned by default. Nullable.
+// GetVisibility gets the visibility property value. Specifies the group join policy and group content visibility for groups. Possible values are: Private, Public, or HiddenMembership. HiddenMembership can be set only for Microsoft 365 groups when the groups are created. It can't be updated later. Other values of visibility can be updated after group creation. If visibility value is not specified during group creation on Microsoft Graph, a security group is created as Private by default, and the Microsoft 365 group is Public. Groups assignable to roles are always Private. To learn more, see group visibility options. Returned by default. Nullable.
 func (m *Group) GetVisibility()(*string) {
     return m.visibility
 }
@@ -1176,7 +1248,9 @@ func (m *Group) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetAcceptedSenders() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAcceptedSenders()))
         for i, v := range m.GetAcceptedSenders() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("acceptedSenders", cast)
         if err != nil {
@@ -1192,7 +1266,9 @@ func (m *Group) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetAppRoleAssignments() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAppRoleAssignments()))
         for i, v := range m.GetAppRoleAssignments() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("appRoleAssignments", cast)
         if err != nil {
@@ -1202,7 +1278,9 @@ func (m *Group) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetAssignedLabels() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAssignedLabels()))
         for i, v := range m.GetAssignedLabels() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("assignedLabels", cast)
         if err != nil {
@@ -1212,7 +1290,9 @@ func (m *Group) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetAssignedLicenses() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAssignedLicenses()))
         for i, v := range m.GetAssignedLicenses() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("assignedLicenses", cast)
         if err != nil {
@@ -1234,7 +1314,9 @@ func (m *Group) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetCalendarView() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetCalendarView()))
         for i, v := range m.GetCalendarView() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("calendarView", cast)
         if err != nil {
@@ -1250,7 +1332,9 @@ func (m *Group) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetConversations() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetConversations()))
         for i, v := range m.GetConversations() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("conversations", cast)
         if err != nil {
@@ -1290,7 +1374,9 @@ func (m *Group) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetDrives() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetDrives()))
         for i, v := range m.GetDrives() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("drives", cast)
         if err != nil {
@@ -1300,7 +1386,9 @@ func (m *Group) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetEvents() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetEvents()))
         for i, v := range m.GetEvents() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("events", cast)
         if err != nil {
@@ -1316,7 +1404,9 @@ func (m *Group) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetExtensions() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetExtensions()))
         for i, v := range m.GetExtensions() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("extensions", cast)
         if err != nil {
@@ -1326,7 +1416,9 @@ func (m *Group) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetGroupLifecyclePolicies() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetGroupLifecyclePolicies()))
         for i, v := range m.GetGroupLifecyclePolicies() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("groupLifecyclePolicies", cast)
         if err != nil {
@@ -1402,7 +1494,9 @@ func (m *Group) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetMemberOf() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetMemberOf()))
         for i, v := range m.GetMemberOf() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("memberOf", cast)
         if err != nil {
@@ -1412,7 +1506,9 @@ func (m *Group) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetMembers() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetMembers()))
         for i, v := range m.GetMembers() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("members", cast)
         if err != nil {
@@ -1434,7 +1530,9 @@ func (m *Group) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetMembersWithLicenseErrors() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetMembersWithLicenseErrors()))
         for i, v := range m.GetMembersWithLicenseErrors() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("membersWithLicenseErrors", cast)
         if err != nil {
@@ -1468,7 +1566,9 @@ func (m *Group) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetOnPremisesProvisioningErrors() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetOnPremisesProvisioningErrors()))
         for i, v := range m.GetOnPremisesProvisioningErrors() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("onPremisesProvisioningErrors", cast)
         if err != nil {
@@ -1496,7 +1596,9 @@ func (m *Group) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetOwners() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetOwners()))
         for i, v := range m.GetOwners() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("owners", cast)
         if err != nil {
@@ -1506,7 +1608,9 @@ func (m *Group) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetPermissionGrants() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPermissionGrants()))
         for i, v := range m.GetPermissionGrants() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("permissionGrants", cast)
         if err != nil {
@@ -1522,7 +1626,9 @@ func (m *Group) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetPhotos() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPhotos()))
         for i, v := range m.GetPhotos() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("photos", cast)
         if err != nil {
@@ -1556,7 +1662,9 @@ func (m *Group) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetRejectedSenders() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetRejectedSenders()))
         for i, v := range m.GetRejectedSenders() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("rejectedSenders", cast)
         if err != nil {
@@ -1581,10 +1689,24 @@ func (m *Group) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
             return err
         }
     }
+    if m.GetServiceProvisioningErrors() != nil {
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetServiceProvisioningErrors()))
+        for i, v := range m.GetServiceProvisioningErrors() {
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
+        }
+        err = writer.WriteCollectionOfObjectValues("serviceProvisioningErrors", cast)
+        if err != nil {
+            return err
+        }
+    }
     if m.GetSettings() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetSettings()))
         for i, v := range m.GetSettings() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("settings", cast)
         if err != nil {
@@ -1594,7 +1716,9 @@ func (m *Group) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetSites() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetSites()))
         for i, v := range m.GetSites() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("sites", cast)
         if err != nil {
@@ -1616,7 +1740,9 @@ func (m *Group) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetThreads() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetThreads()))
         for i, v := range m.GetThreads() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("threads", cast)
         if err != nil {
@@ -1626,7 +1752,9 @@ func (m *Group) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetTransitiveMemberOf() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetTransitiveMemberOf()))
         for i, v := range m.GetTransitiveMemberOf() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("transitiveMemberOf", cast)
         if err != nil {
@@ -1636,7 +1764,9 @@ func (m *Group) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetTransitiveMembers() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetTransitiveMembers()))
         for i, v := range m.GetTransitiveMembers() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("transitiveMembers", cast)
         if err != nil {
@@ -1657,11 +1787,11 @@ func (m *Group) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     }
     return nil
 }
-// SetAcceptedSenders sets the acceptedSenders property value. The list of users or groups that are allowed to create post's or calendar events in this group. If this list is non-empty then only users or groups listed here are allowed to post.
+// SetAcceptedSenders sets the acceptedSenders property value. The list of users or groups allowed to create posts or calendar events in this group. If this list is non-empty, then only users or groups listed here are allowed to post.
 func (m *Group) SetAcceptedSenders(value []DirectoryObjectable)() {
     m.acceptedSenders = value
 }
-// SetAllowExternalSenders sets the allowExternalSenders property value. Indicates if people external to the organization can send messages to the group. Default value is false. Returned only on $select. Supported only on the Get group API (GET /groups/{ID}).
+// SetAllowExternalSenders sets the allowExternalSenders property value. Indicates if people external to the organization can send messages to the group. The default value is false. Returned only on $select. Supported only on the Get group API (GET /groups/{ID}).
 func (m *Group) SetAllowExternalSenders(value *bool)() {
     m.allowExternalSenders = value
 }
@@ -1709,7 +1839,7 @@ func (m *Group) SetCreatedOnBehalfOf(value DirectoryObjectable)() {
 func (m *Group) SetDescription(value *string)() {
     m.description = value
 }
-// SetDisplayName sets the displayName property value. The display name for the group. This property is required when a group is created and cannot be cleared during updates. Maximum length is 256 characters. Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderBy.
+// SetDisplayName sets the displayName property value. The display name for the group. This property is required when a group is created and cannot be cleared during updates. Maximum length is 256 characters. Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderby.
 func (m *Group) SetDisplayName(value *string)() {
     m.displayName = value
 }
@@ -1725,7 +1855,7 @@ func (m *Group) SetDrives(value []Driveable)() {
 func (m *Group) SetEvents(value []Eventable)() {
     m.events = value
 }
-// SetExpirationDateTime sets the expirationDateTime property value. Timestamp of when the group is set to expire. The value cannot be modified and is automatically populated when the group is created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Returned by default. Supports $filter (eq, ne, not, ge, le, in). Read-only.
+// SetExpirationDateTime sets the expirationDateTime property value. Timestamp of when the group is set to expire. It is null for security groups, but for Microsoft 365 groups, it represents when the group is set to expire as defined in the groupLifecyclePolicy. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Returned by default. Supports $filter (eq, ne, not, ge, le, in). Read-only.
 func (m *Group) SetExpirationDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.expirationDateTime = value
 }
@@ -1737,7 +1867,7 @@ func (m *Group) SetExtensions(value []Extensionable)() {
 func (m *Group) SetGroupLifecyclePolicies(value []GroupLifecyclePolicyable)() {
     m.groupLifecyclePolicies = value
 }
-// SetGroupTypes sets the groupTypes property value. Specifies the group type and its membership. If the collection contains Unified, the group is a Microsoft 365 group; otherwise, it's either a security group or distribution group. For details, see groups overview.If the collection includes DynamicMembership, the group has dynamic membership; otherwise, membership is static. Returned by default. Supports $filter (eq, not).
+// SetGroupTypes sets the groupTypes property value. Specifies the group type and its membership. If the collection contains Unified, the group is a Microsoft 365 group; otherwise, it's either a security group or a distribution group. For details, see groups overview.If the collection includes DynamicMembership, the group has dynamic membership; otherwise, membership is static. Returned by default. Supports $filter (eq, not).
 func (m *Group) SetGroupTypes(value []string)() {
     m.groupTypes = value
 }
@@ -1749,23 +1879,23 @@ func (m *Group) SetHasMembersWithLicenseErrors(value *bool)() {
 func (m *Group) SetHideFromAddressLists(value *bool)() {
     m.hideFromAddressLists = value
 }
-// SetHideFromOutlookClients sets the hideFromOutlookClients property value. True if the group is not displayed in Outlook clients, such as Outlook for Windows and Outlook on the web; otherwise, false. Default value is false. Returned only on $select. Supported only on the Get group API (GET /groups/{ID}).
+// SetHideFromOutlookClients sets the hideFromOutlookClients property value. True if the group is not displayed in Outlook clients, such as Outlook for Windows and Outlook on the web; otherwise, false. The default value is false. Returned only on $select. Supported only on the Get group API (GET /groups/{ID}).
 func (m *Group) SetHideFromOutlookClients(value *bool)() {
     m.hideFromOutlookClients = value
 }
-// SetIsArchived sets the isArchived property value. When a group is associated with a team this property determines whether the team is in read-only mode.To read this property, use the /group/{groupId}/team endpoint or the Get team API. To update this property, use the archiveTeam and unarchiveTeam APIs.
+// SetIsArchived sets the isArchived property value. When a group is associated with a team, this property determines whether the team is in read-only mode.To read this property, use the /group/{groupId}/team endpoint or the Get team API. To update this property, use the archiveTeam and unarchiveTeam APIs.
 func (m *Group) SetIsArchived(value *bool)() {
     m.isArchived = value
 }
-// SetIsAssignableToRole sets the isAssignableToRole property value. Indicates whether this group can be assigned to an Azure Active Directory role or not. Optional. This property can only be set while creating the group and is immutable. If set to true, the securityEnabled property must also be set to true, visibility must be Hidden, and the group cannot be a dynamic group (that is, groupTypes cannot contain DynamicMembership). Only callers in Global Administrator and Privileged Role Administrator roles can set this property. The caller must also be assigned the RoleManagement.ReadWrite.Directory permission to set this property or update the membership of such groups. For more, see Using a group to manage Azure AD role assignmentsUsing this feature requires a Azure AD Premium P1 license. Returned by default. Supports $filter (eq, ne, not).
+// SetIsAssignableToRole sets the isAssignableToRole property value. Indicates whether this group can be assigned to a Microsoft Entra role. Optional. This property can only be set while creating the group and is immutable. If set to true, the securityEnabled property must also be set to true, visibility must be Hidden, and the group cannot be a dynamic group (that is, groupTypes cannot contain DynamicMembership). Only callers in Global Administrator and Privileged Role Administrator roles can set this property. The caller must also be assigned the RoleManagement.ReadWrite.Directory permission to set this property or update the membership of such groups. For more, see Using a group to manage Microsoft Entra role assignmentsUsing this feature requires a Microsoft Entra ID P1 license. Returned by default. Supports $filter (eq, ne, not).
 func (m *Group) SetIsAssignableToRole(value *bool)() {
     m.isAssignableToRole = value
 }
-// SetIsSubscribedByMail sets the isSubscribedByMail property value. Indicates whether the signed-in user is subscribed to receive email conversations. Default value is true. Returned only on $select. Supported only on the Get group API (GET /groups/{ID}).
+// SetIsSubscribedByMail sets the isSubscribedByMail property value. Indicates whether the signed-in user is subscribed to receive email conversations. The default value is true. Returned only on $select. Supported only on the Get group API (GET /groups/{ID}).
 func (m *Group) SetIsSubscribedByMail(value *bool)() {
     m.isSubscribedByMail = value
 }
-// SetLicenseProcessingState sets the licenseProcessingState property value. Indicates status of the group license assignment to all members of the group. Default value is false. Read-only. Possible values: QueuedForProcessing, ProcessingInProgress, and ProcessingComplete.Returned only on $select. Read-only.
+// SetLicenseProcessingState sets the licenseProcessingState property value. Indicates the status of the group license assignment to all group members. The default value is false. Read-only. Possible values: QueuedForProcessing, ProcessingInProgress, and ProcessingComplete.Returned only on $select. Read-only.
 func (m *Group) SetLicenseProcessingState(value LicenseProcessingStateable)() {
     m.licenseProcessingState = value
 }
@@ -1821,11 +1951,11 @@ func (m *Group) SetOnPremisesNetBiosName(value *string)() {
 func (m *Group) SetOnPremisesProvisioningErrors(value []OnPremisesProvisioningErrorable)() {
     m.onPremisesProvisioningErrors = value
 }
-// SetOnPremisesSamAccountName sets the onPremisesSamAccountName property value. Contains the on-premises SAM account name synchronized from the on-premises directory. The property is only populated for customers who are synchronizing their on-premises directory to Azure Active Directory via Azure AD Connect.Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith). Read-only.
+// SetOnPremisesSamAccountName sets the onPremisesSamAccountName property value. Contains the on-premises SAM account name synchronized from the on-premises directory. The property is only populated for customers synchronizing their on-premises directory to Microsoft Entra ID via Microsoft Entra Connect.Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith). Read-only.
 func (m *Group) SetOnPremisesSamAccountName(value *string)() {
     m.onPremisesSamAccountName = value
 }
-// SetOnPremisesSecurityIdentifier sets the onPremisesSecurityIdentifier property value. Contains the on-premises security identifier (SID) for the group that was synchronized from on-premises to the cloud. Returned by default. Supports $filter (eq including on null values). Read-only.
+// SetOnPremisesSecurityIdentifier sets the onPremisesSecurityIdentifier property value. Contains the on-premises security identifier (SID) for the group synchronized from on-premises to the cloud. Returned by default. Supports $filter (eq including on null values). Read-only.
 func (m *Group) SetOnPremisesSecurityIdentifier(value *string)() {
     m.onPremisesSecurityIdentifier = value
 }
@@ -1837,7 +1967,7 @@ func (m *Group) SetOnPremisesSyncEnabled(value *bool)() {
 func (m *Group) SetOwners(value []DirectoryObjectable)() {
     m.owners = value
 }
-// SetPermissionGrants sets the permissionGrants property value. The permission that has been granted for a group to a specific application. Supports $expand.
+// SetPermissionGrants sets the permissionGrants property value. The permissionGrants property
 func (m *Group) SetPermissionGrants(value []ResourceSpecificPermissionGrantable)() {
     m.permissionGrants = value
 }
@@ -1853,11 +1983,11 @@ func (m *Group) SetPhotos(value []ProfilePhotoable)() {
 func (m *Group) SetPlanner(value PlannerGroupable)() {
     m.planner = value
 }
-// SetPreferredDataLocation sets the preferredDataLocation property value. The preferred data location for the Microsoft 365 group. By default, the group inherits the group creator's preferred data location. To set this property, the calling user must be assigned one of the following Azure AD roles:  Global Administrator  User Account Administrator Directory Writer  Exchange Administrator  SharePoint Administrator  For more information about this property, see OneDrive Online Multi-Geo. Nullable. Returned by default.
+// SetPreferredDataLocation sets the preferredDataLocation property value. The preferred data location for the Microsoft 365 group. By default, the group inherits the group creator's preferred data location. To set this property, the calling app must be granted the Directory.ReadWrite.All permission and the user be assigned one of the following Microsoft Entra roles:  Global Administrator  User Account Administrator Directory Writer  Exchange Administrator  SharePoint Administrator  For more information about this property, see OneDrive Online Multi-Geo. Nullable. Returned by default.
 func (m *Group) SetPreferredDataLocation(value *string)() {
     m.preferredDataLocation = value
 }
-// SetPreferredLanguage sets the preferredLanguage property value. The preferred language for a Microsoft 365 group. Should follow ISO 639-1 Code; for example en-US. Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).
+// SetPreferredLanguage sets the preferredLanguage property value. The preferred language for a Microsoft 365 group. Should follow ISO 639-1 Code; for example, en-US. Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).
 func (m *Group) SetPreferredLanguage(value *string)() {
     m.preferredLanguage = value
 }
@@ -1865,11 +1995,11 @@ func (m *Group) SetPreferredLanguage(value *string)() {
 func (m *Group) SetProxyAddresses(value []string)() {
     m.proxyAddresses = value
 }
-// SetRejectedSenders sets the rejectedSenders property value. The list of users or groups that are not allowed to create posts or calendar events in this group. Nullable
+// SetRejectedSenders sets the rejectedSenders property value. The list of users or groups not allowed to create posts or calendar events in this group. Nullable
 func (m *Group) SetRejectedSenders(value []DirectoryObjectable)() {
     m.rejectedSenders = value
 }
-// SetRenewedDateTime sets the renewedDateTime property value. Timestamp of when the group was last renewed. This cannot be modified directly and is only updated via the renew service action. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Returned by default. Supports $filter (eq, ne, not, ge, le, in). Read-only.
+// SetRenewedDateTime sets the renewedDateTime property value. Timestamp of when the group was last renewed. This cannot be modified directly and is only updated via the renew service action. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Returned by default. Supports $filter (eq, ne, not, ge, le, in). Read-only.
 func (m *Group) SetRenewedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.renewedDateTime = value
 }
@@ -1880,6 +2010,10 @@ func (m *Group) SetSecurityEnabled(value *bool)() {
 // SetSecurityIdentifier sets the securityIdentifier property value. Security identifier of the group, used in Windows scenarios. Returned by default.
 func (m *Group) SetSecurityIdentifier(value *string)() {
     m.securityIdentifier = value
+}
+// SetServiceProvisioningErrors sets the serviceProvisioningErrors property value. Errors published by a federated service describing a non-transient, service-specific error regarding the properties or link from a group object .  Supports $filter (eq, not, for isResolved and serviceInstance).
+func (m *Group) SetServiceProvisioningErrors(value []ServiceProvisioningErrorable)() {
+    m.serviceProvisioningErrors = value
 }
 // SetSettings sets the settings property value. Settings that can govern this group's behavior, like whether members can invite guest users to the group. Nullable.
 func (m *Group) SetSettings(value []GroupSettingable)() {
@@ -1901,7 +2035,7 @@ func (m *Group) SetTheme(value *string)() {
 func (m *Group) SetThreads(value []ConversationThreadable)() {
     m.threads = value
 }
-// SetTransitiveMemberOf sets the transitiveMemberOf property value. The groups that a group is a member of, either directly and through nested membership. Nullable.
+// SetTransitiveMemberOf sets the transitiveMemberOf property value. The groups that a group is a member of, either directly or through nested membership. Nullable.
 func (m *Group) SetTransitiveMemberOf(value []DirectoryObjectable)() {
     m.transitiveMemberOf = value
 }
@@ -1913,7 +2047,7 @@ func (m *Group) SetTransitiveMembers(value []DirectoryObjectable)() {
 func (m *Group) SetUnseenCount(value *int32)() {
     m.unseenCount = value
 }
-// SetVisibility sets the visibility property value. Specifies the group join policy and group content visibility for groups. Possible values are: Private, Public, or HiddenMembership. HiddenMembership can be set only for Microsoft 365 groups, when the groups are created. It can't be updated later. Other values of visibility can be updated after group creation. If visibility value is not specified during group creation on Microsoft Graph, a security group is created as Private by default and Microsoft 365 group is Public. Groups assignable to roles are always Private. See group visibility options to learn more. Returned by default. Nullable.
+// SetVisibility sets the visibility property value. Specifies the group join policy and group content visibility for groups. Possible values are: Private, Public, or HiddenMembership. HiddenMembership can be set only for Microsoft 365 groups when the groups are created. It can't be updated later. Other values of visibility can be updated after group creation. If visibility value is not specified during group creation on Microsoft Graph, a security group is created as Private by default, and the Microsoft 365 group is Public. Groups assignable to roles are always Private. To learn more, see group visibility options. Returned by default. Nullable.
 func (m *Group) SetVisibility(value *string)() {
     m.visibility = value
 }
@@ -1977,6 +2111,7 @@ type Groupable interface {
     GetRenewedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetSecurityEnabled()(*bool)
     GetSecurityIdentifier()(*string)
+    GetServiceProvisioningErrors()([]ServiceProvisioningErrorable)
     GetSettings()([]GroupSettingable)
     GetSites()([]Siteable)
     GetTeam()(Teamable)
@@ -2042,6 +2177,7 @@ type Groupable interface {
     SetRenewedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetSecurityEnabled(value *bool)()
     SetSecurityIdentifier(value *string)()
+    SetServiceProvisioningErrors(value []ServiceProvisioningErrorable)()
     SetSettings(value []GroupSettingable)()
     SetSites(value []Siteable)()
     SetTeam(value Teamable)()

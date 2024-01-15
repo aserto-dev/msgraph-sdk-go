@@ -26,7 +26,7 @@ func NewPatternedRecurrence()(*PatternedRecurrence) {
 func CreatePatternedRecurrenceFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewPatternedRecurrence(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *PatternedRecurrence) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -59,7 +59,7 @@ func (m *PatternedRecurrence) GetFieldDeserializers()(map[string]func(i878a80d23
             return err
         }
         if val != nil {
-            m.SetRange(val.(RecurrenceRangeable))
+            m.SetRangeEscaped(val.(RecurrenceRangeable))
         }
         return nil
     }
@@ -73,8 +73,8 @@ func (m *PatternedRecurrence) GetOdataType()(*string) {
 func (m *PatternedRecurrence) GetPattern()(RecurrencePatternable) {
     return m.pattern
 }
-// GetRange gets the range property value. The duration of an event.
-func (m *PatternedRecurrence) GetRange()(RecurrenceRangeable) {
+// GetRangeEscaped gets the range property value. The duration of an event.
+func (m *PatternedRecurrence) GetRangeEscaped()(RecurrenceRangeable) {
     return m.rangeEscaped
 }
 // Serialize serializes information the current object
@@ -92,7 +92,7 @@ func (m *PatternedRecurrence) Serialize(writer i878a80d2330e89d26896388a3f487eef
         }
     }
     {
-        err := writer.WriteObjectValue("range", m.GetRange())
+        err := writer.WriteObjectValue("range", m.GetRangeEscaped())
         if err != nil {
             return err
         }
@@ -105,7 +105,7 @@ func (m *PatternedRecurrence) Serialize(writer i878a80d2330e89d26896388a3f487eef
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *PatternedRecurrence) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
@@ -117,8 +117,8 @@ func (m *PatternedRecurrence) SetOdataType(value *string)() {
 func (m *PatternedRecurrence) SetPattern(value RecurrencePatternable)() {
     m.pattern = value
 }
-// SetRange sets the range property value. The duration of an event.
-func (m *PatternedRecurrence) SetRange(value RecurrenceRangeable)() {
+// SetRangeEscaped sets the range property value. The duration of an event.
+func (m *PatternedRecurrence) SetRangeEscaped(value RecurrenceRangeable)() {
     m.rangeEscaped = value
 }
 // PatternedRecurrenceable 
@@ -127,8 +127,8 @@ type PatternedRecurrenceable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetOdataType()(*string)
     GetPattern()(RecurrencePatternable)
-    GetRange()(RecurrenceRangeable)
+    GetRangeEscaped()(RecurrenceRangeable)
     SetOdataType(value *string)()
     SetPattern(value RecurrencePatternable)()
-    SetRange(value RecurrenceRangeable)()
+    SetRangeEscaped(value RecurrenceRangeable)()
 }

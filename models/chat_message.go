@@ -38,6 +38,8 @@ type ChatMessage struct {
     locale *string
     // List of entities mentioned in the chat message. Supported entities are: user, bot, team, and channel.
     mentions []ChatMessageMentionable
+    // List of activity history of a message item, including modification time and actions, such as reactionAdded, reactionRemoved, or reaction changes, on the message.
+    messageHistory []ChatMessageHistoryItemable
     // The messageType property
     messageType *ChatMessageType
     // Defines the properties of a policy violation set by a data loss prevention (DLP) application.
@@ -109,7 +111,9 @@ func (m *ChatMessage) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         if val != nil {
             res := make([]ChatMessageAttachmentable, len(val))
             for i, v := range val {
-                res[i] = v.(ChatMessageAttachmentable)
+                if v != nil {
+                    res[i] = v.(ChatMessageAttachmentable)
+                }
             }
             m.SetAttachments(res)
         }
@@ -203,7 +207,9 @@ func (m *ChatMessage) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         if val != nil {
             res := make([]ChatMessageHostedContentable, len(val))
             for i, v := range val {
-                res[i] = v.(ChatMessageHostedContentable)
+                if v != nil {
+                    res[i] = v.(ChatMessageHostedContentable)
+                }
             }
             m.SetHostedContents(res)
         }
@@ -257,9 +263,27 @@ func (m *ChatMessage) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         if val != nil {
             res := make([]ChatMessageMentionable, len(val))
             for i, v := range val {
-                res[i] = v.(ChatMessageMentionable)
+                if v != nil {
+                    res[i] = v.(ChatMessageMentionable)
+                }
             }
             m.SetMentions(res)
+        }
+        return nil
+    }
+    res["messageHistory"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateChatMessageHistoryItemFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]ChatMessageHistoryItemable, len(val))
+            for i, v := range val {
+                if v != nil {
+                    res[i] = v.(ChatMessageHistoryItemable)
+                }
+            }
+            m.SetMessageHistory(res)
         }
         return nil
     }
@@ -291,7 +315,9 @@ func (m *ChatMessage) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         if val != nil {
             res := make([]ChatMessageReactionable, len(val))
             for i, v := range val {
-                res[i] = v.(ChatMessageReactionable)
+                if v != nil {
+                    res[i] = v.(ChatMessageReactionable)
+                }
             }
             m.SetReactions(res)
         }
@@ -305,7 +331,9 @@ func (m *ChatMessage) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         if val != nil {
             res := make([]ChatMessageable, len(val))
             for i, v := range val {
-                res[i] = v.(ChatMessageable)
+                if v != nil {
+                    res[i] = v.(ChatMessageable)
+                }
             }
             m.SetReplies(res)
         }
@@ -381,6 +409,10 @@ func (m *ChatMessage) GetLocale()(*string) {
 func (m *ChatMessage) GetMentions()([]ChatMessageMentionable) {
     return m.mentions
 }
+// GetMessageHistory gets the messageHistory property value. List of activity history of a message item, including modification time and actions, such as reactionAdded, reactionRemoved, or reaction changes, on the message.
+func (m *ChatMessage) GetMessageHistory()([]ChatMessageHistoryItemable) {
+    return m.messageHistory
+}
 // GetMessageType gets the messageType property value. The messageType property
 func (m *ChatMessage) GetMessageType()(*ChatMessageType) {
     return m.messageType
@@ -422,7 +454,9 @@ func (m *ChatMessage) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     if m.GetAttachments() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAttachments()))
         for i, v := range m.GetAttachments() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("attachments", cast)
         if err != nil {
@@ -480,7 +514,9 @@ func (m *ChatMessage) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     if m.GetHostedContents() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetHostedContents()))
         for i, v := range m.GetHostedContents() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("hostedContents", cast)
         if err != nil {
@@ -515,9 +551,23 @@ func (m *ChatMessage) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     if m.GetMentions() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetMentions()))
         for i, v := range m.GetMentions() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("mentions", cast)
+        if err != nil {
+            return err
+        }
+    }
+    if m.GetMessageHistory() != nil {
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetMessageHistory()))
+        for i, v := range m.GetMessageHistory() {
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
+        }
+        err = writer.WriteCollectionOfObjectValues("messageHistory", cast)
         if err != nil {
             return err
         }
@@ -538,7 +588,9 @@ func (m *ChatMessage) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     if m.GetReactions() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetReactions()))
         for i, v := range m.GetReactions() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("reactions", cast)
         if err != nil {
@@ -548,7 +600,9 @@ func (m *ChatMessage) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     if m.GetReplies() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetReplies()))
         for i, v := range m.GetReplies() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("replies", cast)
         if err != nil {
@@ -641,6 +695,10 @@ func (m *ChatMessage) SetLocale(value *string)() {
 func (m *ChatMessage) SetMentions(value []ChatMessageMentionable)() {
     m.mentions = value
 }
+// SetMessageHistory sets the messageHistory property value. List of activity history of a message item, including modification time and actions, such as reactionAdded, reactionRemoved, or reaction changes, on the message.
+func (m *ChatMessage) SetMessageHistory(value []ChatMessageHistoryItemable)() {
+    m.messageHistory = value
+}
 // SetMessageType sets the messageType property value. The messageType property
 func (m *ChatMessage) SetMessageType(value *ChatMessageType)() {
     m.messageType = value
@@ -692,6 +750,7 @@ type ChatMessageable interface {
     GetLastModifiedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetLocale()(*string)
     GetMentions()([]ChatMessageMentionable)
+    GetMessageHistory()([]ChatMessageHistoryItemable)
     GetMessageType()(*ChatMessageType)
     GetPolicyViolation()(ChatMessagePolicyViolationable)
     GetReactions()([]ChatMessageReactionable)
@@ -715,6 +774,7 @@ type ChatMessageable interface {
     SetLastModifiedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetLocale(value *string)()
     SetMentions(value []ChatMessageMentionable)()
+    SetMessageHistory(value []ChatMessageHistoryItemable)()
     SetMessageType(value *ChatMessageType)()
     SetPolicyViolation(value ChatMessagePolicyViolationable)()
     SetReactions(value []ChatMessageReactionable)()

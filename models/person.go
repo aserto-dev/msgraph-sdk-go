@@ -19,7 +19,7 @@ type Person struct {
     givenName *string
     // The instant message voice over IP (VOIP) session initiation protocol (SIP) address for the user. Read-only.
     imAddress *string
-    // true if the user has flagged this person as a favorite.
+    // True if the user has flagged this person as a favorite.
     isFavorite *bool
     // The person's job title.
     jobTitle *string
@@ -194,7 +194,9 @@ func (m *Person) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689638
         if val != nil {
             res := make([]Phoneable, len(val))
             for i, v := range val {
-                res[i] = v.(Phoneable)
+                if v != nil {
+                    res[i] = v.(Phoneable)
+                }
             }
             m.SetPhones(res)
         }
@@ -208,7 +210,9 @@ func (m *Person) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689638
         if val != nil {
             res := make([]Locationable, len(val))
             for i, v := range val {
-                res[i] = v.(Locationable)
+                if v != nil {
+                    res[i] = v.(Locationable)
+                }
             }
             m.SetPostalAddresses(res)
         }
@@ -232,7 +236,9 @@ func (m *Person) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689638
         if val != nil {
             res := make([]ScoredEmailAddressable, len(val))
             for i, v := range val {
-                res[i] = v.(ScoredEmailAddressable)
+                if v != nil {
+                    res[i] = v.(ScoredEmailAddressable)
+                }
             }
             m.SetScoredEmailAddresses(res)
         }
@@ -266,7 +272,9 @@ func (m *Person) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689638
         if val != nil {
             res := make([]Websiteable, len(val))
             for i, v := range val {
-                res[i] = v.(Websiteable)
+                if v != nil {
+                    res[i] = v.(Websiteable)
+                }
             }
             m.SetWebsites(res)
         }
@@ -292,7 +300,7 @@ func (m *Person) GetGivenName()(*string) {
 func (m *Person) GetImAddress()(*string) {
     return m.imAddress
 }
-// GetIsFavorite gets the isFavorite property value. true if the user has flagged this person as a favorite.
+// GetIsFavorite gets the isFavorite property value. True if the user has flagged this person as a favorite.
 func (m *Person) GetIsFavorite()(*bool) {
     return m.isFavorite
 }
@@ -419,7 +427,9 @@ func (m *Person) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c
     if m.GetPhones() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPhones()))
         for i, v := range m.GetPhones() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("phones", cast)
         if err != nil {
@@ -429,7 +439,9 @@ func (m *Person) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c
     if m.GetPostalAddresses() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPostalAddresses()))
         for i, v := range m.GetPostalAddresses() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("postalAddresses", cast)
         if err != nil {
@@ -445,7 +457,9 @@ func (m *Person) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c
     if m.GetScoredEmailAddresses() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetScoredEmailAddresses()))
         for i, v := range m.GetScoredEmailAddresses() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("scoredEmailAddresses", cast)
         if err != nil {
@@ -467,7 +481,9 @@ func (m *Person) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c
     if m.GetWebsites() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetWebsites()))
         for i, v := range m.GetWebsites() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("websites", cast)
         if err != nil {
@@ -506,7 +522,7 @@ func (m *Person) SetGivenName(value *string)() {
 func (m *Person) SetImAddress(value *string)() {
     m.imAddress = value
 }
-// SetIsFavorite sets the isFavorite property value. true if the user has flagged this person as a favorite.
+// SetIsFavorite sets the isFavorite property value. True if the user has flagged this person as a favorite.
 func (m *Person) SetIsFavorite(value *bool)() {
     m.isFavorite = value
 }

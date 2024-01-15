@@ -12,7 +12,7 @@ type OnenoteResource struct {
     // The URL for downloading the content
     contentUrl *string
 }
-// NewOnenoteResource instantiates a new OnenoteResource and sets the default values.
+// NewOnenoteResource instantiates a new onenoteResource and sets the default values.
 func NewOnenoteResource()(*OnenoteResource) {
     m := &OnenoteResource{
         OnenoteEntityBaseModel: *NewOnenoteEntityBaseModel(),

@@ -28,7 +28,7 @@ func NewPlannerPlanContainer()(*PlannerPlanContainer) {
 func CreatePlannerPlanContainerFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewPlannerPlanContainer(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *PlannerPlanContainer) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -65,7 +65,7 @@ func (m *PlannerPlanContainer) GetFieldDeserializers()(map[string]func(i878a80d2
             return err
         }
         if val != nil {
-            m.SetType(val.(*PlannerContainerType))
+            m.SetTypeEscaped(val.(*PlannerContainerType))
         }
         return nil
     }
@@ -85,8 +85,8 @@ func (m *PlannerPlanContainer) GetFieldDeserializers()(map[string]func(i878a80d2
 func (m *PlannerPlanContainer) GetOdataType()(*string) {
     return m.odataType
 }
-// GetType gets the type property value. The type of the resource that contains the plan. For supported types, see the previous table. Possible values are: group, unknownFutureValue, roster. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: roster. Optional.
-func (m *PlannerPlanContainer) GetType()(*PlannerContainerType) {
+// GetTypeEscaped gets the type property value. The type of the resource that contains the plan. For supported types, see the previous table. Possible values are: group, unknownFutureValue, roster. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: roster. Optional.
+func (m *PlannerPlanContainer) GetTypeEscaped()(*PlannerContainerType) {
     return m.typeEscaped
 }
 // GetUrl gets the url property value. The full canonical URL of the container. Optional.
@@ -107,8 +107,8 @@ func (m *PlannerPlanContainer) Serialize(writer i878a80d2330e89d26896388a3f487ee
             return err
         }
     }
-    if m.GetType() != nil {
-        cast := (*m.GetType()).String()
+    if m.GetTypeEscaped() != nil {
+        cast := (*m.GetTypeEscaped()).String()
         err := writer.WriteStringValue("type", &cast)
         if err != nil {
             return err
@@ -128,7 +128,7 @@ func (m *PlannerPlanContainer) Serialize(writer i878a80d2330e89d26896388a3f487ee
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *PlannerPlanContainer) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
@@ -140,8 +140,8 @@ func (m *PlannerPlanContainer) SetContainerId(value *string)() {
 func (m *PlannerPlanContainer) SetOdataType(value *string)() {
     m.odataType = value
 }
-// SetType sets the type property value. The type of the resource that contains the plan. For supported types, see the previous table. Possible values are: group, unknownFutureValue, roster. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: roster. Optional.
-func (m *PlannerPlanContainer) SetType(value *PlannerContainerType)() {
+// SetTypeEscaped sets the type property value. The type of the resource that contains the plan. For supported types, see the previous table. Possible values are: group, unknownFutureValue, roster. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: roster. Optional.
+func (m *PlannerPlanContainer) SetTypeEscaped(value *PlannerContainerType)() {
     m.typeEscaped = value
 }
 // SetUrl sets the url property value. The full canonical URL of the container. Optional.
@@ -154,10 +154,10 @@ type PlannerPlanContainerable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetContainerId()(*string)
     GetOdataType()(*string)
-    GetType()(*PlannerContainerType)
+    GetTypeEscaped()(*PlannerContainerType)
     GetUrl()(*string)
     SetContainerId(value *string)()
     SetOdataType(value *string)()
-    SetType(value *PlannerContainerType)()
+    SetTypeEscaped(value *PlannerContainerType)()
     SetUrl(value *string)()
 }

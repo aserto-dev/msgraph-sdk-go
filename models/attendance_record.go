@@ -9,9 +9,9 @@ type AttendanceRecord struct {
     Entity
     // List of time periods between joining and leaving a meeting.
     attendanceIntervals []AttendanceIntervalable
-    // Email address of the user associated with this atttendance record.
+    // Email address of the user associated with this attendance record.
     emailAddress *string
-    // Identity of the user associated with this atttendance record.
+    // Identity of the user associated with this attendance record.
     identity Identityable
     // Role of the attendee. Possible values are: None, Attendee, Presenter, and Organizer.
     role *string
@@ -33,7 +33,7 @@ func CreateAttendanceRecordFromDiscriminatorValue(parseNode i878a80d2330e89d2689
 func (m *AttendanceRecord) GetAttendanceIntervals()([]AttendanceIntervalable) {
     return m.attendanceIntervals
 }
-// GetEmailAddress gets the emailAddress property value. Email address of the user associated with this atttendance record.
+// GetEmailAddress gets the emailAddress property value. Email address of the user associated with this attendance record.
 func (m *AttendanceRecord) GetEmailAddress()(*string) {
     return m.emailAddress
 }
@@ -48,7 +48,9 @@ func (m *AttendanceRecord) GetFieldDeserializers()(map[string]func(i878a80d2330e
         if val != nil {
             res := make([]AttendanceIntervalable, len(val))
             for i, v := range val {
-                res[i] = v.(AttendanceIntervalable)
+                if v != nil {
+                    res[i] = v.(AttendanceIntervalable)
+                }
             }
             m.SetAttendanceIntervals(res)
         }
@@ -96,7 +98,7 @@ func (m *AttendanceRecord) GetFieldDeserializers()(map[string]func(i878a80d2330e
     }
     return res
 }
-// GetIdentity gets the identity property value. Identity of the user associated with this atttendance record.
+// GetIdentity gets the identity property value. Identity of the user associated with this attendance record.
 func (m *AttendanceRecord) GetIdentity()(Identityable) {
     return m.identity
 }
@@ -117,7 +119,9 @@ func (m *AttendanceRecord) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
     if m.GetAttendanceIntervals() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAttendanceIntervals()))
         for i, v := range m.GetAttendanceIntervals() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("attendanceIntervals", cast)
         if err != nil {
@@ -154,11 +158,11 @@ func (m *AttendanceRecord) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
 func (m *AttendanceRecord) SetAttendanceIntervals(value []AttendanceIntervalable)() {
     m.attendanceIntervals = value
 }
-// SetEmailAddress sets the emailAddress property value. Email address of the user associated with this atttendance record.
+// SetEmailAddress sets the emailAddress property value. Email address of the user associated with this attendance record.
 func (m *AttendanceRecord) SetEmailAddress(value *string)() {
     m.emailAddress = value
 }
-// SetIdentity sets the identity property value. Identity of the user associated with this atttendance record.
+// SetIdentity sets the identity property value. Identity of the user associated with this attendance record.
 func (m *AttendanceRecord) SetIdentity(value Identityable)() {
     m.identity = value
 }

@@ -24,7 +24,7 @@ type Notebook struct {
     // Possible values are: Owner, Contributor, Reader, None. Owner represents owner-level access to the notebook. Contributor represents read/write access to the notebook. Reader represents read-only access to the notebook. Read-only.
     userRole *OnenoteUserRole
 }
-// NewNotebook instantiates a new Notebook and sets the default values.
+// NewNotebook instantiates a new notebook and sets the default values.
 func NewNotebook()(*Notebook) {
     m := &Notebook{
         OnenoteEntityHierarchyModel: *NewOnenoteEntityHierarchyModel(),
@@ -78,7 +78,9 @@ func (m *Notebook) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896
         if val != nil {
             res := make([]SectionGroupable, len(val))
             for i, v := range val {
-                res[i] = v.(SectionGroupable)
+                if v != nil {
+                    res[i] = v.(SectionGroupable)
+                }
             }
             m.SetSectionGroups(res)
         }
@@ -102,7 +104,9 @@ func (m *Notebook) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896
         if val != nil {
             res := make([]OnenoteSectionable, len(val))
             for i, v := range val {
-                res[i] = v.(OnenoteSectionable)
+                if v != nil {
+                    res[i] = v.(OnenoteSectionable)
+                }
             }
             m.SetSections(res)
         }
@@ -189,7 +193,9 @@ func (m *Notebook) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c01
     if m.GetSectionGroups() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetSectionGroups()))
         for i, v := range m.GetSectionGroups() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("sectionGroups", cast)
         if err != nil {
@@ -205,7 +211,9 @@ func (m *Notebook) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c01
     if m.GetSections() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetSections()))
         for i, v := range m.GetSections() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("sections", cast)
         if err != nil {

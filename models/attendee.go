@@ -7,12 +7,12 @@ import (
 // Attendee 
 type Attendee struct {
     AttendeeBase
-    // An alternate date/time proposed by the attendee for a meeting request to start and end. If the attendee hasn't proposed another time, then this property is not included in a response of a GET event.
+    // An alternate date/time proposed by the attendee for a meeting request to start and end. If the attendee hasn't proposed another time, then this property isn't included in a response of a GET event.
     proposedNewTime TimeSlotable
     // The attendee's response (none, accepted, declined, etc.) for the event and date-time that the response was sent.
     status ResponseStatusable
 }
-// NewAttendee instantiates a new Attendee and sets the default values.
+// NewAttendee instantiates a new attendee and sets the default values.
 func NewAttendee()(*Attendee) {
     m := &Attendee{
         AttendeeBase: *NewAttendeeBase(),
@@ -50,7 +50,7 @@ func (m *Attendee) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896
     }
     return res
 }
-// GetProposedNewTime gets the proposedNewTime property value. An alternate date/time proposed by the attendee for a meeting request to start and end. If the attendee hasn't proposed another time, then this property is not included in a response of a GET event.
+// GetProposedNewTime gets the proposedNewTime property value. An alternate date/time proposed by the attendee for a meeting request to start and end. If the attendee hasn't proposed another time, then this property isn't included in a response of a GET event.
 func (m *Attendee) GetProposedNewTime()(TimeSlotable) {
     return m.proposedNewTime
 }
@@ -78,7 +78,7 @@ func (m *Attendee) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c01
     }
     return nil
 }
-// SetProposedNewTime sets the proposedNewTime property value. An alternate date/time proposed by the attendee for a meeting request to start and end. If the attendee hasn't proposed another time, then this property is not included in a response of a GET event.
+// SetProposedNewTime sets the proposedNewTime property value. An alternate date/time proposed by the attendee for a meeting request to start and end. If the attendee hasn't proposed another time, then this property isn't included in a response of a GET event.
 func (m *Attendee) SetProposedNewTime(value TimeSlotable)() {
     m.proposedNewTime = value
 }

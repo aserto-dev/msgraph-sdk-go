@@ -8,9 +8,9 @@ import (
 // MicrosoftAuthenticatorAuthenticationMethod 
 type MicrosoftAuthenticatorAuthenticationMethod struct {
     AuthenticationMethod
-    // The date and time that this app was registered. This property is null if the device is not registered for passwordless Phone Sign-In.
+    // The date and time that this app was registered. This property is null if the device isn't registered for passwordless Phone Sign-In.
     createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The registered device on which Microsoft Authenticator resides. This property is null if the device is not registered for passwordless Phone Sign-In.
+    // The registered device on which Microsoft Authenticator resides. This property is null if the device isn't registered for passwordless Phone Sign-In.
     device Deviceable
     // Tags containing app metadata.
     deviceTag *string
@@ -19,7 +19,7 @@ type MicrosoftAuthenticatorAuthenticationMethod struct {
     // Numerical version of this instance of the Authenticator app.
     phoneAppVersion *string
 }
-// NewMicrosoftAuthenticatorAuthenticationMethod instantiates a new MicrosoftAuthenticatorAuthenticationMethod and sets the default values.
+// NewMicrosoftAuthenticatorAuthenticationMethod instantiates a new microsoftAuthenticatorAuthenticationMethod and sets the default values.
 func NewMicrosoftAuthenticatorAuthenticationMethod()(*MicrosoftAuthenticatorAuthenticationMethod) {
     m := &MicrosoftAuthenticatorAuthenticationMethod{
         AuthenticationMethod: *NewAuthenticationMethod(),
@@ -32,11 +32,11 @@ func NewMicrosoftAuthenticatorAuthenticationMethod()(*MicrosoftAuthenticatorAuth
 func CreateMicrosoftAuthenticatorAuthenticationMethodFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewMicrosoftAuthenticatorAuthenticationMethod(), nil
 }
-// GetCreatedDateTime gets the createdDateTime property value. The date and time that this app was registered. This property is null if the device is not registered for passwordless Phone Sign-In.
+// GetCreatedDateTime gets the createdDateTime property value. The date and time that this app was registered. This property is null if the device isn't registered for passwordless Phone Sign-In.
 func (m *MicrosoftAuthenticatorAuthenticationMethod) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.createdDateTime
 }
-// GetDevice gets the device property value. The registered device on which Microsoft Authenticator resides. This property is null if the device is not registered for passwordless Phone Sign-In.
+// GetDevice gets the device property value. The registered device on which Microsoft Authenticator resides. This property is null if the device isn't registered for passwordless Phone Sign-In.
 func (m *MicrosoftAuthenticatorAuthenticationMethod) GetDevice()(Deviceable) {
     return m.device
 }
@@ -145,11 +145,11 @@ func (m *MicrosoftAuthenticatorAuthenticationMethod) Serialize(writer i878a80d23
     }
     return nil
 }
-// SetCreatedDateTime sets the createdDateTime property value. The date and time that this app was registered. This property is null if the device is not registered for passwordless Phone Sign-In.
+// SetCreatedDateTime sets the createdDateTime property value. The date and time that this app was registered. This property is null if the device isn't registered for passwordless Phone Sign-In.
 func (m *MicrosoftAuthenticatorAuthenticationMethod) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.createdDateTime = value
 }
-// SetDevice sets the device property value. The registered device on which Microsoft Authenticator resides. This property is null if the device is not registered for passwordless Phone Sign-In.
+// SetDevice sets the device property value. The registered device on which Microsoft Authenticator resides. This property is null if the device isn't registered for passwordless Phone Sign-In.
 func (m *MicrosoftAuthenticatorAuthenticationMethod) SetDevice(value Deviceable)() {
     m.device = value
 }

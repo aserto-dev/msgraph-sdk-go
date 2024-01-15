@@ -30,7 +30,7 @@ func NewWorkingHours()(*WorkingHours) {
 func CreateWorkingHoursFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewWorkingHours(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *WorkingHours) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -53,7 +53,9 @@ func (m *WorkingHours) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
         if val != nil {
             res := make([]DayOfWeek, len(val))
             for i, v := range val {
-                res[i] = *(v.(*DayOfWeek))
+                if v != nil {
+                    res[i] = *(v.(*DayOfWeek))
+                }
             }
             m.SetDaysOfWeek(res)
         }
@@ -153,7 +155,7 @@ func (m *WorkingHours) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *WorkingHours) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }

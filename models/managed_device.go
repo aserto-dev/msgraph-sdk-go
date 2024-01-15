@@ -8,7 +8,7 @@ import (
 // ManagedDevice devices that are managed or pre-enrolled through Intune
 type ManagedDevice struct {
     Entity
-    // The code that allows the Activation Lock on managed device to be bypassed. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity in LIST call. Individual GET call with select query options is needed to retrieve actual values. Supports: $select. $Search is not supported. Read-only. This property is read-only.
+    // The code that allows the Activation Lock on managed device to be bypassed. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity in LIST call. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
     activationLockBypassCode *string
     // Android security patch level. This property is read-only.
     androidSecurityPatchLevel *string
@@ -26,7 +26,7 @@ type ManagedDevice struct {
     deviceActionResults []DeviceActionResultable
     // Device category
     deviceCategory DeviceCategoryable
-    // Device category display name. This property is read-only.
+    // Device category display name. Default is an empty string. Supports $filter operator 'eq' and 'or'. This property is read-only.
     deviceCategoryDisplayName *string
     // Device compliance policy states for this device.
     deviceCompliancePolicyStates []DeviceCompliancePolicyStateable
@@ -48,7 +48,7 @@ type ManagedDevice struct {
     easDeviceId *string
     // Email(s) for the user associated with the device. This property is read-only.
     emailAddress *string
-    // Enrollment time of the device. This property is read-only.
+    // Enrollment time of the device. Supports $filter operator 'lt' and 'gt'. This property is read-only.
     enrolledDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // Indicates Ethernet MAC Address of the device. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity. Individual get call with select query options is needed to retrieve actual values. Example: deviceManagement/managedDevices({managedDeviceId})?$select=ethernetMacAddress Supports: $select. $Search is not supported. Read-only. This property is read-only.
     ethernetMacAddress *string
@@ -60,7 +60,7 @@ type ManagedDevice struct {
     exchangeLastSuccessfulSyncDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // Free Storage in Bytes. Default value is 0. Read-only. This property is read-only.
     freeStorageSpaceInBytes *int64
-    // Integrated Circuit Card Identifier, it is A SIM card's unique identification number. Return default value null in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
+    // Integrated Circuit Card Identifier, it is A SIM card's unique identification number. Default is an empty string. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
     iccid *string
     // IMEI. This property is read-only.
     imei *string
@@ -68,10 +68,12 @@ type ManagedDevice struct {
     isEncrypted *bool
     // Device supervised status. This property is read-only.
     isSupervised *bool
-    // whether the device is jail broken or rooted. This property is read-only.
+    // Whether the device is jail broken or rooted. Default is an empty string. Supports $filter operator 'eq' and 'or'. This property is read-only.
     jailBroken *string
-    // The date and time that the device last completed a successful sync with Intune. This property is read-only.
+    // The date and time that the device last completed a successful sync with Intune. Supports $filter operator 'lt' and 'gt'. This property is read-only.
     lastSyncDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+    // List of log collection requests
+    logCollectionRequests []DeviceLogCollectionResponseable
     // Automatically generated name to identify a device. Can be overwritten to a user friendly name.
     managedDeviceName *string
     // Owner type of device.
@@ -86,7 +88,7 @@ type ManagedDevice struct {
     meid *string
     // Model of the device. This property is read-only.
     model *string
-    // Notes on the device created by IT Admin. Return default value null in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select.  $Search is not supported.
+    // Notes on the device created by IT Admin. Default is null. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. $Search is not supported.
     notes *string
     // Operating system of the device. Windows, iOS, etc. This property is read-only.
     operatingSystem *string
@@ -96,11 +98,11 @@ type ManagedDevice struct {
     partnerReportedThreatState *ManagedDevicePartnerReportedHealthState
     // Phone number of the device. This property is read-only.
     phoneNumber *string
-    // Total Memory in Bytes. Return default value 0 in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. Default value is 0. Read-only. This property is read-only.
+    // Total Memory in Bytes. Default is 0. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. Read-only. This property is read-only.
     physicalMemoryInBytes *int64
     // An error string that identifies issues when creating Remote Assistance session objects. This property is read-only.
     remoteAssistanceSessionErrorDetails *string
-    // Url that allows a Remote Assistance session to be established with the device. This property is read-only.
+    // Url that allows a Remote Assistance session to be established with the device. Default is an empty string. To retrieve actual values GET call needs to be made, with device id and included in select parameter. This property is read-only.
     remoteAssistanceSessionUrl *string
     // Reports if the managed iOS device is user approval enrollment. This property is read-only.
     requireUserEnrollmentApproval *bool
@@ -110,7 +112,7 @@ type ManagedDevice struct {
     subscriberCarrier *string
     // Total Storage in Bytes. This property is read-only.
     totalStorageSpaceInBytes *int64
-    // Unique Device Identifier for iOS and macOS devices. Return default value null in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
+    // Unique Device Identifier for iOS and macOS devices. Default is an empty string. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
     udid *string
     // User display name. This property is read-only.
     userDisplayName *string
@@ -122,6 +124,8 @@ type ManagedDevice struct {
     users []Userable
     // Wi-Fi MAC. This property is read-only.
     wiFiMacAddress *string
+    // The device protection status. This property is read-only.
+    windowsProtectionState WindowsProtectionStateable
 }
 // NewManagedDevice instantiates a new managedDevice and sets the default values.
 func NewManagedDevice()(*ManagedDevice) {
@@ -134,7 +138,7 @@ func NewManagedDevice()(*ManagedDevice) {
 func CreateManagedDeviceFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewManagedDevice(), nil
 }
-// GetActivationLockBypassCode gets the activationLockBypassCode property value. The code that allows the Activation Lock on managed device to be bypassed. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity in LIST call. Individual GET call with select query options is needed to retrieve actual values. Supports: $select. $Search is not supported. Read-only. This property is read-only.
+// GetActivationLockBypassCode gets the activationLockBypassCode property value. The code that allows the Activation Lock on managed device to be bypassed. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity in LIST call. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
 func (m *ManagedDevice) GetActivationLockBypassCode()(*string) {
     return m.activationLockBypassCode
 }
@@ -170,7 +174,7 @@ func (m *ManagedDevice) GetDeviceActionResults()([]DeviceActionResultable) {
 func (m *ManagedDevice) GetDeviceCategory()(DeviceCategoryable) {
     return m.deviceCategory
 }
-// GetDeviceCategoryDisplayName gets the deviceCategoryDisplayName property value. Device category display name. This property is read-only.
+// GetDeviceCategoryDisplayName gets the deviceCategoryDisplayName property value. Device category display name. Default is an empty string. Supports $filter operator 'eq' and 'or'. This property is read-only.
 func (m *ManagedDevice) GetDeviceCategoryDisplayName()(*string) {
     return m.deviceCategoryDisplayName
 }
@@ -214,7 +218,7 @@ func (m *ManagedDevice) GetEasDeviceId()(*string) {
 func (m *ManagedDevice) GetEmailAddress()(*string) {
     return m.emailAddress
 }
-// GetEnrolledDateTime gets the enrolledDateTime property value. Enrollment time of the device. This property is read-only.
+// GetEnrolledDateTime gets the enrolledDateTime property value. Enrollment time of the device. Supports $filter operator 'lt' and 'gt'. This property is read-only.
 func (m *ManagedDevice) GetEnrolledDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.enrolledDateTime
 }
@@ -315,7 +319,9 @@ func (m *ManagedDevice) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         if val != nil {
             res := make([]DeviceActionResultable, len(val))
             for i, v := range val {
-                res[i] = v.(DeviceActionResultable)
+                if v != nil {
+                    res[i] = v.(DeviceActionResultable)
+                }
             }
             m.SetDeviceActionResults(res)
         }
@@ -349,7 +355,9 @@ func (m *ManagedDevice) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         if val != nil {
             res := make([]DeviceCompliancePolicyStateable, len(val))
             for i, v := range val {
-                res[i] = v.(DeviceCompliancePolicyStateable)
+                if v != nil {
+                    res[i] = v.(DeviceCompliancePolicyStateable)
+                }
             }
             m.SetDeviceCompliancePolicyStates(res)
         }
@@ -363,7 +371,9 @@ func (m *ManagedDevice) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         if val != nil {
             res := make([]DeviceConfigurationStateable, len(val))
             for i, v := range val {
-                res[i] = v.(DeviceConfigurationStateable)
+                if v != nil {
+                    res[i] = v.(DeviceConfigurationStateable)
+                }
             }
             m.SetDeviceConfigurationStates(res)
         }
@@ -566,6 +576,22 @@ func (m *ManagedDevice) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         }
         if val != nil {
             m.SetLastSyncDateTime(val)
+        }
+        return nil
+    }
+    res["logCollectionRequests"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateDeviceLogCollectionResponseFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]DeviceLogCollectionResponseable, len(val))
+            for i, v := range val {
+                if v != nil {
+                    res[i] = v.(DeviceLogCollectionResponseable)
+                }
+            }
+            m.SetLogCollectionRequests(res)
         }
         return nil
     }
@@ -807,7 +833,9 @@ func (m *ManagedDevice) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         if val != nil {
             res := make([]Userable, len(val))
             for i, v := range val {
-                res[i] = v.(Userable)
+                if v != nil {
+                    res[i] = v.(Userable)
+                }
             }
             m.SetUsers(res)
         }
@@ -823,13 +851,23 @@ func (m *ManagedDevice) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         }
         return nil
     }
+    res["windowsProtectionState"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateWindowsProtectionStateFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetWindowsProtectionState(val.(WindowsProtectionStateable))
+        }
+        return nil
+    }
     return res
 }
 // GetFreeStorageSpaceInBytes gets the freeStorageSpaceInBytes property value. Free Storage in Bytes. Default value is 0. Read-only. This property is read-only.
 func (m *ManagedDevice) GetFreeStorageSpaceInBytes()(*int64) {
     return m.freeStorageSpaceInBytes
 }
-// GetIccid gets the iccid property value. Integrated Circuit Card Identifier, it is A SIM card's unique identification number. Return default value null in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
+// GetIccid gets the iccid property value. Integrated Circuit Card Identifier, it is A SIM card's unique identification number. Default is an empty string. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
 func (m *ManagedDevice) GetIccid()(*string) {
     return m.iccid
 }
@@ -845,13 +883,17 @@ func (m *ManagedDevice) GetIsEncrypted()(*bool) {
 func (m *ManagedDevice) GetIsSupervised()(*bool) {
     return m.isSupervised
 }
-// GetJailBroken gets the jailBroken property value. whether the device is jail broken or rooted. This property is read-only.
+// GetJailBroken gets the jailBroken property value. Whether the device is jail broken or rooted. Default is an empty string. Supports $filter operator 'eq' and 'or'. This property is read-only.
 func (m *ManagedDevice) GetJailBroken()(*string) {
     return m.jailBroken
 }
-// GetLastSyncDateTime gets the lastSyncDateTime property value. The date and time that the device last completed a successful sync with Intune. This property is read-only.
+// GetLastSyncDateTime gets the lastSyncDateTime property value. The date and time that the device last completed a successful sync with Intune. Supports $filter operator 'lt' and 'gt'. This property is read-only.
 func (m *ManagedDevice) GetLastSyncDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.lastSyncDateTime
+}
+// GetLogCollectionRequests gets the logCollectionRequests property value. List of log collection requests
+func (m *ManagedDevice) GetLogCollectionRequests()([]DeviceLogCollectionResponseable) {
+    return m.logCollectionRequests
 }
 // GetManagedDeviceName gets the managedDeviceName property value. Automatically generated name to identify a device. Can be overwritten to a user friendly name.
 func (m *ManagedDevice) GetManagedDeviceName()(*string) {
@@ -881,7 +923,7 @@ func (m *ManagedDevice) GetMeid()(*string) {
 func (m *ManagedDevice) GetModel()(*string) {
     return m.model
 }
-// GetNotes gets the notes property value. Notes on the device created by IT Admin. Return default value null in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select.  $Search is not supported.
+// GetNotes gets the notes property value. Notes on the device created by IT Admin. Default is null. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. $Search is not supported.
 func (m *ManagedDevice) GetNotes()(*string) {
     return m.notes
 }
@@ -901,7 +943,7 @@ func (m *ManagedDevice) GetPartnerReportedThreatState()(*ManagedDevicePartnerRep
 func (m *ManagedDevice) GetPhoneNumber()(*string) {
     return m.phoneNumber
 }
-// GetPhysicalMemoryInBytes gets the physicalMemoryInBytes property value. Total Memory in Bytes. Return default value 0 in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. Default value is 0. Read-only. This property is read-only.
+// GetPhysicalMemoryInBytes gets the physicalMemoryInBytes property value. Total Memory in Bytes. Default is 0. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. Read-only. This property is read-only.
 func (m *ManagedDevice) GetPhysicalMemoryInBytes()(*int64) {
     return m.physicalMemoryInBytes
 }
@@ -909,7 +951,7 @@ func (m *ManagedDevice) GetPhysicalMemoryInBytes()(*int64) {
 func (m *ManagedDevice) GetRemoteAssistanceSessionErrorDetails()(*string) {
     return m.remoteAssistanceSessionErrorDetails
 }
-// GetRemoteAssistanceSessionUrl gets the remoteAssistanceSessionUrl property value. Url that allows a Remote Assistance session to be established with the device. This property is read-only.
+// GetRemoteAssistanceSessionUrl gets the remoteAssistanceSessionUrl property value. Url that allows a Remote Assistance session to be established with the device. Default is an empty string. To retrieve actual values GET call needs to be made, with device id and included in select parameter. This property is read-only.
 func (m *ManagedDevice) GetRemoteAssistanceSessionUrl()(*string) {
     return m.remoteAssistanceSessionUrl
 }
@@ -929,7 +971,7 @@ func (m *ManagedDevice) GetSubscriberCarrier()(*string) {
 func (m *ManagedDevice) GetTotalStorageSpaceInBytes()(*int64) {
     return m.totalStorageSpaceInBytes
 }
-// GetUdid gets the udid property value. Unique Device Identifier for iOS and macOS devices. Return default value null in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
+// GetUdid gets the udid property value. Unique Device Identifier for iOS and macOS devices. Default is an empty string. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
 func (m *ManagedDevice) GetUdid()(*string) {
     return m.udid
 }
@@ -953,6 +995,10 @@ func (m *ManagedDevice) GetUsers()([]Userable) {
 func (m *ManagedDevice) GetWiFiMacAddress()(*string) {
     return m.wiFiMacAddress
 }
+// GetWindowsProtectionState gets the windowsProtectionState property value. The device protection status. This property is read-only.
+func (m *ManagedDevice) GetWindowsProtectionState()(WindowsProtectionStateable) {
+    return m.windowsProtectionState
+}
 // Serialize serializes information the current object
 func (m *ManagedDevice) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     err := m.Entity.Serialize(writer)
@@ -975,7 +1021,9 @@ func (m *ManagedDevice) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
     if m.GetDeviceCompliancePolicyStates() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetDeviceCompliancePolicyStates()))
         for i, v := range m.GetDeviceCompliancePolicyStates() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("deviceCompliancePolicyStates", cast)
         if err != nil {
@@ -985,7 +1033,9 @@ func (m *ManagedDevice) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
     if m.GetDeviceConfigurationStates() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetDeviceConfigurationStates()))
         for i, v := range m.GetDeviceConfigurationStates() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("deviceConfigurationStates", cast)
         if err != nil {
@@ -1016,6 +1066,18 @@ func (m *ManagedDevice) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
     if m.GetExchangeAccessStateReason() != nil {
         cast := (*m.GetExchangeAccessStateReason()).String()
         err = writer.WriteStringValue("exchangeAccessStateReason", &cast)
+        if err != nil {
+            return err
+        }
+    }
+    if m.GetLogCollectionRequests() != nil {
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetLogCollectionRequests()))
+        for i, v := range m.GetLogCollectionRequests() {
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
+        }
+        err = writer.WriteCollectionOfObjectValues("logCollectionRequests", cast)
         if err != nil {
             return err
         }
@@ -1056,16 +1118,24 @@ func (m *ManagedDevice) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
     if m.GetUsers() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetUsers()))
         for i, v := range m.GetUsers() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("users", cast)
         if err != nil {
             return err
         }
     }
+    {
+        err = writer.WriteObjectValue("windowsProtectionState", m.GetWindowsProtectionState())
+        if err != nil {
+            return err
+        }
+    }
     return nil
 }
-// SetActivationLockBypassCode sets the activationLockBypassCode property value. The code that allows the Activation Lock on managed device to be bypassed. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity in LIST call. Individual GET call with select query options is needed to retrieve actual values. Supports: $select. $Search is not supported. Read-only. This property is read-only.
+// SetActivationLockBypassCode sets the activationLockBypassCode property value. The code that allows the Activation Lock on managed device to be bypassed. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity in LIST call. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
 func (m *ManagedDevice) SetActivationLockBypassCode(value *string)() {
     m.activationLockBypassCode = value
 }
@@ -1101,7 +1171,7 @@ func (m *ManagedDevice) SetDeviceActionResults(value []DeviceActionResultable)()
 func (m *ManagedDevice) SetDeviceCategory(value DeviceCategoryable)() {
     m.deviceCategory = value
 }
-// SetDeviceCategoryDisplayName sets the deviceCategoryDisplayName property value. Device category display name. This property is read-only.
+// SetDeviceCategoryDisplayName sets the deviceCategoryDisplayName property value. Device category display name. Default is an empty string. Supports $filter operator 'eq' and 'or'. This property is read-only.
 func (m *ManagedDevice) SetDeviceCategoryDisplayName(value *string)() {
     m.deviceCategoryDisplayName = value
 }
@@ -1145,7 +1215,7 @@ func (m *ManagedDevice) SetEasDeviceId(value *string)() {
 func (m *ManagedDevice) SetEmailAddress(value *string)() {
     m.emailAddress = value
 }
-// SetEnrolledDateTime sets the enrolledDateTime property value. Enrollment time of the device. This property is read-only.
+// SetEnrolledDateTime sets the enrolledDateTime property value. Enrollment time of the device. Supports $filter operator 'lt' and 'gt'. This property is read-only.
 func (m *ManagedDevice) SetEnrolledDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.enrolledDateTime = value
 }
@@ -1169,7 +1239,7 @@ func (m *ManagedDevice) SetExchangeLastSuccessfulSyncDateTime(value *i336074805f
 func (m *ManagedDevice) SetFreeStorageSpaceInBytes(value *int64)() {
     m.freeStorageSpaceInBytes = value
 }
-// SetIccid sets the iccid property value. Integrated Circuit Card Identifier, it is A SIM card's unique identification number. Return default value null in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
+// SetIccid sets the iccid property value. Integrated Circuit Card Identifier, it is A SIM card's unique identification number. Default is an empty string. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
 func (m *ManagedDevice) SetIccid(value *string)() {
     m.iccid = value
 }
@@ -1185,13 +1255,17 @@ func (m *ManagedDevice) SetIsEncrypted(value *bool)() {
 func (m *ManagedDevice) SetIsSupervised(value *bool)() {
     m.isSupervised = value
 }
-// SetJailBroken sets the jailBroken property value. whether the device is jail broken or rooted. This property is read-only.
+// SetJailBroken sets the jailBroken property value. Whether the device is jail broken or rooted. Default is an empty string. Supports $filter operator 'eq' and 'or'. This property is read-only.
 func (m *ManagedDevice) SetJailBroken(value *string)() {
     m.jailBroken = value
 }
-// SetLastSyncDateTime sets the lastSyncDateTime property value. The date and time that the device last completed a successful sync with Intune. This property is read-only.
+// SetLastSyncDateTime sets the lastSyncDateTime property value. The date and time that the device last completed a successful sync with Intune. Supports $filter operator 'lt' and 'gt'. This property is read-only.
 func (m *ManagedDevice) SetLastSyncDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.lastSyncDateTime = value
+}
+// SetLogCollectionRequests sets the logCollectionRequests property value. List of log collection requests
+func (m *ManagedDevice) SetLogCollectionRequests(value []DeviceLogCollectionResponseable)() {
+    m.logCollectionRequests = value
 }
 // SetManagedDeviceName sets the managedDeviceName property value. Automatically generated name to identify a device. Can be overwritten to a user friendly name.
 func (m *ManagedDevice) SetManagedDeviceName(value *string)() {
@@ -1221,7 +1295,7 @@ func (m *ManagedDevice) SetMeid(value *string)() {
 func (m *ManagedDevice) SetModel(value *string)() {
     m.model = value
 }
-// SetNotes sets the notes property value. Notes on the device created by IT Admin. Return default value null in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select.  $Search is not supported.
+// SetNotes sets the notes property value. Notes on the device created by IT Admin. Default is null. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. $Search is not supported.
 func (m *ManagedDevice) SetNotes(value *string)() {
     m.notes = value
 }
@@ -1241,7 +1315,7 @@ func (m *ManagedDevice) SetPartnerReportedThreatState(value *ManagedDevicePartne
 func (m *ManagedDevice) SetPhoneNumber(value *string)() {
     m.phoneNumber = value
 }
-// SetPhysicalMemoryInBytes sets the physicalMemoryInBytes property value. Total Memory in Bytes. Return default value 0 in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. Default value is 0. Read-only. This property is read-only.
+// SetPhysicalMemoryInBytes sets the physicalMemoryInBytes property value. Total Memory in Bytes. Default is 0. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. Read-only. This property is read-only.
 func (m *ManagedDevice) SetPhysicalMemoryInBytes(value *int64)() {
     m.physicalMemoryInBytes = value
 }
@@ -1249,7 +1323,7 @@ func (m *ManagedDevice) SetPhysicalMemoryInBytes(value *int64)() {
 func (m *ManagedDevice) SetRemoteAssistanceSessionErrorDetails(value *string)() {
     m.remoteAssistanceSessionErrorDetails = value
 }
-// SetRemoteAssistanceSessionUrl sets the remoteAssistanceSessionUrl property value. Url that allows a Remote Assistance session to be established with the device. This property is read-only.
+// SetRemoteAssistanceSessionUrl sets the remoteAssistanceSessionUrl property value. Url that allows a Remote Assistance session to be established with the device. Default is an empty string. To retrieve actual values GET call needs to be made, with device id and included in select parameter. This property is read-only.
 func (m *ManagedDevice) SetRemoteAssistanceSessionUrl(value *string)() {
     m.remoteAssistanceSessionUrl = value
 }
@@ -1269,7 +1343,7 @@ func (m *ManagedDevice) SetSubscriberCarrier(value *string)() {
 func (m *ManagedDevice) SetTotalStorageSpaceInBytes(value *int64)() {
     m.totalStorageSpaceInBytes = value
 }
-// SetUdid sets the udid property value. Unique Device Identifier for iOS and macOS devices. Return default value null in LIST managedDevices. Real value only returned in singel device GET call with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
+// SetUdid sets the udid property value. Unique Device Identifier for iOS and macOS devices. Default is an empty string. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.
 func (m *ManagedDevice) SetUdid(value *string)() {
     m.udid = value
 }
@@ -1292,6 +1366,10 @@ func (m *ManagedDevice) SetUsers(value []Userable)() {
 // SetWiFiMacAddress sets the wiFiMacAddress property value. Wi-Fi MAC. This property is read-only.
 func (m *ManagedDevice) SetWiFiMacAddress(value *string)() {
     m.wiFiMacAddress = value
+}
+// SetWindowsProtectionState sets the windowsProtectionState property value. The device protection status. This property is read-only.
+func (m *ManagedDevice) SetWindowsProtectionState(value WindowsProtectionStateable)() {
+    m.windowsProtectionState = value
 }
 // ManagedDeviceable 
 type ManagedDeviceable interface {
@@ -1329,6 +1407,7 @@ type ManagedDeviceable interface {
     GetIsSupervised()(*bool)
     GetJailBroken()(*string)
     GetLastSyncDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetLogCollectionRequests()([]DeviceLogCollectionResponseable)
     GetManagedDeviceName()(*string)
     GetManagedDeviceOwnerType()(*ManagedDeviceOwnerType)
     GetManagementAgent()(*ManagementAgentType)
@@ -1354,6 +1433,7 @@ type ManagedDeviceable interface {
     GetUserPrincipalName()(*string)
     GetUsers()([]Userable)
     GetWiFiMacAddress()(*string)
+    GetWindowsProtectionState()(WindowsProtectionStateable)
     SetActivationLockBypassCode(value *string)()
     SetAndroidSecurityPatchLevel(value *string)()
     SetAzureADDeviceId(value *string)()
@@ -1386,6 +1466,7 @@ type ManagedDeviceable interface {
     SetIsSupervised(value *bool)()
     SetJailBroken(value *string)()
     SetLastSyncDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetLogCollectionRequests(value []DeviceLogCollectionResponseable)()
     SetManagedDeviceName(value *string)()
     SetManagedDeviceOwnerType(value *ManagedDeviceOwnerType)()
     SetManagementAgent(value *ManagementAgentType)()
@@ -1411,4 +1492,5 @@ type ManagedDeviceable interface {
     SetUserPrincipalName(value *string)()
     SetUsers(value []Userable)()
     SetWiFiMacAddress(value *string)()
+    SetWindowsProtectionState(value WindowsProtectionStateable)()
 }

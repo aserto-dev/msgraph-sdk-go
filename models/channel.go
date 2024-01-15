@@ -28,9 +28,11 @@ type Channel struct {
     messages []ChatMessageable
     // A collection of teams with which a channel is shared.
     sharedWithTeams []SharedWithChannelTeamInfoable
+    // Contains summary information about the channel, including number of owners, members, guests, and an indicator for members from other tenants. The summary property will only be returned if it is specified in the $select clause of the Get channel method.
+    summary ChannelSummaryable
     // A collection of all the tabs in the channel. A navigation property.
     tabs []TeamsTabable
-    // The ID of the Azure Active Directory tenant.
+    // The ID of the Microsoft Entra tenant.
     tenantId *string
     // A hyperlink that will go to the channel in Microsoft Teams. This is the URL that you get when you right-click a channel in Microsoft Teams and select Get link to channel. This URL should be treated as an opaque blob, and not parsed. Read-only.
     webUrl *string
@@ -133,7 +135,9 @@ func (m *Channel) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268963
         if val != nil {
             res := make([]ConversationMemberable, len(val))
             for i, v := range val {
-                res[i] = v.(ConversationMemberable)
+                if v != nil {
+                    res[i] = v.(ConversationMemberable)
+                }
             }
             m.SetMembers(res)
         }
@@ -157,7 +161,9 @@ func (m *Channel) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268963
         if val != nil {
             res := make([]ChatMessageable, len(val))
             for i, v := range val {
-                res[i] = v.(ChatMessageable)
+                if v != nil {
+                    res[i] = v.(ChatMessageable)
+                }
             }
             m.SetMessages(res)
         }
@@ -171,9 +177,21 @@ func (m *Channel) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268963
         if val != nil {
             res := make([]SharedWithChannelTeamInfoable, len(val))
             for i, v := range val {
-                res[i] = v.(SharedWithChannelTeamInfoable)
+                if v != nil {
+                    res[i] = v.(SharedWithChannelTeamInfoable)
+                }
             }
             m.SetSharedWithTeams(res)
+        }
+        return nil
+    }
+    res["summary"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateChannelSummaryFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSummary(val.(ChannelSummaryable))
         }
         return nil
     }
@@ -185,7 +203,9 @@ func (m *Channel) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268963
         if val != nil {
             res := make([]TeamsTabable, len(val))
             for i, v := range val {
-                res[i] = v.(TeamsTabable)
+                if v != nil {
+                    res[i] = v.(TeamsTabable)
+                }
             }
             m.SetTabs(res)
         }
@@ -237,11 +257,15 @@ func (m *Channel) GetMessages()([]ChatMessageable) {
 func (m *Channel) GetSharedWithTeams()([]SharedWithChannelTeamInfoable) {
     return m.sharedWithTeams
 }
+// GetSummary gets the summary property value. Contains summary information about the channel, including number of owners, members, guests, and an indicator for members from other tenants. The summary property will only be returned if it is specified in the $select clause of the Get channel method.
+func (m *Channel) GetSummary()(ChannelSummaryable) {
+    return m.summary
+}
 // GetTabs gets the tabs property value. A collection of all the tabs in the channel. A navigation property.
 func (m *Channel) GetTabs()([]TeamsTabable) {
     return m.tabs
 }
-// GetTenantId gets the tenantId property value. The ID of the Azure Active Directory tenant.
+// GetTenantId gets the tenantId property value. The ID of the Microsoft Entra tenant.
 func (m *Channel) GetTenantId()(*string) {
     return m.tenantId
 }
@@ -294,7 +318,9 @@ func (m *Channel) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010
     if m.GetMembers() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetMembers()))
         for i, v := range m.GetMembers() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("members", cast)
         if err != nil {
@@ -311,7 +337,9 @@ func (m *Channel) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010
     if m.GetMessages() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetMessages()))
         for i, v := range m.GetMessages() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("messages", cast)
         if err != nil {
@@ -321,9 +349,17 @@ func (m *Channel) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010
     if m.GetSharedWithTeams() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetSharedWithTeams()))
         for i, v := range m.GetSharedWithTeams() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("sharedWithTeams", cast)
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err = writer.WriteObjectValue("summary", m.GetSummary())
         if err != nil {
             return err
         }
@@ -331,7 +367,9 @@ func (m *Channel) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010
     if m.GetTabs() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetTabs()))
         for i, v := range m.GetTabs() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("tabs", cast)
         if err != nil {
@@ -392,11 +430,15 @@ func (m *Channel) SetMessages(value []ChatMessageable)() {
 func (m *Channel) SetSharedWithTeams(value []SharedWithChannelTeamInfoable)() {
     m.sharedWithTeams = value
 }
+// SetSummary sets the summary property value. Contains summary information about the channel, including number of owners, members, guests, and an indicator for members from other tenants. The summary property will only be returned if it is specified in the $select clause of the Get channel method.
+func (m *Channel) SetSummary(value ChannelSummaryable)() {
+    m.summary = value
+}
 // SetTabs sets the tabs property value. A collection of all the tabs in the channel. A navigation property.
 func (m *Channel) SetTabs(value []TeamsTabable)() {
     m.tabs = value
 }
-// SetTenantId sets the tenantId property value. The ID of the Azure Active Directory tenant.
+// SetTenantId sets the tenantId property value. The ID of the Microsoft Entra tenant.
 func (m *Channel) SetTenantId(value *string)() {
     m.tenantId = value
 }
@@ -418,6 +460,7 @@ type Channelable interface {
     GetMembershipType()(*ChannelMembershipType)
     GetMessages()([]ChatMessageable)
     GetSharedWithTeams()([]SharedWithChannelTeamInfoable)
+    GetSummary()(ChannelSummaryable)
     GetTabs()([]TeamsTabable)
     GetTenantId()(*string)
     GetWebUrl()(*string)
@@ -431,6 +474,7 @@ type Channelable interface {
     SetMembershipType(value *ChannelMembershipType)()
     SetMessages(value []ChatMessageable)()
     SetSharedWithTeams(value []SharedWithChannelTeamInfoable)()
+    SetSummary(value ChannelSummaryable)()
     SetTabs(value []TeamsTabable)()
     SetTenantId(value *string)()
     SetWebUrl(value *string)()

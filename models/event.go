@@ -93,7 +93,7 @@ type Event struct {
     // The webLink property
     webLink *string
 }
-// NewEvent instantiates a new Event and sets the default values.
+// NewEvent instantiates a new event and sets the default values.
 func NewEvent()(*Event) {
     m := &Event{
         OutlookItem: *NewOutlookItem(),
@@ -159,7 +159,9 @@ func (m *Event) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]Attachmentable, len(val))
             for i, v := range val {
-                res[i] = v.(Attachmentable)
+                if v != nil {
+                    res[i] = v.(Attachmentable)
+                }
             }
             m.SetAttachments(res)
         }
@@ -173,7 +175,9 @@ func (m *Event) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]Attendeeable, len(val))
             for i, v := range val {
-                res[i] = v.(Attendeeable)
+                if v != nil {
+                    res[i] = v.(Attendeeable)
+                }
             }
             m.SetAttendees(res)
         }
@@ -227,7 +231,9 @@ func (m *Event) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]Extensionable, len(val))
             for i, v := range val {
-                res[i] = v.(Extensionable)
+                if v != nil {
+                    res[i] = v.(Extensionable)
+                }
             }
             m.SetExtensions(res)
         }
@@ -281,7 +287,9 @@ func (m *Event) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]Eventable, len(val))
             for i, v := range val {
-                res[i] = v.(Eventable)
+                if v != nil {
+                    res[i] = v.(Eventable)
+                }
             }
             m.SetInstances(res)
         }
@@ -365,7 +373,9 @@ func (m *Event) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]Locationable, len(val))
             for i, v := range val {
-                res[i] = v.(Locationable)
+                if v != nil {
+                    res[i] = v.(Locationable)
+                }
             }
             m.SetLocations(res)
         }
@@ -379,7 +389,9 @@ func (m *Event) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]MultiValueLegacyExtendedPropertyable, len(val))
             for i, v := range val {
-                res[i] = v.(MultiValueLegacyExtendedPropertyable)
+                if v != nil {
+                    res[i] = v.(MultiValueLegacyExtendedPropertyable)
+                }
             }
             m.SetMultiValueExtendedProperties(res)
         }
@@ -533,7 +545,9 @@ func (m *Event) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]SingleValueLegacyExtendedPropertyable, len(val))
             for i, v := range val {
-                res[i] = v.(SingleValueLegacyExtendedPropertyable)
+                if v != nil {
+                    res[i] = v.(SingleValueLegacyExtendedPropertyable)
+                }
             }
             m.SetSingleValueExtendedProperties(res)
         }
@@ -575,7 +589,7 @@ func (m *Event) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
             return err
         }
         if val != nil {
-            m.SetType(val.(*EventType))
+            m.SetTypeEscaped(val.(*EventType))
         }
         return nil
     }
@@ -719,8 +733,8 @@ func (m *Event) GetSubject()(*string) {
 func (m *Event) GetTransactionId()(*string) {
     return m.transactionId
 }
-// GetType gets the type property value. The type property
-func (m *Event) GetType()(*EventType) {
+// GetTypeEscaped gets the type property value. The type property
+func (m *Event) GetTypeEscaped()(*EventType) {
     return m.typeEscaped
 }
 // GetWebLink gets the webLink property value. The webLink property
@@ -742,7 +756,9 @@ func (m *Event) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetAttachments() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAttachments()))
         for i, v := range m.GetAttachments() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("attachments", cast)
         if err != nil {
@@ -752,7 +768,9 @@ func (m *Event) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetAttendees() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAttendees()))
         for i, v := range m.GetAttendees() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("attendees", cast)
         if err != nil {
@@ -786,7 +804,9 @@ func (m *Event) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetExtensions() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetExtensions()))
         for i, v := range m.GetExtensions() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("extensions", cast)
         if err != nil {
@@ -821,7 +841,9 @@ func (m *Event) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetInstances() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetInstances()))
         for i, v := range m.GetInstances() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("instances", cast)
         if err != nil {
@@ -873,7 +895,9 @@ func (m *Event) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetLocations() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetLocations()))
         for i, v := range m.GetLocations() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("locations", cast)
         if err != nil {
@@ -883,7 +907,9 @@ func (m *Event) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetMultiValueExtendedProperties() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetMultiValueExtendedProperties()))
         for i, v := range m.GetMultiValueExtendedProperties() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("multiValueExtendedProperties", cast)
         if err != nil {
@@ -980,7 +1006,9 @@ func (m *Event) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetSingleValueExtendedProperties() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetSingleValueExtendedProperties()))
         for i, v := range m.GetSingleValueExtendedProperties() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("singleValueExtendedProperties", cast)
         if err != nil {
@@ -1005,8 +1033,8 @@ func (m *Event) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
             return err
         }
     }
-    if m.GetType() != nil {
-        cast := (*m.GetType()).String()
+    if m.GetTypeEscaped() != nil {
+        cast := (*m.GetTypeEscaped()).String()
         err = writer.WriteStringValue("type", &cast)
         if err != nil {
             return err
@@ -1180,8 +1208,8 @@ func (m *Event) SetSubject(value *string)() {
 func (m *Event) SetTransactionId(value *string)() {
     m.transactionId = value
 }
-// SetType sets the type property value. The type property
-func (m *Event) SetType(value *EventType)() {
+// SetTypeEscaped sets the type property value. The type property
+func (m *Event) SetTypeEscaped(value *EventType)() {
     m.typeEscaped = value
 }
 // SetWebLink sets the webLink property value. The webLink property
@@ -1232,7 +1260,7 @@ type Eventable interface {
     GetStart()(DateTimeTimeZoneable)
     GetSubject()(*string)
     GetTransactionId()(*string)
-    GetType()(*EventType)
+    GetTypeEscaped()(*EventType)
     GetWebLink()(*string)
     SetAllowNewTimeProposals(value *bool)()
     SetAttachments(value []Attachmentable)()
@@ -1274,6 +1302,6 @@ type Eventable interface {
     SetStart(value DateTimeTimeZoneable)()
     SetSubject(value *string)()
     SetTransactionId(value *string)()
-    SetType(value *EventType)()
+    SetTypeEscaped(value *EventType)()
     SetWebLink(value *string)()
 }

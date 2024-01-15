@@ -13,7 +13,7 @@ type PasswordAuthenticationMethod struct {
     // For security, the password is always returned as null from a LIST or GET operation.
     password *string
 }
-// NewPasswordAuthenticationMethod instantiates a new PasswordAuthenticationMethod and sets the default values.
+// NewPasswordAuthenticationMethod instantiates a new passwordAuthenticationMethod and sets the default values.
 func NewPasswordAuthenticationMethod()(*PasswordAuthenticationMethod) {
     m := &PasswordAuthenticationMethod{
         AuthenticationMethod: *NewAuthenticationMethod(),
