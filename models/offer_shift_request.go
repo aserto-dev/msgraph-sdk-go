@@ -17,7 +17,7 @@ type OfferShiftRequest struct {
     // User ID of the sender of the offer shift request.
     senderShiftId *string
 }
-// NewOfferShiftRequest instantiates a new OfferShiftRequest and sets the default values.
+// NewOfferShiftRequest instantiates a new offerShiftRequest and sets the default values.
 func NewOfferShiftRequest()(*OfferShiftRequest) {
     m := &OfferShiftRequest{
         ScheduleChangeRequest: *NewScheduleChangeRequest(),

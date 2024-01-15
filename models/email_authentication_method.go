@@ -10,7 +10,7 @@ type EmailAuthenticationMethod struct {
     // The email address registered to this user.
     emailAddress *string
 }
-// NewEmailAuthenticationMethod instantiates a new EmailAuthenticationMethod and sets the default values.
+// NewEmailAuthenticationMethod instantiates a new emailAuthenticationMethod and sets the default values.
 func NewEmailAuthenticationMethod()(*EmailAuthenticationMethod) {
     m := &EmailAuthenticationMethod{
         AuthenticationMethod: *NewAuthenticationMethod(),

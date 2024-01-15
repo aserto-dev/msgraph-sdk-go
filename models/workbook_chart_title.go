@@ -13,7 +13,7 @@ type WorkbookChartTitle struct {
     overlay *bool
     // Represents the title text of a chart.
     text *string
-    // A boolean value the represents the visibility of a chart title object.
+    // A boolean value that represents the visibility of a chart title object.
     visible *bool
 }
 // NewWorkbookChartTitle instantiates a new workbookChartTitle and sets the default values.
@@ -84,7 +84,7 @@ func (m *WorkbookChartTitle) GetOverlay()(*bool) {
 func (m *WorkbookChartTitle) GetText()(*string) {
     return m.text
 }
-// GetVisible gets the visible property value. A boolean value the represents the visibility of a chart title object.
+// GetVisible gets the visible property value. A boolean value that represents the visibility of a chart title object.
 func (m *WorkbookChartTitle) GetVisible()(*bool) {
     return m.visible
 }
@@ -132,7 +132,7 @@ func (m *WorkbookChartTitle) SetOverlay(value *bool)() {
 func (m *WorkbookChartTitle) SetText(value *string)() {
     m.text = value
 }
-// SetVisible sets the visible property value. A boolean value the represents the visibility of a chart title object.
+// SetVisible sets the visible property value. A boolean value that represents the visibility of a chart title object.
 func (m *WorkbookChartTitle) SetVisible(value *bool)() {
     m.visible = value
 }

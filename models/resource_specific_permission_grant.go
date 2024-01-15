@@ -7,15 +7,15 @@ import (
 // ResourceSpecificPermissionGrant 
 type ResourceSpecificPermissionGrant struct {
     DirectoryObject
-    // ID of the service principal of the Azure AD app that has been granted access. Read-only.
+    // ID of the service principal of the Microsoft Entra app that has been granted access. Read-only.
     clientAppId *string
-    // ID of the Azure AD app that has been granted access. Read-only.
+    // ID of the Microsoft Entra app that has been granted access. Read-only.
     clientId *string
     // The name of the resource-specific permission. Read-only.
     permission *string
     // The type of permission. Possible values are: Application, Delegated. Read-only.
     permissionType *string
-    // ID of the Azure AD app that is hosting the resource. Read-only.
+    // ID of the Microsoft Entra app that is hosting the resource. Read-only.
     resourceAppId *string
 }
 // NewResourceSpecificPermissionGrant instantiates a new resourceSpecificPermissionGrant and sets the default values.
@@ -31,11 +31,11 @@ func NewResourceSpecificPermissionGrant()(*ResourceSpecificPermissionGrant) {
 func CreateResourceSpecificPermissionGrantFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewResourceSpecificPermissionGrant(), nil
 }
-// GetClientAppId gets the clientAppId property value. ID of the service principal of the Azure AD app that has been granted access. Read-only.
+// GetClientAppId gets the clientAppId property value. ID of the service principal of the Microsoft Entra app that has been granted access. Read-only.
 func (m *ResourceSpecificPermissionGrant) GetClientAppId()(*string) {
     return m.clientAppId
 }
-// GetClientId gets the clientId property value. ID of the Azure AD app that has been granted access. Read-only.
+// GetClientId gets the clientId property value. ID of the Microsoft Entra app that has been granted access. Read-only.
 func (m *ResourceSpecificPermissionGrant) GetClientId()(*string) {
     return m.clientId
 }
@@ -102,7 +102,7 @@ func (m *ResourceSpecificPermissionGrant) GetPermission()(*string) {
 func (m *ResourceSpecificPermissionGrant) GetPermissionType()(*string) {
     return m.permissionType
 }
-// GetResourceAppId gets the resourceAppId property value. ID of the Azure AD app that is hosting the resource. Read-only.
+// GetResourceAppId gets the resourceAppId property value. ID of the Microsoft Entra app that is hosting the resource. Read-only.
 func (m *ResourceSpecificPermissionGrant) GetResourceAppId()(*string) {
     return m.resourceAppId
 }
@@ -144,11 +144,11 @@ func (m *ResourceSpecificPermissionGrant) Serialize(writer i878a80d2330e89d26896
     }
     return nil
 }
-// SetClientAppId sets the clientAppId property value. ID of the service principal of the Azure AD app that has been granted access. Read-only.
+// SetClientAppId sets the clientAppId property value. ID of the service principal of the Microsoft Entra app that has been granted access. Read-only.
 func (m *ResourceSpecificPermissionGrant) SetClientAppId(value *string)() {
     m.clientAppId = value
 }
-// SetClientId sets the clientId property value. ID of the Azure AD app that has been granted access. Read-only.
+// SetClientId sets the clientId property value. ID of the Microsoft Entra app that has been granted access. Read-only.
 func (m *ResourceSpecificPermissionGrant) SetClientId(value *string)() {
     m.clientId = value
 }
@@ -160,7 +160,7 @@ func (m *ResourceSpecificPermissionGrant) SetPermission(value *string)() {
 func (m *ResourceSpecificPermissionGrant) SetPermissionType(value *string)() {
     m.permissionType = value
 }
-// SetResourceAppId sets the resourceAppId property value. ID of the Azure AD app that is hosting the resource. Read-only.
+// SetResourceAppId sets the resourceAppId property value. ID of the Microsoft Entra app that is hosting the resource. Read-only.
 func (m *ResourceSpecificPermissionGrant) SetResourceAppId(value *string)() {
     m.resourceAppId = value
 }

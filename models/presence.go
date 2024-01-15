@@ -11,6 +11,8 @@ type Presence struct {
     activity *string
     // The base presence information for a user. Possible values are Available, AvailableIdle,  Away, BeRightBack, Busy, BusyIdle, DoNotDisturb, Offline, PresenceUnknown
     availability *string
+    // The presence status message of a user.
+    statusMessage PresenceStatusMessageable
 }
 // NewPresence instantiates a new presence and sets the default values.
 func NewPresence()(*Presence) {
@@ -54,7 +56,21 @@ func (m *Presence) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896
         }
         return nil
     }
+    res["statusMessage"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreatePresenceStatusMessageFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetStatusMessage(val.(PresenceStatusMessageable))
+        }
+        return nil
+    }
     return res
+}
+// GetStatusMessage gets the statusMessage property value. The presence status message of a user.
+func (m *Presence) GetStatusMessage()(PresenceStatusMessageable) {
+    return m.statusMessage
 }
 // Serialize serializes information the current object
 func (m *Presence) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -74,6 +90,12 @@ func (m *Presence) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c01
             return err
         }
     }
+    {
+        err = writer.WriteObjectValue("statusMessage", m.GetStatusMessage())
+        if err != nil {
+            return err
+        }
+    }
     return nil
 }
 // SetActivity sets the activity property value. The supplemental information to a user's availability. Possible values are Available, Away, BeRightBack, Busy, DoNotDisturb, InACall, InAConferenceCall, Inactive, InAMeeting, Offline, OffWork, OutOfOffice, PresenceUnknown, Presenting, UrgentInterruptionsOnly.
@@ -84,12 +106,18 @@ func (m *Presence) SetActivity(value *string)() {
 func (m *Presence) SetAvailability(value *string)() {
     m.availability = value
 }
+// SetStatusMessage sets the statusMessage property value. The presence status message of a user.
+func (m *Presence) SetStatusMessage(value PresenceStatusMessageable)() {
+    m.statusMessage = value
+}
 // Presenceable 
 type Presenceable interface {
     Entityable
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetActivity()(*string)
     GetAvailability()(*string)
+    GetStatusMessage()(PresenceStatusMessageable)
     SetActivity(value *string)()
     SetAvailability(value *string)()
+    SetStatusMessage(value PresenceStatusMessageable)()
 }

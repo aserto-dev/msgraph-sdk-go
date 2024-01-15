@@ -32,7 +32,7 @@ func NewRecurrenceRange()(*RecurrenceRange) {
 func CreateRecurrenceRangeFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewRecurrenceRange(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *RecurrenceRange) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -99,7 +99,7 @@ func (m *RecurrenceRange) GetFieldDeserializers()(map[string]func(i878a80d2330e8
             return err
         }
         if val != nil {
-            m.SetType(val.(*RecurrenceRangeType))
+            m.SetTypeEscaped(val.(*RecurrenceRangeType))
         }
         return nil
     }
@@ -121,8 +121,8 @@ func (m *RecurrenceRange) GetRecurrenceTimeZone()(*string) {
 func (m *RecurrenceRange) GetStartDate()(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly) {
     return m.startDate
 }
-// GetType gets the type property value. The recurrence range. The possible values are: endDate, noEnd, numbered. Required.
-func (m *RecurrenceRange) GetType()(*RecurrenceRangeType) {
+// GetTypeEscaped gets the type property value. The recurrence range. The possible values are: endDate, noEnd, numbered. Required.
+func (m *RecurrenceRange) GetTypeEscaped()(*RecurrenceRangeType) {
     return m.typeEscaped
 }
 // Serialize serializes information the current object
@@ -157,8 +157,8 @@ func (m *RecurrenceRange) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
             return err
         }
     }
-    if m.GetType() != nil {
-        cast := (*m.GetType()).String()
+    if m.GetTypeEscaped() != nil {
+        cast := (*m.GetTypeEscaped()).String()
         err := writer.WriteStringValue("type", &cast)
         if err != nil {
             return err
@@ -172,7 +172,7 @@ func (m *RecurrenceRange) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *RecurrenceRange) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
@@ -196,8 +196,8 @@ func (m *RecurrenceRange) SetRecurrenceTimeZone(value *string)() {
 func (m *RecurrenceRange) SetStartDate(value *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly)() {
     m.startDate = value
 }
-// SetType sets the type property value. The recurrence range. The possible values are: endDate, noEnd, numbered. Required.
-func (m *RecurrenceRange) SetType(value *RecurrenceRangeType)() {
+// SetTypeEscaped sets the type property value. The recurrence range. The possible values are: endDate, noEnd, numbered. Required.
+func (m *RecurrenceRange) SetTypeEscaped(value *RecurrenceRangeType)() {
     m.typeEscaped = value
 }
 // RecurrenceRangeable 
@@ -209,11 +209,11 @@ type RecurrenceRangeable interface {
     GetOdataType()(*string)
     GetRecurrenceTimeZone()(*string)
     GetStartDate()(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly)
-    GetType()(*RecurrenceRangeType)
+    GetTypeEscaped()(*RecurrenceRangeType)
     SetEndDate(value *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly)()
     SetNumberOfOccurrences(value *int32)()
     SetOdataType(value *string)()
     SetRecurrenceTimeZone(value *string)()
     SetStartDate(value *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly)()
-    SetType(value *RecurrenceRangeType)()
+    SetTypeEscaped(value *RecurrenceRangeType)()
 }

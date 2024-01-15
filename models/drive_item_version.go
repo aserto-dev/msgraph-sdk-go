@@ -12,7 +12,7 @@ type DriveItemVersion struct {
     // Indicates the size of the content stream for this version of the item.
     size *int64
 }
-// NewDriveItemVersion instantiates a new DriveItemVersion and sets the default values.
+// NewDriveItemVersion instantiates a new driveItemVersion and sets the default values.
 func NewDriveItemVersion()(*DriveItemVersion) {
     m := &DriveItemVersion{
         BaseItemVersion: *NewBaseItemVersion(),

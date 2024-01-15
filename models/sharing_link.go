@@ -34,7 +34,7 @@ func NewSharingLink()(*SharingLink) {
 func CreateSharingLinkFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewSharingLink(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *SharingLink) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -91,7 +91,7 @@ func (m *SharingLink) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
             return err
         }
         if val != nil {
-            m.SetType(val)
+            m.SetTypeEscaped(val)
         }
         return nil
     }
@@ -129,8 +129,8 @@ func (m *SharingLink) GetPreventsDownload()(*bool) {
 func (m *SharingLink) GetScope()(*string) {
     return m.scope
 }
-// GetType gets the type property value. The type of the link created.
-func (m *SharingLink) GetType()(*string) {
+// GetTypeEscaped gets the type property value. The type of the link created.
+func (m *SharingLink) GetTypeEscaped()(*string) {
     return m.typeEscaped
 }
 // GetWebHtml gets the webHtml property value. For embed links, this property contains the HTML code for an <iframe> element that will embed the item in a webpage.
@@ -168,7 +168,7 @@ func (m *SharingLink) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
         }
     }
     {
-        err := writer.WriteStringValue("type", m.GetType())
+        err := writer.WriteStringValue("type", m.GetTypeEscaped())
         if err != nil {
             return err
         }
@@ -193,7 +193,7 @@ func (m *SharingLink) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *SharingLink) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
@@ -213,8 +213,8 @@ func (m *SharingLink) SetPreventsDownload(value *bool)() {
 func (m *SharingLink) SetScope(value *string)() {
     m.scope = value
 }
-// SetType sets the type property value. The type of the link created.
-func (m *SharingLink) SetType(value *string)() {
+// SetTypeEscaped sets the type property value. The type of the link created.
+func (m *SharingLink) SetTypeEscaped(value *string)() {
     m.typeEscaped = value
 }
 // SetWebHtml sets the webHtml property value. For embed links, this property contains the HTML code for an <iframe> element that will embed the item in a webpage.
@@ -233,14 +233,14 @@ type SharingLinkable interface {
     GetOdataType()(*string)
     GetPreventsDownload()(*bool)
     GetScope()(*string)
-    GetType()(*string)
+    GetTypeEscaped()(*string)
     GetWebHtml()(*string)
     GetWebUrl()(*string)
     SetApplication(value Identityable)()
     SetOdataType(value *string)()
     SetPreventsDownload(value *bool)()
     SetScope(value *string)()
-    SetType(value *string)()
+    SetTypeEscaped(value *string)()
     SetWebHtml(value *string)()
     SetWebUrl(value *string)()
 }

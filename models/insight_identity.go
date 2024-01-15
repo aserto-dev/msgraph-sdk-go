@@ -12,7 +12,7 @@ type InsightIdentity struct {
     address *string
     // The display name of the user who shared the item.
     displayName *string
-    // The id of the user who shared the item.
+    // The ID of the user who shared the item.
     id *string
     // The OdataType property
     odataType *string
@@ -28,7 +28,7 @@ func NewInsightIdentity()(*InsightIdentity) {
 func CreateInsightIdentityFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewInsightIdentity(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *InsightIdentity) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -85,7 +85,7 @@ func (m *InsightIdentity) GetFieldDeserializers()(map[string]func(i878a80d2330e8
     }
     return res
 }
-// GetId gets the id property value. The id of the user who shared the item.
+// GetId gets the id property value. The ID of the user who shared the item.
 func (m *InsightIdentity) GetId()(*string) {
     return m.id
 }
@@ -127,7 +127,7 @@ func (m *InsightIdentity) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *InsightIdentity) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
@@ -139,7 +139,7 @@ func (m *InsightIdentity) SetAddress(value *string)() {
 func (m *InsightIdentity) SetDisplayName(value *string)() {
     m.displayName = value
 }
-// SetId sets the id property value. The id of the user who shared the item.
+// SetId sets the id property value. The ID of the user who shared the item.
 func (m *InsightIdentity) SetId(value *string)() {
     m.id = value
 }

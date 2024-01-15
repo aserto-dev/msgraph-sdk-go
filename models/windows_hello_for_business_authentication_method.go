@@ -17,7 +17,7 @@ type WindowsHelloForBusinessAuthenticationMethod struct {
     // Key strength of this Windows Hello for Business key. Possible values are: normal, weak, unknown.
     keyStrength *AuthenticationMethodKeyStrength
 }
-// NewWindowsHelloForBusinessAuthenticationMethod instantiates a new WindowsHelloForBusinessAuthenticationMethod and sets the default values.
+// NewWindowsHelloForBusinessAuthenticationMethod instantiates a new windowsHelloForBusinessAuthenticationMethod and sets the default values.
 func NewWindowsHelloForBusinessAuthenticationMethod()(*WindowsHelloForBusinessAuthenticationMethod) {
     m := &WindowsHelloForBusinessAuthenticationMethod{
         AuthenticationMethod: *NewAuthenticationMethod(),

@@ -8,11 +8,11 @@ import (
 type ContentTypeOrder struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // Whether this is the default Content Type
+    // Indicates whether this is the default content type
     defaultEscaped *bool
     // The OdataType property
     odataType *string
-    // Specifies the position in which the Content Type appears in the selection UI.
+    // Specifies the position in which the content type appears in the selection UI.
     position *int32
 }
 // NewContentTypeOrder instantiates a new contentTypeOrder and sets the default values.
@@ -26,12 +26,12 @@ func NewContentTypeOrder()(*ContentTypeOrder) {
 func CreateContentTypeOrderFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewContentTypeOrder(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ContentTypeOrder) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetDefault gets the default property value. Whether this is the default Content Type
-func (m *ContentTypeOrder) GetDefault()(*bool) {
+// GetDefaultEscaped gets the default property value. Indicates whether this is the default content type
+func (m *ContentTypeOrder) GetDefaultEscaped()(*bool) {
     return m.defaultEscaped
 }
 // GetFieldDeserializers the deserialization information for the current model
@@ -43,7 +43,7 @@ func (m *ContentTypeOrder) GetFieldDeserializers()(map[string]func(i878a80d2330e
             return err
         }
         if val != nil {
-            m.SetDefault(val)
+            m.SetDefaultEscaped(val)
         }
         return nil
     }
@@ -73,14 +73,14 @@ func (m *ContentTypeOrder) GetFieldDeserializers()(map[string]func(i878a80d2330e
 func (m *ContentTypeOrder) GetOdataType()(*string) {
     return m.odataType
 }
-// GetPosition gets the position property value. Specifies the position in which the Content Type appears in the selection UI.
+// GetPosition gets the position property value. Specifies the position in which the content type appears in the selection UI.
 func (m *ContentTypeOrder) GetPosition()(*int32) {
     return m.position
 }
 // Serialize serializes information the current object
 func (m *ContentTypeOrder) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
-        err := writer.WriteBoolValue("default", m.GetDefault())
+        err := writer.WriteBoolValue("default", m.GetDefaultEscaped())
         if err != nil {
             return err
         }
@@ -105,19 +105,19 @@ func (m *ContentTypeOrder) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ContentTypeOrder) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetDefault sets the default property value. Whether this is the default Content Type
-func (m *ContentTypeOrder) SetDefault(value *bool)() {
+// SetDefaultEscaped sets the default property value. Indicates whether this is the default content type
+func (m *ContentTypeOrder) SetDefaultEscaped(value *bool)() {
     m.defaultEscaped = value
 }
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *ContentTypeOrder) SetOdataType(value *string)() {
     m.odataType = value
 }
-// SetPosition sets the position property value. Specifies the position in which the Content Type appears in the selection UI.
+// SetPosition sets the position property value. Specifies the position in which the content type appears in the selection UI.
 func (m *ContentTypeOrder) SetPosition(value *int32)() {
     m.position = value
 }
@@ -125,10 +125,10 @@ func (m *ContentTypeOrder) SetPosition(value *int32)() {
 type ContentTypeOrderable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetDefault()(*bool)
+    GetDefaultEscaped()(*bool)
     GetOdataType()(*string)
     GetPosition()(*int32)
-    SetDefault(value *bool)()
+    SetDefaultEscaped(value *bool)()
     SetOdataType(value *string)()
     SetPosition(value *int32)()
 }

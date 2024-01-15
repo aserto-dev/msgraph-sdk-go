@@ -7,14 +7,14 @@ import (
 // PhoneAuthenticationMethod 
 type PhoneAuthenticationMethod struct {
     AuthenticationMethod
-    // The phone number to text or call for authentication. Phone numbers use the format +{country code} {number}x{extension}, with extension optional. For example, +1 5555551234 or +1 5555551234x123 are valid. Numbers are rejected when creating or updating if they do not match the required format.
+    // The phone number to text or call for authentication. Phone numbers use the format +{country code} {number}x{extension}, with extension optional. For example, +1 5555551234 or +1 5555551234x123 are valid. Numbers are rejected when creating or updating if they don't match the required format.
     phoneNumber *string
     // The type of this phone. Possible values are: mobile, alternateMobile, or office.
     phoneType *AuthenticationPhoneType
     // Whether a phone is ready to be used for SMS sign-in or not. Possible values are: notSupported, notAllowedByPolicy, notEnabled, phoneNumberNotUnique, ready, or notConfigured, unknownFutureValue.
     smsSignInState *AuthenticationMethodSignInState
 }
-// NewPhoneAuthenticationMethod instantiates a new PhoneAuthenticationMethod and sets the default values.
+// NewPhoneAuthenticationMethod instantiates a new phoneAuthenticationMethod and sets the default values.
 func NewPhoneAuthenticationMethod()(*PhoneAuthenticationMethod) {
     m := &PhoneAuthenticationMethod{
         AuthenticationMethod: *NewAuthenticationMethod(),
@@ -62,7 +62,7 @@ func (m *PhoneAuthenticationMethod) GetFieldDeserializers()(map[string]func(i878
     }
     return res
 }
-// GetPhoneNumber gets the phoneNumber property value. The phone number to text or call for authentication. Phone numbers use the format +{country code} {number}x{extension}, with extension optional. For example, +1 5555551234 or +1 5555551234x123 are valid. Numbers are rejected when creating or updating if they do not match the required format.
+// GetPhoneNumber gets the phoneNumber property value. The phone number to text or call for authentication. Phone numbers use the format +{country code} {number}x{extension}, with extension optional. For example, +1 5555551234 or +1 5555551234x123 are valid. Numbers are rejected when creating or updating if they don't match the required format.
 func (m *PhoneAuthenticationMethod) GetPhoneNumber()(*string) {
     return m.phoneNumber
 }
@@ -102,7 +102,7 @@ func (m *PhoneAuthenticationMethod) Serialize(writer i878a80d2330e89d26896388a3f
     }
     return nil
 }
-// SetPhoneNumber sets the phoneNumber property value. The phone number to text or call for authentication. Phone numbers use the format +{country code} {number}x{extension}, with extension optional. For example, +1 5555551234 or +1 5555551234x123 are valid. Numbers are rejected when creating or updating if they do not match the required format.
+// SetPhoneNumber sets the phoneNumber property value. The phone number to text or call for authentication. Phone numbers use the format +{country code} {number}x{extension}, with extension optional. For example, +1 5555551234 or +1 5555551234x123 are valid. Numbers are rejected when creating or updating if they don't match the required format.
 func (m *PhoneAuthenticationMethod) SetPhoneNumber(value *string)() {
     m.phoneNumber = value
 }

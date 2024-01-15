@@ -11,7 +11,7 @@ type TeamInfo struct {
     displayName *string
     // The team property
     team Teamable
-    // The ID of the Azure Active Directory tenant.
+    // The ID of the Microsoft Entra tenant.
     tenantId *string
 }
 // NewTeamInfo instantiates a new teamInfo and sets the default values.
@@ -88,7 +88,7 @@ func (m *TeamInfo) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896
 func (m *TeamInfo) GetTeam()(Teamable) {
     return m.team
 }
-// GetTenantId gets the tenantId property value. The ID of the Azure Active Directory tenant.
+// GetTenantId gets the tenantId property value. The ID of the Microsoft Entra tenant.
 func (m *TeamInfo) GetTenantId()(*string) {
     return m.tenantId
 }
@@ -126,7 +126,7 @@ func (m *TeamInfo) SetDisplayName(value *string)() {
 func (m *TeamInfo) SetTeam(value Teamable)() {
     m.team = value
 }
-// SetTenantId sets the tenantId property value. The ID of the Azure Active Directory tenant.
+// SetTenantId sets the tenantId property value. The ID of the Microsoft Entra tenant.
 func (m *TeamInfo) SetTenantId(value *string)() {
     m.tenantId = value
 }

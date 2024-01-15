@@ -11,7 +11,7 @@ type TeamsTab struct {
     configuration TeamsTabConfigurationable
     // Name of the tab.
     displayName *string
-    // The application that is linked to the tab. This cannot be changed after tab creation.
+    // The application that is linked to the tab. This can't be changed after tab creation.
     teamsApp TeamsAppable
     // Deep link URL of the tab instance. Read only.
     webUrl *string
@@ -80,7 +80,7 @@ func (m *TeamsTab) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896
     }
     return res
 }
-// GetTeamsApp gets the teamsApp property value. The application that is linked to the tab. This cannot be changed after tab creation.
+// GetTeamsApp gets the teamsApp property value. The application that is linked to the tab. This can't be changed after tab creation.
 func (m *TeamsTab) GetTeamsApp()(TeamsAppable) {
     return m.teamsApp
 }
@@ -128,7 +128,7 @@ func (m *TeamsTab) SetConfiguration(value TeamsTabConfigurationable)() {
 func (m *TeamsTab) SetDisplayName(value *string)() {
     m.displayName = value
 }
-// SetTeamsApp sets the teamsApp property value. The application that is linked to the tab. This cannot be changed after tab creation.
+// SetTeamsApp sets the teamsApp property value. The application that is linked to the tab. This can't be changed after tab creation.
 func (m *TeamsTab) SetTeamsApp(value TeamsAppable)() {
     m.teamsApp = value
 }

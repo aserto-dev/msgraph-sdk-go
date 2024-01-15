@@ -15,7 +15,7 @@ type TimeOffRequest struct {
     // The reason for the time off.
     timeOffReasonId *string
 }
-// NewTimeOffRequest instantiates a new TimeOffRequest and sets the default values.
+// NewTimeOffRequest instantiates a new timeOffRequest and sets the default values.
 func NewTimeOffRequest()(*TimeOffRequest) {
     m := &TimeOffRequest{
         ScheduleChangeRequest: *NewScheduleChangeRequest(),

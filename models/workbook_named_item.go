@@ -15,7 +15,7 @@ type WorkbookNamedItem struct {
     scope *string
     // Indicates what type of reference is associated with the name. The possible values are: String, Integer, Double, Boolean, Range. Read-only.
     typeEscaped *string
-    // Represents the formula that the name is defined to refer to. E.g. =Sheet14!$B$2:$H$12, =4.75, etc. Read-only.
+    // Represents the formula that the name is defined to refer to. for example, =Sheet14!$B$2:$H$12, =4.75, etc. Read-only.
     value Jsonable
     // Specifies whether the object is visible or not.
     visible *bool
@@ -76,7 +76,7 @@ func (m *WorkbookNamedItem) GetFieldDeserializers()(map[string]func(i878a80d2330
             return err
         }
         if val != nil {
-            m.SetType(val)
+            m.SetTypeEscaped(val)
         }
         return nil
     }
@@ -120,11 +120,11 @@ func (m *WorkbookNamedItem) GetName()(*string) {
 func (m *WorkbookNamedItem) GetScope()(*string) {
     return m.scope
 }
-// GetType gets the type property value. Indicates what type of reference is associated with the name. The possible values are: String, Integer, Double, Boolean, Range. Read-only.
-func (m *WorkbookNamedItem) GetType()(*string) {
+// GetTypeEscaped gets the type property value. Indicates what type of reference is associated with the name. The possible values are: String, Integer, Double, Boolean, Range. Read-only.
+func (m *WorkbookNamedItem) GetTypeEscaped()(*string) {
     return m.typeEscaped
 }
-// GetValue gets the value property value. Represents the formula that the name is defined to refer to. E.g. =Sheet14!$B$2:$H$12, =4.75, etc. Read-only.
+// GetValue gets the value property value. Represents the formula that the name is defined to refer to. for example, =Sheet14!$B$2:$H$12, =4.75, etc. Read-only.
 func (m *WorkbookNamedItem) GetValue()(Jsonable) {
     return m.value
 }
@@ -161,7 +161,7 @@ func (m *WorkbookNamedItem) Serialize(writer i878a80d2330e89d26896388a3f487eef27
         }
     }
     {
-        err = writer.WriteStringValue("type", m.GetType())
+        err = writer.WriteStringValue("type", m.GetTypeEscaped())
         if err != nil {
             return err
         }
@@ -198,11 +198,11 @@ func (m *WorkbookNamedItem) SetName(value *string)() {
 func (m *WorkbookNamedItem) SetScope(value *string)() {
     m.scope = value
 }
-// SetType sets the type property value. Indicates what type of reference is associated with the name. The possible values are: String, Integer, Double, Boolean, Range. Read-only.
-func (m *WorkbookNamedItem) SetType(value *string)() {
+// SetTypeEscaped sets the type property value. Indicates what type of reference is associated with the name. The possible values are: String, Integer, Double, Boolean, Range. Read-only.
+func (m *WorkbookNamedItem) SetTypeEscaped(value *string)() {
     m.typeEscaped = value
 }
-// SetValue sets the value property value. Represents the formula that the name is defined to refer to. E.g. =Sheet14!$B$2:$H$12, =4.75, etc. Read-only.
+// SetValue sets the value property value. Represents the formula that the name is defined to refer to. for example, =Sheet14!$B$2:$H$12, =4.75, etc. Read-only.
 func (m *WorkbookNamedItem) SetValue(value Jsonable)() {
     m.value = value
 }
@@ -221,14 +221,14 @@ type WorkbookNamedItemable interface {
     GetComment()(*string)
     GetName()(*string)
     GetScope()(*string)
-    GetType()(*string)
+    GetTypeEscaped()(*string)
     GetValue()(Jsonable)
     GetVisible()(*bool)
     GetWorksheet()(WorkbookWorksheetable)
     SetComment(value *string)()
     SetName(value *string)()
     SetScope(value *string)()
-    SetType(value *string)()
+    SetTypeEscaped(value *string)()
     SetValue(value Jsonable)()
     SetVisible(value *bool)()
     SetWorksheet(value WorkbookWorksheetable)()

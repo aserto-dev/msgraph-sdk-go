@@ -8,11 +8,11 @@ import (
 // ChatMessageInfo 
 type ChatMessageInfo struct {
     Entity
-    // Body of the chatMessage. This will still contain markers for @mentions and attachments even though the object does not return @mentions and attachments.
+    // Body of the chatMessage. This will still contain markers for @mentions and attachments even though the object doesn't return @mentions and attachments.
     body ItemBodyable
     // Date time object representing the time at which message was created.
     createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Read-only.  If present, represents details of an event that happened in a chat, a channel, or a team, for example, members were added, and so on. For event messages, the messageType property will be set to systemEventMessage.
+    // Read-only.  If present, represents details of an event that happened in a chat, a channel, or a team, for example, members were added, and so on. For event messages, the messageType property is set to systemEventMessage.
     eventDetail EventMessageDetailable
     // Information about the sender of the message.
     from ChatMessageFromIdentitySetable
@@ -32,7 +32,7 @@ func NewChatMessageInfo()(*ChatMessageInfo) {
 func CreateChatMessageInfoFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewChatMessageInfo(), nil
 }
-// GetBody gets the body property value. Body of the chatMessage. This will still contain markers for @mentions and attachments even though the object does not return @mentions and attachments.
+// GetBody gets the body property value. Body of the chatMessage. This will still contain markers for @mentions and attachments even though the object doesn't return @mentions and attachments.
 func (m *ChatMessageInfo) GetBody()(ItemBodyable) {
     return m.body
 }
@@ -40,7 +40,7 @@ func (m *ChatMessageInfo) GetBody()(ItemBodyable) {
 func (m *ChatMessageInfo) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.createdDateTime
 }
-// GetEventDetail gets the eventDetail property value. Read-only.  If present, represents details of an event that happened in a chat, a channel, or a team, for example, members were added, and so on. For event messages, the messageType property will be set to systemEventMessage.
+// GetEventDetail gets the eventDetail property value. Read-only.  If present, represents details of an event that happened in a chat, a channel, or a team, for example, members were added, and so on. For event messages, the messageType property is set to systemEventMessage.
 func (m *ChatMessageInfo) GetEventDetail()(EventMessageDetailable) {
     return m.eventDetail
 }
@@ -166,7 +166,7 @@ func (m *ChatMessageInfo) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
     }
     return nil
 }
-// SetBody sets the body property value. Body of the chatMessage. This will still contain markers for @mentions and attachments even though the object does not return @mentions and attachments.
+// SetBody sets the body property value. Body of the chatMessage. This will still contain markers for @mentions and attachments even though the object doesn't return @mentions and attachments.
 func (m *ChatMessageInfo) SetBody(value ItemBodyable)() {
     m.body = value
 }
@@ -174,7 +174,7 @@ func (m *ChatMessageInfo) SetBody(value ItemBodyable)() {
 func (m *ChatMessageInfo) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.createdDateTime = value
 }
-// SetEventDetail sets the eventDetail property value. Read-only.  If present, represents details of an event that happened in a chat, a channel, or a team, for example, members were added, and so on. For event messages, the messageType property will be set to systemEventMessage.
+// SetEventDetail sets the eventDetail property value. Read-only.  If present, represents details of an event that happened in a chat, a channel, or a team, for example, members were added, and so on. For event messages, the messageType property is set to systemEventMessage.
 func (m *ChatMessageInfo) SetEventDetail(value EventMessageDetailable)() {
     m.eventDetail = value
 }

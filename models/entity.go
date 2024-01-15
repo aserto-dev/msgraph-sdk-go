@@ -8,7 +8,7 @@ import (
 type Entity struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // The unique idenfier for an entity. Read-only.
+    // The unique identifier for an entity. Read-only.
     id *string
     // The OdataType property
     odataType *string
@@ -64,6 +64,10 @@ func CreateEntityFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487
                         return NewCalendarGroup(), nil
                     case "#microsoft.graph.calendarPermission":
                         return NewCalendarPermission(), nil
+                    case "#microsoft.graph.callRecording":
+                        return NewCallRecording(), nil
+                    case "#microsoft.graph.callTranscript":
+                        return NewCallTranscript(), nil
                     case "#microsoft.graph.changeTrackedEntity":
                         return NewChangeTrackedEntity(), nil
                     case "#microsoft.graph.channel":
@@ -102,6 +106,8 @@ func CreateEntityFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487
                         return NewDeviceCompliancePolicyState(), nil
                     case "#microsoft.graph.deviceConfigurationState":
                         return NewDeviceConfigurationState(), nil
+                    case "#microsoft.graph.deviceLogCollectionResponse":
+                        return NewDeviceLogCollectionResponse(), nil
                     case "#microsoft.graph.deviceManagementTroubleshootingEvent":
                         return NewDeviceManagementTroubleshootingEvent(), nil
                     case "#microsoft.graph.directoryObject":
@@ -116,6 +122,8 @@ func CreateEntityFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487
                         return NewDriveItemVersion(), nil
                     case "#microsoft.graph.emailAuthenticationMethod":
                         return NewEmailAuthenticationMethod(), nil
+                    case "#microsoft.graph.employeeExperienceUser":
+                        return NewEmployeeExperienceUser(), nil
                     case "#microsoft.graph.event":
                         return NewEvent(), nil
                     case "#microsoft.graph.extension":
@@ -140,6 +148,10 @@ func CreateEntityFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487
                         return NewItemActivityStat(), nil
                     case "#microsoft.graph.itemAnalytics":
                         return NewItemAnalytics(), nil
+                    case "#microsoft.graph.itemRetentionLabel":
+                        return NewItemRetentionLabel(), nil
+                    case "#microsoft.graph.learningCourseActivity":
+                        return NewLearningCourseActivity(), nil
                     case "#microsoft.graph.licenseDetails":
                         return NewLicenseDetails(), nil
                     case "#microsoft.graph.linkedResource":
@@ -198,6 +210,8 @@ func CreateEntityFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487
                         return NewOnenoteSection(), nil
                     case "#microsoft.graph.onlineMeeting":
                         return NewOnlineMeeting(), nil
+                    case "#microsoft.graph.onlineMeetingBase":
+                        return NewOnlineMeetingBase(), nil
                     case "#microsoft.graph.openShift":
                         return NewOpenShift(), nil
                     case "#microsoft.graph.openShiftChangeRequest":
@@ -244,6 +258,24 @@ func CreateEntityFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487
                         return NewPost(), nil
                     case "#microsoft.graph.presence":
                         return NewPresence(), nil
+                    case "#microsoft.graph.printConnector":
+                        return NewPrintConnector(), nil
+                    case "#microsoft.graph.printDocument":
+                        return NewPrintDocument(), nil
+                    case "#microsoft.graph.printer":
+                        return NewPrinter(), nil
+                    case "#microsoft.graph.printerBase":
+                        return NewPrinterBase(), nil
+                    case "#microsoft.graph.printerShare":
+                        return NewPrinterShare(), nil
+                    case "#microsoft.graph.printJob":
+                        return NewPrintJob(), nil
+                    case "#microsoft.graph.printTask":
+                        return NewPrintTask(), nil
+                    case "#microsoft.graph.printTaskDefinition":
+                        return NewPrintTaskDefinition(), nil
+                    case "#microsoft.graph.printTaskTrigger":
+                        return NewPrintTaskTrigger(), nil
                     case "#microsoft.graph.profilePhoto":
                         return NewProfilePhoto(), nil
                     case "#microsoft.graph.resourceSpecificPermissionGrant":
@@ -332,8 +364,12 @@ func CreateEntityFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487
                         return NewUserSettings(), nil
                     case "#microsoft.graph.userTeamwork":
                         return NewUserTeamwork(), nil
+                    case "#microsoft.graph.windowsDeviceMalwareState":
+                        return NewWindowsDeviceMalwareState(), nil
                     case "#microsoft.graph.windowsHelloForBusinessAuthenticationMethod":
                         return NewWindowsHelloForBusinessAuthenticationMethod(), nil
+                    case "#microsoft.graph.windowsProtectionState":
+                        return NewWindowsProtectionState(), nil
                     case "#microsoft.graph.workbook":
                         return NewWorkbook(), nil
                     case "#microsoft.graph.workbookApplication":
@@ -414,7 +450,7 @@ func CreateEntityFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487
     }
     return NewEntity(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *Entity) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -443,7 +479,7 @@ func (m *Entity) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689638
     }
     return res
 }
-// GetId gets the id property value. The unique idenfier for an entity. Read-only.
+// GetId gets the id property value. The unique identifier for an entity. Read-only.
 func (m *Entity) GetId()(*string) {
     return m.id
 }
@@ -473,11 +509,11 @@ func (m *Entity) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *Entity) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetId sets the id property value. The unique idenfier for an entity. Read-only.
+// SetId sets the id property value. The unique identifier for an entity. Read-only.
 func (m *Entity) SetId(value *string)() {
     m.id = value
 }

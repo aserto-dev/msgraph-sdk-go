@@ -10,7 +10,7 @@ type OpenShiftChangeRequest struct {
     // ID for the open shift.
     openShiftId *string
 }
-// NewOpenShiftChangeRequest instantiates a new OpenShiftChangeRequest and sets the default values.
+// NewOpenShiftChangeRequest instantiates a new openShiftChangeRequest and sets the default values.
 func NewOpenShiftChangeRequest()(*OpenShiftChangeRequest) {
     m := &OpenShiftChangeRequest{
         ScheduleChangeRequest: *NewScheduleChangeRequest(),

@@ -8,7 +8,7 @@ import (
 type Identity struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // The display name of the identity. Note that this might not always be available or up to date. For example, if a user changes their display name, the API might show the new value in a future response, but the items associated with the user won't show up as having changed when using delta.
+    // The display name of the identity. The display name might not always be available or up to date. For example, if a user changes their display name, the API might show the new value in a future response, but the items associated with the user won't show up as having changed when using delta.
     displayName *string
     // Unique identifier for the identity.
     id *string
@@ -42,17 +42,19 @@ func CreateIdentityFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f4
                         return NewTeamworkConversationIdentity(), nil
                     case "#microsoft.graph.teamworkUserIdentity":
                         return NewTeamworkUserIdentity(), nil
+                    case "#microsoft.graph.userIdentity":
+                        return NewUserIdentity(), nil
                 }
             }
         }
     }
     return NewIdentity(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *Identity) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetDisplayName gets the displayName property value. The display name of the identity. Note that this might not always be available or up to date. For example, if a user changes their display name, the API might show the new value in a future response, but the items associated with the user won't show up as having changed when using delta.
+// GetDisplayName gets the displayName property value. The display name of the identity. The display name might not always be available or up to date. For example, if a user changes their display name, the API might show the new value in a future response, but the items associated with the user won't show up as having changed when using delta.
 func (m *Identity) GetDisplayName()(*string) {
     return m.displayName
 }
@@ -127,11 +129,11 @@ func (m *Identity) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c01
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *Identity) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetDisplayName sets the displayName property value. The display name of the identity. Note that this might not always be available or up to date. For example, if a user changes their display name, the API might show the new value in a future response, but the items associated with the user won't show up as having changed when using delta.
+// SetDisplayName sets the displayName property value. The display name of the identity. The display name might not always be available or up to date. For example, if a user changes their display name, the API might show the new value in a future response, but the items associated with the user won't show up as having changed when using delta.
 func (m *Identity) SetDisplayName(value *string)() {
     m.displayName = value
 }

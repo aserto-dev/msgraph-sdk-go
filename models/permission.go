@@ -8,7 +8,7 @@ import (
 // Permission 
 type Permission struct {
     Entity
-    // A format of yyyy-MM-ddTHH:mm:ssZ of DateTimeOffset indicates the expiration time of the permission. DateTime.MinValue indicates there is no expiration set for this permission. Optional.
+    // A format of yyyy-MM-ddTHH:mm:ssZ of DateTimeOffset indicates the expiration time of the permission. DateTime.MinValue indicates there's no expiration set for this permission. Optional.
     expirationDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The grantedTo property
     grantedTo IdentitySetable
@@ -20,15 +20,15 @@ type Permission struct {
     grantedToV2 SharePointIdentitySetable
     // Indicates whether the password is set for this permission. This property only appears in the response. Optional. Read-only. For OneDrive Personal only..
     hasPassword *bool
-    // Provides a reference to the ancestor of the current permission, if it is inherited from an ancestor. Read-only.
+    // Provides a reference to the ancestor of the current permission, if it's inherited from an ancestor. Read-only.
     inheritedFrom ItemReferenceable
     // Details of any associated sharing invitation for this permission. Read-only.
     invitation SharingInvitationable
-    // Provides the link details of the current permission, if it is a link type permissions. Read-only.
+    // Provides the link details of the current permission, if it's a link type permission. Read-only.
     link SharingLinkable
     // The type of permission, for example, read. See below for the full list of roles. Read-only.
     roles []string
-    // A unique token that can be used to access this shared item via the **shares** API. Read-only.
+    // A unique token that can be used to access this shared item via the shares API. Read-only.
     shareId *string
 }
 // NewPermission instantiates a new permission and sets the default values.
@@ -42,7 +42,7 @@ func NewPermission()(*Permission) {
 func CreatePermissionFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewPermission(), nil
 }
-// GetExpirationDateTime gets the expirationDateTime property value. A format of yyyy-MM-ddTHH:mm:ssZ of DateTimeOffset indicates the expiration time of the permission. DateTime.MinValue indicates there is no expiration set for this permission. Optional.
+// GetExpirationDateTime gets the expirationDateTime property value. A format of yyyy-MM-ddTHH:mm:ssZ of DateTimeOffset indicates the expiration time of the permission. DateTime.MinValue indicates there's no expiration set for this permission. Optional.
 func (m *Permission) GetExpirationDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.expirationDateTime
 }
@@ -77,7 +77,9 @@ func (m *Permission) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         if val != nil {
             res := make([]IdentitySetable, len(val))
             for i, v := range val {
-                res[i] = v.(IdentitySetable)
+                if v != nil {
+                    res[i] = v.(IdentitySetable)
+                }
             }
             m.SetGrantedToIdentities(res)
         }
@@ -91,7 +93,9 @@ func (m *Permission) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         if val != nil {
             res := make([]SharePointIdentitySetable, len(val))
             for i, v := range val {
-                res[i] = v.(SharePointIdentitySetable)
+                if v != nil {
+                    res[i] = v.(SharePointIdentitySetable)
+                }
             }
             m.SetGrantedToIdentitiesV2(res)
         }
@@ -155,7 +159,9 @@ func (m *Permission) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetRoles(res)
         }
@@ -193,7 +199,7 @@ func (m *Permission) GetGrantedToV2()(SharePointIdentitySetable) {
 func (m *Permission) GetHasPassword()(*bool) {
     return m.hasPassword
 }
-// GetInheritedFrom gets the inheritedFrom property value. Provides a reference to the ancestor of the current permission, if it is inherited from an ancestor. Read-only.
+// GetInheritedFrom gets the inheritedFrom property value. Provides a reference to the ancestor of the current permission, if it's inherited from an ancestor. Read-only.
 func (m *Permission) GetInheritedFrom()(ItemReferenceable) {
     return m.inheritedFrom
 }
@@ -201,7 +207,7 @@ func (m *Permission) GetInheritedFrom()(ItemReferenceable) {
 func (m *Permission) GetInvitation()(SharingInvitationable) {
     return m.invitation
 }
-// GetLink gets the link property value. Provides the link details of the current permission, if it is a link type permissions. Read-only.
+// GetLink gets the link property value. Provides the link details of the current permission, if it's a link type permission. Read-only.
 func (m *Permission) GetLink()(SharingLinkable) {
     return m.link
 }
@@ -209,7 +215,7 @@ func (m *Permission) GetLink()(SharingLinkable) {
 func (m *Permission) GetRoles()([]string) {
     return m.roles
 }
-// GetShareId gets the shareId property value. A unique token that can be used to access this shared item via the **shares** API. Read-only.
+// GetShareId gets the shareId property value. A unique token that can be used to access this shared item via the shares API. Read-only.
 func (m *Permission) GetShareId()(*string) {
     return m.shareId
 }
@@ -234,7 +240,9 @@ func (m *Permission) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
     if m.GetGrantedToIdentities() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetGrantedToIdentities()))
         for i, v := range m.GetGrantedToIdentities() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("grantedToIdentities", cast)
         if err != nil {
@@ -244,7 +252,9 @@ func (m *Permission) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
     if m.GetGrantedToIdentitiesV2() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetGrantedToIdentitiesV2()))
         for i, v := range m.GetGrantedToIdentitiesV2() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("grantedToIdentitiesV2", cast)
         if err != nil {
@@ -295,7 +305,7 @@ func (m *Permission) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
     }
     return nil
 }
-// SetExpirationDateTime sets the expirationDateTime property value. A format of yyyy-MM-ddTHH:mm:ssZ of DateTimeOffset indicates the expiration time of the permission. DateTime.MinValue indicates there is no expiration set for this permission. Optional.
+// SetExpirationDateTime sets the expirationDateTime property value. A format of yyyy-MM-ddTHH:mm:ssZ of DateTimeOffset indicates the expiration time of the permission. DateTime.MinValue indicates there's no expiration set for this permission. Optional.
 func (m *Permission) SetExpirationDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.expirationDateTime = value
 }
@@ -319,7 +329,7 @@ func (m *Permission) SetGrantedToV2(value SharePointIdentitySetable)() {
 func (m *Permission) SetHasPassword(value *bool)() {
     m.hasPassword = value
 }
-// SetInheritedFrom sets the inheritedFrom property value. Provides a reference to the ancestor of the current permission, if it is inherited from an ancestor. Read-only.
+// SetInheritedFrom sets the inheritedFrom property value. Provides a reference to the ancestor of the current permission, if it's inherited from an ancestor. Read-only.
 func (m *Permission) SetInheritedFrom(value ItemReferenceable)() {
     m.inheritedFrom = value
 }
@@ -327,7 +337,7 @@ func (m *Permission) SetInheritedFrom(value ItemReferenceable)() {
 func (m *Permission) SetInvitation(value SharingInvitationable)() {
     m.invitation = value
 }
-// SetLink sets the link property value. Provides the link details of the current permission, if it is a link type permissions. Read-only.
+// SetLink sets the link property value. Provides the link details of the current permission, if it's a link type permission. Read-only.
 func (m *Permission) SetLink(value SharingLinkable)() {
     m.link = value
 }
@@ -335,7 +345,7 @@ func (m *Permission) SetLink(value SharingLinkable)() {
 func (m *Permission) SetRoles(value []string)() {
     m.roles = value
 }
-// SetShareId sets the shareId property value. A unique token that can be used to access this shared item via the **shares** API. Read-only.
+// SetShareId sets the shareId property value. A unique token that can be used to access this shared item via the shares API. Read-only.
 func (m *Permission) SetShareId(value *string)() {
     m.shareId = value
 }

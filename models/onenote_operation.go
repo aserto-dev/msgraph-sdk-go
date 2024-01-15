@@ -16,7 +16,7 @@ type OnenoteOperation struct {
     // The resource URI for the object. For example, the resource URI for a copied page or section.
     resourceLocation *string
 }
-// NewOnenoteOperation instantiates a new OnenoteOperation and sets the default values.
+// NewOnenoteOperation instantiates a new onenoteOperation and sets the default values.
 func NewOnenoteOperation()(*OnenoteOperation) {
     m := &OnenoteOperation{
         Operation: *NewOperation(),

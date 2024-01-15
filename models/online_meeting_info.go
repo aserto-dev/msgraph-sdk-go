@@ -10,13 +10,13 @@ type OnlineMeetingInfo struct {
     additionalData map[string]any
     // The ID of the conference.
     conferenceId *string
-    // The external link that launches the online meeting. This is a URL that clients will launch into a browser and will redirect the user to join the meeting.
+    // The external link that launches the online meeting. This is a URL that clients launch into a browser and will redirect the user to join the meeting.
     joinUrl *string
     // The OdataType property
     odataType *string
     // All of the phone numbers associated with this conference.
     phones []Phoneable
-    // The pre-formatted quickdial for this call.
+    // The preformatted quick dial for this call.
     quickDial *string
     // The toll free numbers that can be used to join the conference.
     tollFreeNumbers []string
@@ -34,7 +34,7 @@ func NewOnlineMeetingInfo()(*OnlineMeetingInfo) {
 func CreateOnlineMeetingInfoFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewOnlineMeetingInfo(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *OnlineMeetingInfo) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -83,7 +83,9 @@ func (m *OnlineMeetingInfo) GetFieldDeserializers()(map[string]func(i878a80d2330
         if val != nil {
             res := make([]Phoneable, len(val))
             for i, v := range val {
-                res[i] = v.(Phoneable)
+                if v != nil {
+                    res[i] = v.(Phoneable)
+                }
             }
             m.SetPhones(res)
         }
@@ -107,7 +109,9 @@ func (m *OnlineMeetingInfo) GetFieldDeserializers()(map[string]func(i878a80d2330
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetTollFreeNumbers(res)
         }
@@ -125,7 +129,7 @@ func (m *OnlineMeetingInfo) GetFieldDeserializers()(map[string]func(i878a80d2330
     }
     return res
 }
-// GetJoinUrl gets the joinUrl property value. The external link that launches the online meeting. This is a URL that clients will launch into a browser and will redirect the user to join the meeting.
+// GetJoinUrl gets the joinUrl property value. The external link that launches the online meeting. This is a URL that clients launch into a browser and will redirect the user to join the meeting.
 func (m *OnlineMeetingInfo) GetJoinUrl()(*string) {
     return m.joinUrl
 }
@@ -137,7 +141,7 @@ func (m *OnlineMeetingInfo) GetOdataType()(*string) {
 func (m *OnlineMeetingInfo) GetPhones()([]Phoneable) {
     return m.phones
 }
-// GetQuickDial gets the quickDial property value. The pre-formatted quickdial for this call.
+// GetQuickDial gets the quickDial property value. The preformatted quick dial for this call.
 func (m *OnlineMeetingInfo) GetQuickDial()(*string) {
     return m.quickDial
 }
@@ -172,7 +176,9 @@ func (m *OnlineMeetingInfo) Serialize(writer i878a80d2330e89d26896388a3f487eef27
     if m.GetPhones() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPhones()))
         for i, v := range m.GetPhones() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err := writer.WriteCollectionOfObjectValues("phones", cast)
         if err != nil {
@@ -205,7 +211,7 @@ func (m *OnlineMeetingInfo) Serialize(writer i878a80d2330e89d26896388a3f487eef27
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *OnlineMeetingInfo) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
@@ -213,7 +219,7 @@ func (m *OnlineMeetingInfo) SetAdditionalData(value map[string]any)() {
 func (m *OnlineMeetingInfo) SetConferenceId(value *string)() {
     m.conferenceId = value
 }
-// SetJoinUrl sets the joinUrl property value. The external link that launches the online meeting. This is a URL that clients will launch into a browser and will redirect the user to join the meeting.
+// SetJoinUrl sets the joinUrl property value. The external link that launches the online meeting. This is a URL that clients launch into a browser and will redirect the user to join the meeting.
 func (m *OnlineMeetingInfo) SetJoinUrl(value *string)() {
     m.joinUrl = value
 }
@@ -225,7 +231,7 @@ func (m *OnlineMeetingInfo) SetOdataType(value *string)() {
 func (m *OnlineMeetingInfo) SetPhones(value []Phoneable)() {
     m.phones = value
 }
-// SetQuickDial sets the quickDial property value. The pre-formatted quickdial for this call.
+// SetQuickDial sets the quickDial property value. The preformatted quick dial for this call.
 func (m *OnlineMeetingInfo) SetQuickDial(value *string)() {
     m.quickDial = value
 }

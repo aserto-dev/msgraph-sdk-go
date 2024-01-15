@@ -34,7 +34,7 @@ func (m *ItemActionStat) GetActionCount()(*int32) {
 func (m *ItemActionStat) GetActorCount()(*int32) {
     return m.actorCount
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ItemActionStat) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -113,7 +113,7 @@ func (m *ItemActionStat) SetActionCount(value *int32)() {
 func (m *ItemActionStat) SetActorCount(value *int32)() {
     m.actorCount = value
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ItemActionStat) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }

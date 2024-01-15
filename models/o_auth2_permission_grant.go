@@ -7,7 +7,7 @@ import (
 // OAuth2PermissionGrant 
 type OAuth2PermissionGrant struct {
     Entity
-    // The id of the client service principal for the application which is authorized to act on behalf of a signed-in user when accessing an API. Required. Supports $filter (eq only).
+    // The object id (not appId) of the client service principal for the application which is authorized to act on behalf of a signed-in user when accessing an API. Required. Supports $filter (eq only).
     clientId *string
     // Indicates if authorization is granted for the client application to impersonate all users or only a specific user. AllPrincipals indicates authorization to impersonate all users. Principal indicates authorization to impersonate a specific user. Consent on behalf of all users can be granted by an administrator. Non-admin users may be authorized to consent on behalf of themselves in some cases, for some delegated permissions. Required. Supports $filter (eq only).
     consentType *string
@@ -29,7 +29,7 @@ func NewOAuth2PermissionGrant()(*OAuth2PermissionGrant) {
 func CreateOAuth2PermissionGrantFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewOAuth2PermissionGrant(), nil
 }
-// GetClientId gets the clientId property value. The id of the client service principal for the application which is authorized to act on behalf of a signed-in user when accessing an API. Required. Supports $filter (eq only).
+// GetClientId gets the clientId property value. The object id (not appId) of the client service principal for the application which is authorized to act on behalf of a signed-in user when accessing an API. Required. Supports $filter (eq only).
 func (m *OAuth2PermissionGrant) GetClientId()(*string) {
     return m.clientId
 }
@@ -142,7 +142,7 @@ func (m *OAuth2PermissionGrant) Serialize(writer i878a80d2330e89d26896388a3f487e
     }
     return nil
 }
-// SetClientId sets the clientId property value. The id of the client service principal for the application which is authorized to act on behalf of a signed-in user when accessing an API. Required. Supports $filter (eq only).
+// SetClientId sets the clientId property value. The object id (not appId) of the client service principal for the application which is authorized to act on behalf of a signed-in user when accessing an API. Required. Supports $filter (eq only).
 func (m *OAuth2PermissionGrant) SetClientId(value *string)() {
     m.clientId = value
 }

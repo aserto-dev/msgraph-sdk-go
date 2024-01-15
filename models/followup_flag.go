@@ -10,7 +10,7 @@ type FollowupFlag struct {
     additionalData map[string]any
     // The date and time that the follow-up was finished.
     completedDateTime DateTimeTimeZoneable
-    // The date and time that the follow up is to be finished. Note: To set the due date, you must also specify the startDateTime; otherwise, you will get a 400 Bad Request response.
+    // The date and time that the follow-up is to be finished. Note: To set the due date, you must also specify the startDateTime; otherwise, you get a 400 Bad Request response.
     dueDateTime DateTimeTimeZoneable
     // The status for follow-up for an item. Possible values are notFlagged, complete, and flagged.
     flagStatus *FollowupFlagStatus
@@ -30,7 +30,7 @@ func NewFollowupFlag()(*FollowupFlag) {
 func CreateFollowupFlagFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewFollowupFlag(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *FollowupFlag) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -38,7 +38,7 @@ func (m *FollowupFlag) GetAdditionalData()(map[string]any) {
 func (m *FollowupFlag) GetCompletedDateTime()(DateTimeTimeZoneable) {
     return m.completedDateTime
 }
-// GetDueDateTime gets the dueDateTime property value. The date and time that the follow up is to be finished. Note: To set the due date, you must also specify the startDateTime; otherwise, you will get a 400 Bad Request response.
+// GetDueDateTime gets the dueDateTime property value. The date and time that the follow-up is to be finished. Note: To set the due date, you must also specify the startDateTime; otherwise, you get a 400 Bad Request response.
 func (m *FollowupFlag) GetDueDateTime()(DateTimeTimeZoneable) {
     return m.dueDateTime
 }
@@ -150,7 +150,7 @@ func (m *FollowupFlag) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *FollowupFlag) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
@@ -158,7 +158,7 @@ func (m *FollowupFlag) SetAdditionalData(value map[string]any)() {
 func (m *FollowupFlag) SetCompletedDateTime(value DateTimeTimeZoneable)() {
     m.completedDateTime = value
 }
-// SetDueDateTime sets the dueDateTime property value. The date and time that the follow up is to be finished. Note: To set the due date, you must also specify the startDateTime; otherwise, you will get a 400 Bad Request response.
+// SetDueDateTime sets the dueDateTime property value. The date and time that the follow-up is to be finished. Note: To set the due date, you must also specify the startDateTime; otherwise, you get a 400 Bad Request response.
 func (m *FollowupFlag) SetDueDateTime(value DateTimeTimeZoneable)() {
     m.dueDateTime = value
 }

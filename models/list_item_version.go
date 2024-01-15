@@ -10,7 +10,7 @@ type ListItemVersion struct {
     // A collection of the fields and values for this version of the list item.
     fields FieldValueSetable
 }
-// NewListItemVersion instantiates a new ListItemVersion and sets the default values.
+// NewListItemVersion instantiates a new listItemVersion and sets the default values.
 func NewListItemVersion()(*ListItemVersion) {
     m := &ListItemVersion{
         BaseItemVersion: *NewBaseItemVersion(),

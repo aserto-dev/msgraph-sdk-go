@@ -7,9 +7,9 @@ import (
 // TeamworkTag 
 type TeamworkTag struct {
     Entity
-    // The description of the tag as it will appear to the user in Microsoft Teams. A teamworkTag can't have more than 200 teamworkTagMembers.
+    // The description of the tag as it appears to the user in Microsoft Teams. A teamworkTag can't have more than 200 teamworkTagMembers.
     description *string
-    // The name of the tag as it will appear to the user in Microsoft Teams.
+    // The name of the tag as it appears to the user in Microsoft Teams.
     displayName *string
     // The number of users assigned to the tag.
     memberCount *int32
@@ -31,11 +31,11 @@ func NewTeamworkTag()(*TeamworkTag) {
 func CreateTeamworkTagFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewTeamworkTag(), nil
 }
-// GetDescription gets the description property value. The description of the tag as it will appear to the user in Microsoft Teams. A teamworkTag can't have more than 200 teamworkTagMembers.
+// GetDescription gets the description property value. The description of the tag as it appears to the user in Microsoft Teams. A teamworkTag can't have more than 200 teamworkTagMembers.
 func (m *TeamworkTag) GetDescription()(*string) {
     return m.description
 }
-// GetDisplayName gets the displayName property value. The name of the tag as it will appear to the user in Microsoft Teams.
+// GetDisplayName gets the displayName property value. The name of the tag as it appears to the user in Microsoft Teams.
 func (m *TeamworkTag) GetDisplayName()(*string) {
     return m.displayName
 }
@@ -80,7 +80,9 @@ func (m *TeamworkTag) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         if val != nil {
             res := make([]TeamworkTagMemberable, len(val))
             for i, v := range val {
-                res[i] = v.(TeamworkTagMemberable)
+                if v != nil {
+                    res[i] = v.(TeamworkTagMemberable)
+                }
             }
             m.SetMembers(res)
         }
@@ -151,7 +153,9 @@ func (m *TeamworkTag) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     if m.GetMembers() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetMembers()))
         for i, v := range m.GetMembers() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("members", cast)
         if err != nil {
@@ -173,11 +177,11 @@ func (m *TeamworkTag) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     }
     return nil
 }
-// SetDescription sets the description property value. The description of the tag as it will appear to the user in Microsoft Teams. A teamworkTag can't have more than 200 teamworkTagMembers.
+// SetDescription sets the description property value. The description of the tag as it appears to the user in Microsoft Teams. A teamworkTag can't have more than 200 teamworkTagMembers.
 func (m *TeamworkTag) SetDescription(value *string)() {
     m.description = value
 }
-// SetDisplayName sets the displayName property value. The name of the tag as it will appear to the user in Microsoft Teams.
+// SetDisplayName sets the displayName property value. The name of the tag as it appears to the user in Microsoft Teams.
 func (m *TeamworkTag) SetDisplayName(value *string)() {
     m.displayName = value
 }

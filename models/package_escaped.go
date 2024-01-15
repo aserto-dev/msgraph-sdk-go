@@ -24,7 +24,7 @@ func NewPackageEscaped()(*PackageEscaped) {
 func CreatePackageEscapedFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewPackageEscaped(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *PackageEscaped) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -47,7 +47,7 @@ func (m *PackageEscaped) GetFieldDeserializers()(map[string]func(i878a80d2330e89
             return err
         }
         if val != nil {
-            m.SetType(val)
+            m.SetTypeEscaped(val)
         }
         return nil
     }
@@ -57,8 +57,8 @@ func (m *PackageEscaped) GetFieldDeserializers()(map[string]func(i878a80d2330e89
 func (m *PackageEscaped) GetOdataType()(*string) {
     return m.odataType
 }
-// GetType gets the type property value. A string indicating the type of package. While oneNote is the only currently defined value, you should expect other package types to be returned and handle them accordingly.
-func (m *PackageEscaped) GetType()(*string) {
+// GetTypeEscaped gets the type property value. A string indicating the type of package. While oneNote is the only currently defined value, you should expect other package types to be returned and handle them accordingly.
+func (m *PackageEscaped) GetTypeEscaped()(*string) {
     return m.typeEscaped
 }
 // Serialize serializes information the current object
@@ -70,7 +70,7 @@ func (m *PackageEscaped) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
         }
     }
     {
-        err := writer.WriteStringValue("type", m.GetType())
+        err := writer.WriteStringValue("type", m.GetTypeEscaped())
         if err != nil {
             return err
         }
@@ -83,7 +83,7 @@ func (m *PackageEscaped) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *PackageEscaped) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
@@ -91,7 +91,16 @@ func (m *PackageEscaped) SetAdditionalData(value map[string]any)() {
 func (m *PackageEscaped) SetOdataType(value *string)() {
     m.odataType = value
 }
-// SetType sets the type property value. A string indicating the type of package. While oneNote is the only currently defined value, you should expect other package types to be returned and handle them accordingly.
-func (m *PackageEscaped) SetType(value *string)() {
+// SetTypeEscaped sets the type property value. A string indicating the type of package. While oneNote is the only currently defined value, you should expect other package types to be returned and handle them accordingly.
+func (m *PackageEscaped) SetTypeEscaped(value *string)() {
     m.typeEscaped = value
+}
+// PackageEscapedable 
+type PackageEscapedable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetOdataType()(*string)
+    GetTypeEscaped()(*string)
+    SetOdataType(value *string)()
+    SetTypeEscaped(value *string)()
 }

@@ -8,16 +8,16 @@ import (
 // OnenoteEntityHierarchyModel 
 type OnenoteEntityHierarchyModel struct {
     OnenoteEntitySchemaObjectModel
-    // Identity of the user, device, and application which created the item. Read-only.
+    // Identity of the user, device, and application that created the item. Read-only.
     createdBy IdentitySetable
     // The name of the notebook.
     displayName *string
-    // Identity of the user, device, and application which created the item. Read-only.
+    // Identity of the user, device, and application that created the item. Read-only.
     lastModifiedBy IdentitySetable
     // The date and time when the notebook was last modified. The timestamp represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
     lastModifiedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 }
-// NewOnenoteEntityHierarchyModel instantiates a new OnenoteEntityHierarchyModel and sets the default values.
+// NewOnenoteEntityHierarchyModel instantiates a new onenoteEntityHierarchyModel and sets the default values.
 func NewOnenoteEntityHierarchyModel()(*OnenoteEntityHierarchyModel) {
     m := &OnenoteEntityHierarchyModel{
         OnenoteEntitySchemaObjectModel: *NewOnenoteEntitySchemaObjectModel(),
@@ -52,7 +52,7 @@ func CreateOnenoteEntityHierarchyModelFromDiscriminatorValue(parseNode i878a80d2
     }
     return NewOnenoteEntityHierarchyModel(), nil
 }
-// GetCreatedBy gets the createdBy property value. Identity of the user, device, and application which created the item. Read-only.
+// GetCreatedBy gets the createdBy property value. Identity of the user, device, and application that created the item. Read-only.
 func (m *OnenoteEntityHierarchyModel) GetCreatedBy()(IdentitySetable) {
     return m.createdBy
 }
@@ -105,7 +105,7 @@ func (m *OnenoteEntityHierarchyModel) GetFieldDeserializers()(map[string]func(i8
     }
     return res
 }
-// GetLastModifiedBy gets the lastModifiedBy property value. Identity of the user, device, and application which created the item. Read-only.
+// GetLastModifiedBy gets the lastModifiedBy property value. Identity of the user, device, and application that created the item. Read-only.
 func (m *OnenoteEntityHierarchyModel) GetLastModifiedBy()(IdentitySetable) {
     return m.lastModifiedBy
 }
@@ -145,7 +145,7 @@ func (m *OnenoteEntityHierarchyModel) Serialize(writer i878a80d2330e89d26896388a
     }
     return nil
 }
-// SetCreatedBy sets the createdBy property value. Identity of the user, device, and application which created the item. Read-only.
+// SetCreatedBy sets the createdBy property value. Identity of the user, device, and application that created the item. Read-only.
 func (m *OnenoteEntityHierarchyModel) SetCreatedBy(value IdentitySetable)() {
     m.createdBy = value
 }
@@ -153,7 +153,7 @@ func (m *OnenoteEntityHierarchyModel) SetCreatedBy(value IdentitySetable)() {
 func (m *OnenoteEntityHierarchyModel) SetDisplayName(value *string)() {
     m.displayName = value
 }
-// SetLastModifiedBy sets the lastModifiedBy property value. Identity of the user, device, and application which created the item. Read-only.
+// SetLastModifiedBy sets the lastModifiedBy property value. Identity of the user, device, and application that created the item. Read-only.
 func (m *OnenoteEntityHierarchyModel) SetLastModifiedBy(value IdentitySetable)() {
     m.lastModifiedBy = value
 }

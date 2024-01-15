@@ -61,7 +61,7 @@ func NewRemoteItem()(*RemoteItem) {
 func CreateRemoteItemFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewRemoteItem(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *RemoteItem) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -192,7 +192,7 @@ func (m *RemoteItem) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
             return err
         }
         if val != nil {
-            m.SetPackage(val.(PackageEscapedable))
+            m.SetPackageEscaped(val.(PackageEscapedable))
         }
         return nil
     }
@@ -314,8 +314,8 @@ func (m *RemoteItem) GetName()(*string) {
 func (m *RemoteItem) GetOdataType()(*string) {
     return m.odataType
 }
-// GetPackage gets the package property value. If present, indicates that this item is a package instead of a folder or file. Packages are treated like files in some contexts and folders in others. Read-only.
-func (m *RemoteItem) GetPackage()(PackageEscapedable) {
+// GetPackageEscaped gets the package property value. If present, indicates that this item is a package instead of a folder or file. Packages are treated like files in some contexts and folders in others. Read-only.
+func (m *RemoteItem) GetPackageEscaped()(PackageEscapedable) {
     return m.packageEscaped
 }
 // GetParentReference gets the parentReference property value. Properties of the parent of the remote item. Read-only.
@@ -419,7 +419,7 @@ func (m *RemoteItem) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
         }
     }
     {
-        err := writer.WriteObjectValue("package", m.GetPackage())
+        err := writer.WriteObjectValue("package", m.GetPackageEscaped())
         if err != nil {
             return err
         }
@@ -480,7 +480,7 @@ func (m *RemoteItem) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *RemoteItem) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
@@ -528,8 +528,8 @@ func (m *RemoteItem) SetName(value *string)() {
 func (m *RemoteItem) SetOdataType(value *string)() {
     m.odataType = value
 }
-// SetPackage sets the package property value. If present, indicates that this item is a package instead of a folder or file. Packages are treated like files in some contexts and folders in others. Read-only.
-func (m *RemoteItem) SetPackage(value PackageEscapedable)() {
+// SetPackageEscaped sets the package property value. If present, indicates that this item is a package instead of a folder or file. Packages are treated like files in some contexts and folders in others. Read-only.
+func (m *RemoteItem) SetPackageEscaped(value PackageEscapedable)() {
     m.packageEscaped = value
 }
 // SetParentReference sets the parentReference property value. Properties of the parent of the remote item. Read-only.
@@ -579,7 +579,7 @@ type RemoteItemable interface {
     GetLastModifiedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetName()(*string)
     GetOdataType()(*string)
-    GetPackage()(PackageEscapedable)
+    GetPackageEscaped()(PackageEscapedable)
     GetParentReference()(ItemReferenceable)
     GetShared()(Sharedable)
     GetSharepointIds()(SharepointIdsable)
@@ -599,7 +599,7 @@ type RemoteItemable interface {
     SetLastModifiedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetName(value *string)()
     SetOdataType(value *string)()
-    SetPackage(value PackageEscapedable)()
+    SetPackageEscaped(value PackageEscapedable)()
     SetParentReference(value ItemReferenceable)()
     SetShared(value Sharedable)()
     SetSharepointIds(value SharepointIdsable)()

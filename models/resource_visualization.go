@@ -14,7 +14,7 @@ type ResourceVisualization struct {
     containerType *string
     // A path leading to the folder in which the item is stored.
     containerWebUrl *string
-    // The item's media type. Can be used for filtering for a specific type of file based on supported IANA Media Mime Types. Note that not all Media Mime Types are supported.
+    // The item's media type. Can be used for filtering for a specific type of file based on supported IANA Media Mime Types. Not all Media Mime Types are supported.
     mediaType *string
     // The OdataType property
     odataType *string
@@ -24,7 +24,7 @@ type ResourceVisualization struct {
     previewText *string
     // The item's title text.
     title *string
-    // The item's media type. Can be used for filtering for a specific file based on a specific type. See below for supported types.
+    // The item's media type. Can be used for filtering for a specific file based on a specific type. See the section Type property values for supported types.
     typeEscaped *string
 }
 // NewResourceVisualization instantiates a new resourceVisualization and sets the default values.
@@ -38,7 +38,7 @@ func NewResourceVisualization()(*ResourceVisualization) {
 func CreateResourceVisualizationFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewResourceVisualization(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ResourceVisualization) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -143,13 +143,13 @@ func (m *ResourceVisualization) GetFieldDeserializers()(map[string]func(i878a80d
             return err
         }
         if val != nil {
-            m.SetType(val)
+            m.SetTypeEscaped(val)
         }
         return nil
     }
     return res
 }
-// GetMediaType gets the mediaType property value. The item's media type. Can be used for filtering for a specific type of file based on supported IANA Media Mime Types. Note that not all Media Mime Types are supported.
+// GetMediaType gets the mediaType property value. The item's media type. Can be used for filtering for a specific type of file based on supported IANA Media Mime Types. Not all Media Mime Types are supported.
 func (m *ResourceVisualization) GetMediaType()(*string) {
     return m.mediaType
 }
@@ -169,8 +169,8 @@ func (m *ResourceVisualization) GetPreviewText()(*string) {
 func (m *ResourceVisualization) GetTitle()(*string) {
     return m.title
 }
-// GetType gets the type property value. The item's media type. Can be used for filtering for a specific file based on a specific type. See below for supported types.
-func (m *ResourceVisualization) GetType()(*string) {
+// GetTypeEscaped gets the type property value. The item's media type. Can be used for filtering for a specific file based on a specific type. See the section Type property values for supported types.
+func (m *ResourceVisualization) GetTypeEscaped()(*string) {
     return m.typeEscaped
 }
 // Serialize serializes information the current object
@@ -224,7 +224,7 @@ func (m *ResourceVisualization) Serialize(writer i878a80d2330e89d26896388a3f487e
         }
     }
     {
-        err := writer.WriteStringValue("type", m.GetType())
+        err := writer.WriteStringValue("type", m.GetTypeEscaped())
         if err != nil {
             return err
         }
@@ -237,7 +237,7 @@ func (m *ResourceVisualization) Serialize(writer i878a80d2330e89d26896388a3f487e
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ResourceVisualization) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
@@ -253,7 +253,7 @@ func (m *ResourceVisualization) SetContainerType(value *string)() {
 func (m *ResourceVisualization) SetContainerWebUrl(value *string)() {
     m.containerWebUrl = value
 }
-// SetMediaType sets the mediaType property value. The item's media type. Can be used for filtering for a specific type of file based on supported IANA Media Mime Types. Note that not all Media Mime Types are supported.
+// SetMediaType sets the mediaType property value. The item's media type. Can be used for filtering for a specific type of file based on supported IANA Media Mime Types. Not all Media Mime Types are supported.
 func (m *ResourceVisualization) SetMediaType(value *string)() {
     m.mediaType = value
 }
@@ -273,8 +273,8 @@ func (m *ResourceVisualization) SetPreviewText(value *string)() {
 func (m *ResourceVisualization) SetTitle(value *string)() {
     m.title = value
 }
-// SetType sets the type property value. The item's media type. Can be used for filtering for a specific file based on a specific type. See below for supported types.
-func (m *ResourceVisualization) SetType(value *string)() {
+// SetTypeEscaped sets the type property value. The item's media type. Can be used for filtering for a specific file based on a specific type. See the section Type property values for supported types.
+func (m *ResourceVisualization) SetTypeEscaped(value *string)() {
     m.typeEscaped = value
 }
 // ResourceVisualizationable 
@@ -289,7 +289,7 @@ type ResourceVisualizationable interface {
     GetPreviewImageUrl()(*string)
     GetPreviewText()(*string)
     GetTitle()(*string)
-    GetType()(*string)
+    GetTypeEscaped()(*string)
     SetContainerDisplayName(value *string)()
     SetContainerType(value *string)()
     SetContainerWebUrl(value *string)()
@@ -298,5 +298,5 @@ type ResourceVisualizationable interface {
     SetPreviewImageUrl(value *string)()
     SetPreviewText(value *string)()
     SetTitle(value *string)()
-    SetType(value *string)()
+    SetTypeEscaped(value *string)()
 }

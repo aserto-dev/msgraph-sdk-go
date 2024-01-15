@@ -13,7 +13,7 @@ type WorkbookTable struct {
     highlightFirstColumn *bool
     // Indicates whether the last column contains special formatting.
     highlightLastColumn *bool
-    // Legacy Id used in older Excle clients. The value of the identifier remains the same even when the table is renamed. This property should be interpreted as an opaque string value and should not be parsed to any other type. Read-only.
+    // Legacy ID used in older Excel clients. The value of the identifier remains the same even when the table is renamed. This property should be interpreted as an opaque string value and shouldn't be parsed to any other type. Read-only.
     legacyId *string
     // Name of the table.
     name *string
@@ -31,7 +31,7 @@ type WorkbookTable struct {
     showTotals *bool
     // Represents the sorting for the table. Read-only.
     sort WorkbookTableSortable
-    // Constant value that represents the Table style. The possible values are: TableStyleLight1 thru TableStyleLight21, TableStyleMedium1 thru TableStyleMedium28, TableStyleStyleDark1 thru TableStyleStyleDark11. A custom user-defined style present in the workbook can also be specified.
+    // Constant value that represents the Table style. The possible values are: TableStyleLight1 through TableStyleLight21, TableStyleMedium1 through TableStyleMedium28, TableStyleStyleDark1 through TableStyleStyleDark11. A custom user-defined style present in the workbook can also be specified.
     style *string
     // The worksheet containing the current table. Read-only.
     worksheet WorkbookWorksheetable
@@ -62,7 +62,9 @@ func (m *WorkbookTable) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         if val != nil {
             res := make([]WorkbookTableColumnable, len(val))
             for i, v := range val {
-                res[i] = v.(WorkbookTableColumnable)
+                if v != nil {
+                    res[i] = v.(WorkbookTableColumnable)
+                }
             }
             m.SetColumns(res)
         }
@@ -116,7 +118,9 @@ func (m *WorkbookTable) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         if val != nil {
             res := make([]WorkbookTableRowable, len(val))
             for i, v := range val {
-                res[i] = v.(WorkbookTableRowable)
+                if v != nil {
+                    res[i] = v.(WorkbookTableRowable)
+                }
             }
             m.SetRows(res)
         }
@@ -212,7 +216,7 @@ func (m *WorkbookTable) GetHighlightFirstColumn()(*bool) {
 func (m *WorkbookTable) GetHighlightLastColumn()(*bool) {
     return m.highlightLastColumn
 }
-// GetLegacyId gets the legacyId property value. Legacy Id used in older Excle clients. The value of the identifier remains the same even when the table is renamed. This property should be interpreted as an opaque string value and should not be parsed to any other type. Read-only.
+// GetLegacyId gets the legacyId property value. Legacy ID used in older Excel clients. The value of the identifier remains the same even when the table is renamed. This property should be interpreted as an opaque string value and shouldn't be parsed to any other type. Read-only.
 func (m *WorkbookTable) GetLegacyId()(*string) {
     return m.legacyId
 }
@@ -248,7 +252,7 @@ func (m *WorkbookTable) GetShowTotals()(*bool) {
 func (m *WorkbookTable) GetSort()(WorkbookTableSortable) {
     return m.sort
 }
-// GetStyle gets the style property value. Constant value that represents the Table style. The possible values are: TableStyleLight1 thru TableStyleLight21, TableStyleMedium1 thru TableStyleMedium28, TableStyleStyleDark1 thru TableStyleStyleDark11. A custom user-defined style present in the workbook can also be specified.
+// GetStyle gets the style property value. Constant value that represents the Table style. The possible values are: TableStyleLight1 through TableStyleLight21, TableStyleMedium1 through TableStyleMedium28, TableStyleStyleDark1 through TableStyleStyleDark11. A custom user-defined style present in the workbook can also be specified.
 func (m *WorkbookTable) GetStyle()(*string) {
     return m.style
 }
@@ -265,7 +269,9 @@ func (m *WorkbookTable) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
     if m.GetColumns() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetColumns()))
         for i, v := range m.GetColumns() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("columns", cast)
         if err != nil {
@@ -299,7 +305,9 @@ func (m *WorkbookTable) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
     if m.GetRows() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetRows()))
         for i, v := range m.GetRows() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("rows", cast)
         if err != nil {
@@ -368,7 +376,7 @@ func (m *WorkbookTable) SetHighlightFirstColumn(value *bool)() {
 func (m *WorkbookTable) SetHighlightLastColumn(value *bool)() {
     m.highlightLastColumn = value
 }
-// SetLegacyId sets the legacyId property value. Legacy Id used in older Excle clients. The value of the identifier remains the same even when the table is renamed. This property should be interpreted as an opaque string value and should not be parsed to any other type. Read-only.
+// SetLegacyId sets the legacyId property value. Legacy ID used in older Excel clients. The value of the identifier remains the same even when the table is renamed. This property should be interpreted as an opaque string value and shouldn't be parsed to any other type. Read-only.
 func (m *WorkbookTable) SetLegacyId(value *string)() {
     m.legacyId = value
 }
@@ -404,7 +412,7 @@ func (m *WorkbookTable) SetShowTotals(value *bool)() {
 func (m *WorkbookTable) SetSort(value WorkbookTableSortable)() {
     m.sort = value
 }
-// SetStyle sets the style property value. Constant value that represents the Table style. The possible values are: TableStyleLight1 thru TableStyleLight21, TableStyleMedium1 thru TableStyleMedium28, TableStyleStyleDark1 thru TableStyleStyleDark11. A custom user-defined style present in the workbook can also be specified.
+// SetStyle sets the style property value. Constant value that represents the Table style. The possible values are: TableStyleLight1 through TableStyleLight21, TableStyleMedium1 through TableStyleMedium28, TableStyleStyleDark1 through TableStyleStyleDark11. A custom user-defined style present in the workbook can also be specified.
 func (m *WorkbookTable) SetStyle(value *string)() {
     m.style = value
 }

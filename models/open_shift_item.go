@@ -10,7 +10,7 @@ type OpenShiftItem struct {
     // Count of the number of slots for the given open shift.
     openSlotCount *int32
 }
-// NewOpenShiftItem instantiates a new OpenShiftItem and sets the default values.
+// NewOpenShiftItem instantiates a new openShiftItem and sets the default values.
 func NewOpenShiftItem()(*OpenShiftItem) {
     m := &OpenShiftItem{
         ShiftItem: *NewShiftItem(),

@@ -17,7 +17,7 @@ type DriveItem struct {
     children []DriveItemable
     // The content stream, if the item represents a file.
     content []byte
-    // An eTag for the content of the item. This eTag is not changed if only the metadata is changed. Note This property is not returned if the item is a folder. Read-only.
+    // An eTag for the content of the item. This eTag isn't changed if only the metadata is changed. Note This property isn't returned if the item is a folder. Read-only.
     cTag *string
     // Information about the deleted state of the item. Read-only.
     deleted Deletedable
@@ -43,15 +43,17 @@ type DriveItem struct {
     permissions []Permissionable
     // Photo metadata, if the item is a photo. Read-only.
     photo Photoable
-    // Provides information about the published or checked-out state of an item, in locations that support such actions. This property is not returned by default. Read-only.
+    // Provides information about the published or checked-out state of an item, in locations that support such actions. This property isn't returned by default. Read-only.
     publication PublicationFacetable
     // Remote item data, if the item is shared from a drive other than the one being accessed. Read-only.
     remoteItem RemoteItemable
+    // Information about retention label and settings enforced on the driveItem. Read-write.
+    retentionLabel ItemRetentionLabelable
     // If this property is non-null, it indicates that the driveItem is the top-most driveItem in the drive.
     root Rootable
     // Search metadata, if the item is from a search result. Read-only.
     searchResult SearchResultable
-    // Indicates that the item has been shared with others and provides information about the shared state of the item. Read-only.
+    // Indicates that the item was shared with others and provides information about the shared state of the item. Read-only.
     shared Sharedable
     // Returns identifiers useful for SharePoint REST compatibility. Read-only.
     sharepointIds SharepointIdsable
@@ -61,7 +63,7 @@ type DriveItem struct {
     specialFolder SpecialFolderable
     // The set of subscriptions on the item. Only supported on the root of a drive.
     subscriptions []Subscriptionable
-    // Collection containing [ThumbnailSet][] objects associated with the item. For more info, see [getting thumbnails][]. Read-only. Nullable.
+    // Collection of [thumbnailSet][] objects associated with the item. For more information, see [getting thumbnails][]. Read-only. Nullable.
     thumbnails []ThumbnailSetable
     // The list of previous versions of the item. For more info, see [getting previous versions][]. Read-only. Nullable.
     versions []DriveItemVersionable
@@ -69,7 +71,7 @@ type DriveItem struct {
     video Videoable
     // WebDAV compatible URL for the item.
     webDavUrl *string
-    // For files that are Excel spreadsheets, accesses the workbook API to work with the spreadsheet's contents. Nullable.
+    // For files that are Excel spreadsheets, access to the workbook API to work with the spreadsheet's contents. Nullable.
     workbook Workbookable
 }
 // NewDriveItem instantiates a new driveItem and sets the default values.
@@ -105,7 +107,7 @@ func (m *DriveItem) GetChildren()([]DriveItemable) {
 func (m *DriveItem) GetContent()([]byte) {
     return m.content
 }
-// GetCTag gets the cTag property value. An eTag for the content of the item. This eTag is not changed if only the metadata is changed. Note This property is not returned if the item is a folder. Read-only.
+// GetCTag gets the cTag property value. An eTag for the content of the item. This eTag isn't changed if only the metadata is changed. Note This property isn't returned if the item is a folder. Read-only.
 func (m *DriveItem) GetCTag()(*string) {
     return m.cTag
 }
@@ -154,7 +156,9 @@ func (m *DriveItem) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689
         if val != nil {
             res := make([]DriveItemable, len(val))
             for i, v := range val {
-                res[i] = v.(DriveItemable)
+                if v != nil {
+                    res[i] = v.(DriveItemable)
+                }
             }
             m.SetChildren(res)
         }
@@ -266,7 +270,7 @@ func (m *DriveItem) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689
             return err
         }
         if val != nil {
-            m.SetPackage(val.(PackageEscapedable))
+            m.SetPackageEscaped(val.(PackageEscapedable))
         }
         return nil
     }
@@ -288,7 +292,9 @@ func (m *DriveItem) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689
         if val != nil {
             res := make([]Permissionable, len(val))
             for i, v := range val {
-                res[i] = v.(Permissionable)
+                if v != nil {
+                    res[i] = v.(Permissionable)
+                }
             }
             m.SetPermissions(res)
         }
@@ -321,6 +327,16 @@ func (m *DriveItem) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689
         }
         if val != nil {
             m.SetRemoteItem(val.(RemoteItemable))
+        }
+        return nil
+    }
+    res["retentionLabel"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateItemRetentionLabelFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRetentionLabel(val.(ItemRetentionLabelable))
         }
         return nil
     }
@@ -392,7 +408,9 @@ func (m *DriveItem) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689
         if val != nil {
             res := make([]Subscriptionable, len(val))
             for i, v := range val {
-                res[i] = v.(Subscriptionable)
+                if v != nil {
+                    res[i] = v.(Subscriptionable)
+                }
             }
             m.SetSubscriptions(res)
         }
@@ -406,7 +424,9 @@ func (m *DriveItem) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689
         if val != nil {
             res := make([]ThumbnailSetable, len(val))
             for i, v := range val {
-                res[i] = v.(ThumbnailSetable)
+                if v != nil {
+                    res[i] = v.(ThumbnailSetable)
+                }
             }
             m.SetThumbnails(res)
         }
@@ -420,7 +440,9 @@ func (m *DriveItem) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689
         if val != nil {
             res := make([]DriveItemVersionable, len(val))
             for i, v := range val {
-                res[i] = v.(DriveItemVersionable)
+                if v != nil {
+                    res[i] = v.(DriveItemVersionable)
+                }
             }
             m.SetVersions(res)
         }
@@ -486,8 +508,8 @@ func (m *DriveItem) GetLocation()(GeoCoordinatesable) {
 func (m *DriveItem) GetMalware()(Malwareable) {
     return m.malware
 }
-// GetPackage gets the package property value. If present, indicates that this item is a package instead of a folder or file. Packages are treated like files in some contexts and folders in others. Read-only.
-func (m *DriveItem) GetPackage()(PackageEscapedable) {
+// GetPackageEscaped gets the package property value. If present, indicates that this item is a package instead of a folder or file. Packages are treated like files in some contexts and folders in others. Read-only.
+func (m *DriveItem) GetPackageEscaped()(PackageEscapedable) {
     return m.packageEscaped
 }
 // GetPendingOperations gets the pendingOperations property value. If present, indicates that one or more operations that might affect the state of the driveItem are pending completion. Read-only.
@@ -502,13 +524,17 @@ func (m *DriveItem) GetPermissions()([]Permissionable) {
 func (m *DriveItem) GetPhoto()(Photoable) {
     return m.photo
 }
-// GetPublication gets the publication property value. Provides information about the published or checked-out state of an item, in locations that support such actions. This property is not returned by default. Read-only.
+// GetPublication gets the publication property value. Provides information about the published or checked-out state of an item, in locations that support such actions. This property isn't returned by default. Read-only.
 func (m *DriveItem) GetPublication()(PublicationFacetable) {
     return m.publication
 }
 // GetRemoteItem gets the remoteItem property value. Remote item data, if the item is shared from a drive other than the one being accessed. Read-only.
 func (m *DriveItem) GetRemoteItem()(RemoteItemable) {
     return m.remoteItem
+}
+// GetRetentionLabel gets the retentionLabel property value. Information about retention label and settings enforced on the driveItem. Read-write.
+func (m *DriveItem) GetRetentionLabel()(ItemRetentionLabelable) {
+    return m.retentionLabel
 }
 // GetRoot gets the root property value. If this property is non-null, it indicates that the driveItem is the top-most driveItem in the drive.
 func (m *DriveItem) GetRoot()(Rootable) {
@@ -518,7 +544,7 @@ func (m *DriveItem) GetRoot()(Rootable) {
 func (m *DriveItem) GetSearchResult()(SearchResultable) {
     return m.searchResult
 }
-// GetShared gets the shared property value. Indicates that the item has been shared with others and provides information about the shared state of the item. Read-only.
+// GetShared gets the shared property value. Indicates that the item was shared with others and provides information about the shared state of the item. Read-only.
 func (m *DriveItem) GetShared()(Sharedable) {
     return m.shared
 }
@@ -538,7 +564,7 @@ func (m *DriveItem) GetSpecialFolder()(SpecialFolderable) {
 func (m *DriveItem) GetSubscriptions()([]Subscriptionable) {
     return m.subscriptions
 }
-// GetThumbnails gets the thumbnails property value. Collection containing [ThumbnailSet][] objects associated with the item. For more info, see [getting thumbnails][]. Read-only. Nullable.
+// GetThumbnails gets the thumbnails property value. Collection of [thumbnailSet][] objects associated with the item. For more information, see [getting thumbnails][]. Read-only. Nullable.
 func (m *DriveItem) GetThumbnails()([]ThumbnailSetable) {
     return m.thumbnails
 }
@@ -554,7 +580,7 @@ func (m *DriveItem) GetVideo()(Videoable) {
 func (m *DriveItem) GetWebDavUrl()(*string) {
     return m.webDavUrl
 }
-// GetWorkbook gets the workbook property value. For files that are Excel spreadsheets, accesses the workbook API to work with the spreadsheet's contents. Nullable.
+// GetWorkbook gets the workbook property value. For files that are Excel spreadsheets, access to the workbook API to work with the spreadsheet's contents. Nullable.
 func (m *DriveItem) GetWorkbook()(Workbookable) {
     return m.workbook
 }
@@ -585,7 +611,9 @@ func (m *DriveItem) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c0
     if m.GetChildren() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetChildren()))
         for i, v := range m.GetChildren() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("children", cast)
         if err != nil {
@@ -653,7 +681,7 @@ func (m *DriveItem) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c0
         }
     }
     {
-        err = writer.WriteObjectValue("package", m.GetPackage())
+        err = writer.WriteObjectValue("package", m.GetPackageEscaped())
         if err != nil {
             return err
         }
@@ -667,7 +695,9 @@ func (m *DriveItem) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c0
     if m.GetPermissions() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPermissions()))
         for i, v := range m.GetPermissions() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("permissions", cast)
         if err != nil {
@@ -688,6 +718,12 @@ func (m *DriveItem) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c0
     }
     {
         err = writer.WriteObjectValue("remoteItem", m.GetRemoteItem())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err = writer.WriteObjectValue("retentionLabel", m.GetRetentionLabel())
         if err != nil {
             return err
         }
@@ -731,7 +767,9 @@ func (m *DriveItem) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c0
     if m.GetSubscriptions() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetSubscriptions()))
         for i, v := range m.GetSubscriptions() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("subscriptions", cast)
         if err != nil {
@@ -741,7 +779,9 @@ func (m *DriveItem) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c0
     if m.GetThumbnails() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetThumbnails()))
         for i, v := range m.GetThumbnails() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("thumbnails", cast)
         if err != nil {
@@ -751,7 +791,9 @@ func (m *DriveItem) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c0
     if m.GetVersions() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetVersions()))
         for i, v := range m.GetVersions() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("versions", cast)
         if err != nil {
@@ -798,7 +840,7 @@ func (m *DriveItem) SetChildren(value []DriveItemable)() {
 func (m *DriveItem) SetContent(value []byte)() {
     m.content = value
 }
-// SetCTag sets the cTag property value. An eTag for the content of the item. This eTag is not changed if only the metadata is changed. Note This property is not returned if the item is a folder. Read-only.
+// SetCTag sets the cTag property value. An eTag for the content of the item. This eTag isn't changed if only the metadata is changed. Note This property isn't returned if the item is a folder. Read-only.
 func (m *DriveItem) SetCTag(value *string)() {
     m.cTag = value
 }
@@ -834,8 +876,8 @@ func (m *DriveItem) SetLocation(value GeoCoordinatesable)() {
 func (m *DriveItem) SetMalware(value Malwareable)() {
     m.malware = value
 }
-// SetPackage sets the package property value. If present, indicates that this item is a package instead of a folder or file. Packages are treated like files in some contexts and folders in others. Read-only.
-func (m *DriveItem) SetPackage(value PackageEscapedable)() {
+// SetPackageEscaped sets the package property value. If present, indicates that this item is a package instead of a folder or file. Packages are treated like files in some contexts and folders in others. Read-only.
+func (m *DriveItem) SetPackageEscaped(value PackageEscapedable)() {
     m.packageEscaped = value
 }
 // SetPendingOperations sets the pendingOperations property value. If present, indicates that one or more operations that might affect the state of the driveItem are pending completion. Read-only.
@@ -850,13 +892,17 @@ func (m *DriveItem) SetPermissions(value []Permissionable)() {
 func (m *DriveItem) SetPhoto(value Photoable)() {
     m.photo = value
 }
-// SetPublication sets the publication property value. Provides information about the published or checked-out state of an item, in locations that support such actions. This property is not returned by default. Read-only.
+// SetPublication sets the publication property value. Provides information about the published or checked-out state of an item, in locations that support such actions. This property isn't returned by default. Read-only.
 func (m *DriveItem) SetPublication(value PublicationFacetable)() {
     m.publication = value
 }
 // SetRemoteItem sets the remoteItem property value. Remote item data, if the item is shared from a drive other than the one being accessed. Read-only.
 func (m *DriveItem) SetRemoteItem(value RemoteItemable)() {
     m.remoteItem = value
+}
+// SetRetentionLabel sets the retentionLabel property value. Information about retention label and settings enforced on the driveItem. Read-write.
+func (m *DriveItem) SetRetentionLabel(value ItemRetentionLabelable)() {
+    m.retentionLabel = value
 }
 // SetRoot sets the root property value. If this property is non-null, it indicates that the driveItem is the top-most driveItem in the drive.
 func (m *DriveItem) SetRoot(value Rootable)() {
@@ -866,7 +912,7 @@ func (m *DriveItem) SetRoot(value Rootable)() {
 func (m *DriveItem) SetSearchResult(value SearchResultable)() {
     m.searchResult = value
 }
-// SetShared sets the shared property value. Indicates that the item has been shared with others and provides information about the shared state of the item. Read-only.
+// SetShared sets the shared property value. Indicates that the item was shared with others and provides information about the shared state of the item. Read-only.
 func (m *DriveItem) SetShared(value Sharedable)() {
     m.shared = value
 }
@@ -886,7 +932,7 @@ func (m *DriveItem) SetSpecialFolder(value SpecialFolderable)() {
 func (m *DriveItem) SetSubscriptions(value []Subscriptionable)() {
     m.subscriptions = value
 }
-// SetThumbnails sets the thumbnails property value. Collection containing [ThumbnailSet][] objects associated with the item. For more info, see [getting thumbnails][]. Read-only. Nullable.
+// SetThumbnails sets the thumbnails property value. Collection of [thumbnailSet][] objects associated with the item. For more information, see [getting thumbnails][]. Read-only. Nullable.
 func (m *DriveItem) SetThumbnails(value []ThumbnailSetable)() {
     m.thumbnails = value
 }
@@ -902,7 +948,7 @@ func (m *DriveItem) SetVideo(value Videoable)() {
 func (m *DriveItem) SetWebDavUrl(value *string)() {
     m.webDavUrl = value
 }
-// SetWorkbook sets the workbook property value. For files that are Excel spreadsheets, accesses the workbook API to work with the spreadsheet's contents. Nullable.
+// SetWorkbook sets the workbook property value. For files that are Excel spreadsheets, access to the workbook API to work with the spreadsheet's contents. Nullable.
 func (m *DriveItem) SetWorkbook(value Workbookable)() {
     m.workbook = value
 }
@@ -924,12 +970,13 @@ type DriveItemable interface {
     GetListItem()(ListItemable)
     GetLocation()(GeoCoordinatesable)
     GetMalware()(Malwareable)
-    GetPackage()(PackageEscapedable)
+    GetPackageEscaped()(PackageEscapedable)
     GetPendingOperations()(PendingOperationsable)
     GetPermissions()([]Permissionable)
     GetPhoto()(Photoable)
     GetPublication()(PublicationFacetable)
     GetRemoteItem()(RemoteItemable)
+    GetRetentionLabel()(ItemRetentionLabelable)
     GetRoot()(Rootable)
     GetSearchResult()(SearchResultable)
     GetShared()(Sharedable)
@@ -956,12 +1003,13 @@ type DriveItemable interface {
     SetListItem(value ListItemable)()
     SetLocation(value GeoCoordinatesable)()
     SetMalware(value Malwareable)()
-    SetPackage(value PackageEscapedable)()
+    SetPackageEscaped(value PackageEscapedable)()
     SetPendingOperations(value PendingOperationsable)()
     SetPermissions(value []Permissionable)()
     SetPhoto(value Photoable)()
     SetPublication(value PublicationFacetable)()
     SetRemoteItem(value RemoteItemable)()
+    SetRetentionLabel(value ItemRetentionLabelable)()
     SetRoot(value Rootable)()
     SetSearchResult(value SearchResultable)()
     SetShared(value Sharedable)()

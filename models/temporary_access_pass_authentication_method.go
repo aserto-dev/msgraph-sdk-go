@@ -23,7 +23,7 @@ type TemporaryAccessPassAuthenticationMethod struct {
     // The Temporary Access Pass used to authenticate. Returned only on creation of a new temporaryAccessPassAuthenticationMethod object; Hidden in subsequent read operations and returned as null with GET.
     temporaryAccessPass *string
 }
-// NewTemporaryAccessPassAuthenticationMethod instantiates a new TemporaryAccessPassAuthenticationMethod and sets the default values.
+// NewTemporaryAccessPassAuthenticationMethod instantiates a new temporaryAccessPassAuthenticationMethod and sets the default values.
 func NewTemporaryAccessPassAuthenticationMethod()(*TemporaryAccessPassAuthenticationMethod) {
     m := &TemporaryAccessPassAuthenticationMethod{
         AuthenticationMethod: *NewAuthenticationMethod(),
