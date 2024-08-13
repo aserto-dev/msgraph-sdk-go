@@ -11,8 +11,14 @@ type UserSettings struct {
     contributionToContentDiscoveryAsOrganizationDisabled *bool
     // When set to true, the delegate access to the user's trending API is disabled. When set to true, documents in the user's Office Delve are disabled. When set to true, the relevancy of the content displayed in Microsoft 365, for example in Suggested sites in SharePoint Home and the Discover view in OneDrive for Business is affected. Users can control this setting in Office Delve.
     contributionToContentDiscoveryDisabled *bool
+    // The itemInsights property
+    itemInsights UserInsightsSettingsable
     // The shiftPreferences property
     shiftPreferences ShiftPreferencesable
+    // The storage property
+    storage UserStorageable
+    // The windows property
+    windows []WindowsSettingable
 }
 // NewUserSettings instantiates a new userSettings and sets the default values.
 func NewUserSettings()(*UserSettings) {
@@ -56,6 +62,16 @@ func (m *UserSettings) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
         }
         return nil
     }
+    res["itemInsights"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateUserInsightsSettingsFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetItemInsights(val.(UserInsightsSettingsable))
+        }
+        return nil
+    }
     res["shiftPreferences"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetObjectValue(CreateShiftPreferencesFromDiscriminatorValue)
         if err != nil {
@@ -66,11 +82,49 @@ func (m *UserSettings) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
         }
         return nil
     }
+    res["storage"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateUserStorageFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetStorage(val.(UserStorageable))
+        }
+        return nil
+    }
+    res["windows"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateWindowsSettingFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]WindowsSettingable, len(val))
+            for i, v := range val {
+                if v != nil {
+                    res[i] = v.(WindowsSettingable)
+                }
+            }
+            m.SetWindows(res)
+        }
+        return nil
+    }
     return res
+}
+// GetItemInsights gets the itemInsights property value. The itemInsights property
+func (m *UserSettings) GetItemInsights()(UserInsightsSettingsable) {
+    return m.itemInsights
 }
 // GetShiftPreferences gets the shiftPreferences property value. The shiftPreferences property
 func (m *UserSettings) GetShiftPreferences()(ShiftPreferencesable) {
     return m.shiftPreferences
+}
+// GetStorage gets the storage property value. The storage property
+func (m *UserSettings) GetStorage()(UserStorageable) {
+    return m.storage
+}
+// GetWindows gets the windows property value. The windows property
+func (m *UserSettings) GetWindows()([]WindowsSettingable) {
+    return m.windows
 }
 // Serialize serializes information the current object
 func (m *UserSettings) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -91,7 +145,31 @@ func (m *UserSettings) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
         }
     }
     {
+        err = writer.WriteObjectValue("itemInsights", m.GetItemInsights())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err = writer.WriteObjectValue("shiftPreferences", m.GetShiftPreferences())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err = writer.WriteObjectValue("storage", m.GetStorage())
+        if err != nil {
+            return err
+        }
+    }
+    if m.GetWindows() != nil {
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetWindows()))
+        for i, v := range m.GetWindows() {
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
+        }
+        err = writer.WriteCollectionOfObjectValues("windows", cast)
         if err != nil {
             return err
         }
@@ -106,9 +184,21 @@ func (m *UserSettings) SetContributionToContentDiscoveryAsOrganizationDisabled(v
 func (m *UserSettings) SetContributionToContentDiscoveryDisabled(value *bool)() {
     m.contributionToContentDiscoveryDisabled = value
 }
+// SetItemInsights sets the itemInsights property value. The itemInsights property
+func (m *UserSettings) SetItemInsights(value UserInsightsSettingsable)() {
+    m.itemInsights = value
+}
 // SetShiftPreferences sets the shiftPreferences property value. The shiftPreferences property
 func (m *UserSettings) SetShiftPreferences(value ShiftPreferencesable)() {
     m.shiftPreferences = value
+}
+// SetStorage sets the storage property value. The storage property
+func (m *UserSettings) SetStorage(value UserStorageable)() {
+    m.storage = value
+}
+// SetWindows sets the windows property value. The windows property
+func (m *UserSettings) SetWindows(value []WindowsSettingable)() {
+    m.windows = value
 }
 // UserSettingsable 
 type UserSettingsable interface {
@@ -116,8 +206,14 @@ type UserSettingsable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetContributionToContentDiscoveryAsOrganizationDisabled()(*bool)
     GetContributionToContentDiscoveryDisabled()(*bool)
+    GetItemInsights()(UserInsightsSettingsable)
     GetShiftPreferences()(ShiftPreferencesable)
+    GetStorage()(UserStorageable)
+    GetWindows()([]WindowsSettingable)
     SetContributionToContentDiscoveryAsOrganizationDisabled(value *bool)()
     SetContributionToContentDiscoveryDisabled(value *bool)()
+    SetItemInsights(value UserInsightsSettingsable)()
     SetShiftPreferences(value ShiftPreferencesable)()
+    SetStorage(value UserStorageable)()
+    SetWindows(value []WindowsSettingable)()
 }

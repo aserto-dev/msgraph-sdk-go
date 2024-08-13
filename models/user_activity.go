@@ -16,8 +16,6 @@ type UserActivity struct {
     appActivityId *string
     // Optional. Short text description of the app used to generate the activity for use in cases when the app is not installed on the user’s local device.
     appDisplayName *string
-    // Optional. A custom piece of data - JSON-LD extensible description of content according to schema.org syntax.
-    contentInfo Jsonable
     // Optional. Used in the event the content can be rendered outside of a native or web-based app experience (for example, a pointer to an item in an RSS feed).
     contentUrl *string
     // Set by the server. DateTime in UTC when the object was created on the server.
@@ -63,10 +61,6 @@ func (m *UserActivity) GetAppActivityId()(*string) {
 // GetAppDisplayName gets the appDisplayName property value. Optional. Short text description of the app used to generate the activity for use in cases when the app is not installed on the user’s local device.
 func (m *UserActivity) GetAppDisplayName()(*string) {
     return m.appDisplayName
-}
-// GetContentInfo gets the contentInfo property value. Optional. A custom piece of data - JSON-LD extensible description of content according to schema.org syntax.
-func (m *UserActivity) GetContentInfo()(Jsonable) {
-    return m.contentInfo
 }
 // GetContentUrl gets the contentUrl property value. Optional. Used in the event the content can be rendered outside of a native or web-based app experience (for example, a pointer to an item in an RSS feed).
 func (m *UserActivity) GetContentUrl()(*string) {
@@ -124,16 +118,6 @@ func (m *UserActivity) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
         }
         if val != nil {
             m.SetAppDisplayName(val)
-        }
-        return nil
-    }
-    res["contentInfo"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateJsonFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetContentInfo(val.(Jsonable))
         }
         return nil
     }
@@ -286,12 +270,6 @@ func (m *UserActivity) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
         }
     }
     {
-        err = writer.WriteObjectValue("contentInfo", m.GetContentInfo())
-        if err != nil {
-            return err
-        }
-    }
-    {
         err = writer.WriteStringValue("contentUrl", m.GetContentUrl())
         if err != nil {
             return err
@@ -370,10 +348,6 @@ func (m *UserActivity) SetAppActivityId(value *string)() {
 func (m *UserActivity) SetAppDisplayName(value *string)() {
     m.appDisplayName = value
 }
-// SetContentInfo sets the contentInfo property value. Optional. A custom piece of data - JSON-LD extensible description of content according to schema.org syntax.
-func (m *UserActivity) SetContentInfo(value Jsonable)() {
-    m.contentInfo = value
-}
 // SetContentUrl sets the contentUrl property value. Optional. Used in the event the content can be rendered outside of a native or web-based app experience (for example, a pointer to an item in an RSS feed).
 func (m *UserActivity) SetContentUrl(value *string)() {
     m.contentUrl = value
@@ -418,7 +392,6 @@ type UserActivityable interface {
     GetActivitySourceHost()(*string)
     GetAppActivityId()(*string)
     GetAppDisplayName()(*string)
-    GetContentInfo()(Jsonable)
     GetContentUrl()(*string)
     GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetExpirationDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
@@ -432,7 +405,6 @@ type UserActivityable interface {
     SetActivitySourceHost(value *string)()
     SetAppActivityId(value *string)()
     SetAppDisplayName(value *string)()
-    SetContentInfo(value Jsonable)()
     SetContentUrl(value *string)()
     SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetExpirationDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()

@@ -8,11 +8,11 @@ import (
 type MeetingParticipants struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // The attendees property
+    // Information about the meeting attendees.
     attendees []MeetingParticipantInfoable
     // The OdataType property
     odataType *string
-    // The organizer property
+    // Information about the meeting organizer.
     organizer MeetingParticipantInfoable
 }
 // NewMeetingParticipants instantiates a new meetingParticipants and sets the default values.
@@ -30,7 +30,7 @@ func CreateMeetingParticipantsFromDiscriminatorValue(parseNode i878a80d2330e89d2
 func (m *MeetingParticipants) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetAttendees gets the attendees property value. The attendees property
+// GetAttendees gets the attendees property value. Information about the meeting attendees.
 func (m *MeetingParticipants) GetAttendees()([]MeetingParticipantInfoable) {
     return m.attendees
 }
@@ -79,7 +79,7 @@ func (m *MeetingParticipants) GetFieldDeserializers()(map[string]func(i878a80d23
 func (m *MeetingParticipants) GetOdataType()(*string) {
     return m.odataType
 }
-// GetOrganizer gets the organizer property value. The organizer property
+// GetOrganizer gets the organizer property value. Information about the meeting organizer.
 func (m *MeetingParticipants) GetOrganizer()(MeetingParticipantInfoable) {
     return m.organizer
 }
@@ -121,7 +121,7 @@ func (m *MeetingParticipants) Serialize(writer i878a80d2330e89d26896388a3f487eef
 func (m *MeetingParticipants) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetAttendees sets the attendees property value. The attendees property
+// SetAttendees sets the attendees property value. Information about the meeting attendees.
 func (m *MeetingParticipants) SetAttendees(value []MeetingParticipantInfoable)() {
     m.attendees = value
 }
@@ -129,7 +129,7 @@ func (m *MeetingParticipants) SetAttendees(value []MeetingParticipantInfoable)()
 func (m *MeetingParticipants) SetOdataType(value *string)() {
     m.odataType = value
 }
-// SetOrganizer sets the organizer property value. The organizer property
+// SetOrganizer sets the organizer property value. Information about the meeting organizer.
 func (m *MeetingParticipants) SetOrganizer(value MeetingParticipantInfoable)() {
     m.organizer = value
 }

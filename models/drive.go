@@ -7,7 +7,7 @@ import (
 // Drive 
 type Drive struct {
     BaseItem
-    // Collection of [bundles][bundle] (albums and multi-select-shared sets of items). Only in personal OneDrive.
+    // Collection of bundles (albums and multi-select-shared sets of items). Only in personal OneDrive.
     bundles []DriveItemable
     // Describes the type of drive represented by this resource. OneDrive personal drives will return personal. OneDrive for Business will return business. SharePoint document libraries will return documentLibrary. Read-only.
     driveType *string
@@ -43,7 +43,7 @@ func NewDrive()(*Drive) {
 func CreateDriveFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewDrive(), nil
 }
-// GetBundles gets the bundles property value. Collection of [bundles][bundle] (albums and multi-select-shared sets of items). Only in personal OneDrive.
+// GetBundles gets the bundles property value. Collection of bundles (albums and multi-select-shared sets of items). Only in personal OneDrive.
 func (m *Drive) GetBundles()([]DriveItemable) {
     return m.bundles
 }
@@ -324,7 +324,7 @@ func (m *Drive) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     }
     return nil
 }
-// SetBundles sets the bundles property value. Collection of [bundles][bundle] (albums and multi-select-shared sets of items). Only in personal OneDrive.
+// SetBundles sets the bundles property value. Collection of bundles (albums and multi-select-shared sets of items). Only in personal OneDrive.
 func (m *Drive) SetBundles(value []DriveItemable)() {
     m.bundles = value
 }

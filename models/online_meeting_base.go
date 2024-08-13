@@ -37,7 +37,7 @@ type OnlineMeetingBase struct {
     lobbyBypassSettings LobbyBypassSettingsable
     // Indicates whether to record the meeting automatically.
     recordAutomatically *bool
-    // The shareMeetingChatHistoryDefault property
+    // Specifies whether meeting chat history is shared with participants.  Possible values are: all, none, unknownFutureValue.
     shareMeetingChatHistoryDefault *MeetingChatHistoryDefaultMode
     // The subject of the online meeting.
     subject *string
@@ -336,7 +336,7 @@ func (m *OnlineMeetingBase) GetLobbyBypassSettings()(LobbyBypassSettingsable) {
 func (m *OnlineMeetingBase) GetRecordAutomatically()(*bool) {
     return m.recordAutomatically
 }
-// GetShareMeetingChatHistoryDefault gets the shareMeetingChatHistoryDefault property value. The shareMeetingChatHistoryDefault property
+// GetShareMeetingChatHistoryDefault gets the shareMeetingChatHistoryDefault property value. Specifies whether meeting chat history is shared with participants.  Possible values are: all, none, unknownFutureValue.
 func (m *OnlineMeetingBase) GetShareMeetingChatHistoryDefault()(*MeetingChatHistoryDefaultMode) {
     return m.shareMeetingChatHistoryDefault
 }
@@ -543,7 +543,7 @@ func (m *OnlineMeetingBase) SetLobbyBypassSettings(value LobbyBypassSettingsable
 func (m *OnlineMeetingBase) SetRecordAutomatically(value *bool)() {
     m.recordAutomatically = value
 }
-// SetShareMeetingChatHistoryDefault sets the shareMeetingChatHistoryDefault property value. The shareMeetingChatHistoryDefault property
+// SetShareMeetingChatHistoryDefault sets the shareMeetingChatHistoryDefault property value. Specifies whether meeting chat history is shared with participants.  Possible values are: all, none, unknownFutureValue.
 func (m *OnlineMeetingBase) SetShareMeetingChatHistoryDefault(value *MeetingChatHistoryDefaultMode)() {
     m.shareMeetingChatHistoryDefault = value
 }

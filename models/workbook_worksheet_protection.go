@@ -7,9 +7,9 @@ import (
 // WorkbookWorksheetProtection 
 type WorkbookWorksheetProtection struct {
     Entity
-    // Sheet protection options. Read-only.
+    // Worksheet protection options. Read-only.
     options WorkbookWorksheetProtectionOptionsable
-    // Indicates if the worksheet is protected.  Read-only.
+    // Indicates whether the worksheet is protected.  Read-only.
     protected *bool
 }
 // NewWorkbookWorksheetProtection instantiates a new workbookWorksheetProtection and sets the default values.
@@ -48,11 +48,11 @@ func (m *WorkbookWorksheetProtection) GetFieldDeserializers()(map[string]func(i8
     }
     return res
 }
-// GetOptions gets the options property value. Sheet protection options. Read-only.
+// GetOptions gets the options property value. Worksheet protection options. Read-only.
 func (m *WorkbookWorksheetProtection) GetOptions()(WorkbookWorksheetProtectionOptionsable) {
     return m.options
 }
-// GetProtected gets the protected property value. Indicates if the worksheet is protected.  Read-only.
+// GetProtected gets the protected property value. Indicates whether the worksheet is protected.  Read-only.
 func (m *WorkbookWorksheetProtection) GetProtected()(*bool) {
     return m.protected
 }
@@ -76,11 +76,11 @@ func (m *WorkbookWorksheetProtection) Serialize(writer i878a80d2330e89d26896388a
     }
     return nil
 }
-// SetOptions sets the options property value. Sheet protection options. Read-only.
+// SetOptions sets the options property value. Worksheet protection options. Read-only.
 func (m *WorkbookWorksheetProtection) SetOptions(value WorkbookWorksheetProtectionOptionsable)() {
     m.options = value
 }
-// SetProtected sets the protected property value. Indicates if the worksheet is protected.  Read-only.
+// SetProtected sets the protected property value. Indicates whether the worksheet is protected.  Read-only.
 func (m *WorkbookWorksheetProtection) SetProtected(value *bool)() {
     m.protected = value
 }

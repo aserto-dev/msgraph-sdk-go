@@ -30,67 +30,67 @@ type Event struct {
     hideAttendees *bool
     // A unique identifier for an event across calendars. This ID is different for each occurrence in a recurring series. Read-only.
     iCalUId *string
-    // The importance property
+    // The importance of the event. The possible values are: low, normal, high.
     importance *Importance
     // The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.
     instances []Eventable
-    // The isAllDay property
+    // Set to true if the event lasts all day. If true, regardless of whether it's a single-day or multi-day event, start and end time must be set to midnight and be in the same time zone.
     isAllDay *bool
-    // The isCancelled property
+    // Set to true if the event has been canceled.
     isCancelled *bool
-    // The isDraft property
+    // Set to true if the user has updated the meeting in Outlook but has not sent the updates to attendees. Set to false if all changes have been sent, or if the event is an appointment without any attendees.
     isDraft *bool
-    // The isOnlineMeeting property
+    // True if this event has online meeting information (that is, onlineMeeting points to an onlineMeetingInfo resource), false otherwise. Default is false (onlineMeeting is null). Optional.  After you set isOnlineMeeting to true, Microsoft Graph initializes onlineMeeting. Subsequently Outlook ignores any further changes to isOnlineMeeting, and the meeting remains available online.
     isOnlineMeeting *bool
-    // The isOrganizer property
+    // Set to true if the calendar owner (specified by the owner property of the calendar) is the organizer of the event (specified by the organizer property of the event). This also applies if a delegate organized the event on behalf of the owner.
     isOrganizer *bool
-    // The isReminderOn property
+    // Set to true if an alert is set to remind the user of the event.
     isReminderOn *bool
-    // The location property
+    // The location of the event.
     location Locationable
-    // The locations property
+    // The locations where the event is held or attended from. The location and locations properties always correspond with each other. If you update the location property, any prior locations in the locations collection would be removed and replaced by the new location value.
     locations []Locationable
     // The collection of multi-value extended properties defined for the event. Read-only. Nullable.
     multiValueExtendedProperties []MultiValueLegacyExtendedPropertyable
-    // The onlineMeeting property
+    // Details for an attendee to join the meeting online. Default is null. Read-only. After you set the isOnlineMeeting and onlineMeetingProvider properties to enable a meeting online, Microsoft Graph initializes onlineMeeting. When set, the meeting remains available online, and you cannot change the isOnlineMeeting, onlineMeetingProvider, and onlneMeeting properties again.
     onlineMeeting OnlineMeetingInfoable
-    // The onlineMeetingProvider property
+    // Represents the online meeting service provider. By default, onlineMeetingProvider is unknown. The possible values are unknown, teamsForBusiness, skypeForBusiness, and skypeForConsumer. Optional.  After you set onlineMeetingProvider, Microsoft Graph initializes onlineMeeting. Subsequently you cannot change onlineMeetingProvider again, and the meeting remains available online.
     onlineMeetingProvider *OnlineMeetingProviderType
-    // The onlineMeetingUrl property
+    // A URL for an online meeting. The property is set only when an organizer specifies in Outlook that an event is an online meeting such as Skype. Read-only.To access the URL to join an online meeting, use joinUrl which is exposed via the onlineMeeting property of the event. The onlineMeetingUrl property will be deprecated in the future.
     onlineMeetingUrl *string
-    // The organizer property
+    // The organizer of the event.
     organizer Recipientable
-    // The originalEndTimeZone property
+    // The end time zone that was set when the event was created. A value of tzone://Microsoft/Custom indicates that a legacy custom time zone was set in desktop Outlook.
     originalEndTimeZone *string
-    // The originalStart property
+    // Represents the start time of an event when it is initially created as an occurrence or exception in a recurring series. This property is not returned for events that are single instances. Its date and time information is expressed in ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     originalStart *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The originalStartTimeZone property
+    // The start time zone that was set when the event was created. A value of tzone://Microsoft/Custom indicates that a legacy custom time zone was set in desktop Outlook.
     originalStartTimeZone *string
-    // The recurrence property
+    // The recurrence pattern for the event.
     recurrence PatternedRecurrenceable
-    // The reminderMinutesBeforeStart property
+    // The number of minutes before the event start time that the reminder alert occurs.
     reminderMinutesBeforeStart *int32
-    // The responseRequested property
+    // Default is true, which represents the organizer would like an invitee to send a response to the event.
     responseRequested *bool
-    // The responseStatus property
+    // Indicates the type of response sent in response to an event message.
     responseStatus ResponseStatusable
-    // The sensitivity property
+    // Possible values are: normal, personal, private, confidential.
     sensitivity *Sensitivity
-    // The seriesMasterId property
+    // The ID for the recurring series master item, if this event is part of a recurring series.
     seriesMasterId *string
-    // The showAs property
+    // The status to show. Possible values are: free, tentative, busy, oof, workingElsewhere, unknown.
     showAs *FreeBusyStatus
     // The collection of single-value extended properties defined for the event. Read-only. Nullable.
     singleValueExtendedProperties []SingleValueLegacyExtendedPropertyable
-    // The start property
+    // The start date, time, and time zone of the event. By default, the start time is in UTC.
     start DateTimeTimeZoneable
-    // The subject property
+    // The text of the event's subject line.
     subject *string
-    // The transactionId property
+    // A custom identifier specified by a client app for the server to avoid redundant POST operations in case of client retries to create the same event. This is useful when low network connectivity causes the client to time out before receiving a response from the server for the client's prior create-event request. After you set transactionId when creating an event, you cannot change transactionId in a subsequent update. This property is only returned in a response payload if an app has set it. Optional.
     transactionId *string
-    // The type property
+    // The event type. Possible values are: singleInstance, occurrence, exception, seriesMaster. Read-only
     typeEscaped *EventType
-    // The webLink property
+    // The URL to open the event in Outlook on the web.Outlook on the web opens the event in the browser if you are signed in to your mailbox. Otherwise, Outlook on the web prompts you to sign in.This URL cannot be accessed from within an iFrame.
     webLink *string
 }
 // NewEvent instantiates a new event and sets the default values.
@@ -617,7 +617,7 @@ func (m *Event) GetHideAttendees()(*bool) {
 func (m *Event) GetICalUId()(*string) {
     return m.iCalUId
 }
-// GetImportance gets the importance property value. The importance property
+// GetImportance gets the importance property value. The importance of the event. The possible values are: low, normal, high.
 func (m *Event) GetImportance()(*Importance) {
     return m.importance
 }
@@ -625,35 +625,35 @@ func (m *Event) GetImportance()(*Importance) {
 func (m *Event) GetInstances()([]Eventable) {
     return m.instances
 }
-// GetIsAllDay gets the isAllDay property value. The isAllDay property
+// GetIsAllDay gets the isAllDay property value. Set to true if the event lasts all day. If true, regardless of whether it's a single-day or multi-day event, start and end time must be set to midnight and be in the same time zone.
 func (m *Event) GetIsAllDay()(*bool) {
     return m.isAllDay
 }
-// GetIsCancelled gets the isCancelled property value. The isCancelled property
+// GetIsCancelled gets the isCancelled property value. Set to true if the event has been canceled.
 func (m *Event) GetIsCancelled()(*bool) {
     return m.isCancelled
 }
-// GetIsDraft gets the isDraft property value. The isDraft property
+// GetIsDraft gets the isDraft property value. Set to true if the user has updated the meeting in Outlook but has not sent the updates to attendees. Set to false if all changes have been sent, or if the event is an appointment without any attendees.
 func (m *Event) GetIsDraft()(*bool) {
     return m.isDraft
 }
-// GetIsOnlineMeeting gets the isOnlineMeeting property value. The isOnlineMeeting property
+// GetIsOnlineMeeting gets the isOnlineMeeting property value. True if this event has online meeting information (that is, onlineMeeting points to an onlineMeetingInfo resource), false otherwise. Default is false (onlineMeeting is null). Optional.  After you set isOnlineMeeting to true, Microsoft Graph initializes onlineMeeting. Subsequently Outlook ignores any further changes to isOnlineMeeting, and the meeting remains available online.
 func (m *Event) GetIsOnlineMeeting()(*bool) {
     return m.isOnlineMeeting
 }
-// GetIsOrganizer gets the isOrganizer property value. The isOrganizer property
+// GetIsOrganizer gets the isOrganizer property value. Set to true if the calendar owner (specified by the owner property of the calendar) is the organizer of the event (specified by the organizer property of the event). This also applies if a delegate organized the event on behalf of the owner.
 func (m *Event) GetIsOrganizer()(*bool) {
     return m.isOrganizer
 }
-// GetIsReminderOn gets the isReminderOn property value. The isReminderOn property
+// GetIsReminderOn gets the isReminderOn property value. Set to true if an alert is set to remind the user of the event.
 func (m *Event) GetIsReminderOn()(*bool) {
     return m.isReminderOn
 }
-// GetLocation gets the location property value. The location property
+// GetLocation gets the location property value. The location of the event.
 func (m *Event) GetLocation()(Locationable) {
     return m.location
 }
-// GetLocations gets the locations property value. The locations property
+// GetLocations gets the locations property value. The locations where the event is held or attended from. The location and locations properties always correspond with each other. If you update the location property, any prior locations in the locations collection would be removed and replaced by the new location value.
 func (m *Event) GetLocations()([]Locationable) {
     return m.locations
 }
@@ -661,59 +661,59 @@ func (m *Event) GetLocations()([]Locationable) {
 func (m *Event) GetMultiValueExtendedProperties()([]MultiValueLegacyExtendedPropertyable) {
     return m.multiValueExtendedProperties
 }
-// GetOnlineMeeting gets the onlineMeeting property value. The onlineMeeting property
+// GetOnlineMeeting gets the onlineMeeting property value. Details for an attendee to join the meeting online. Default is null. Read-only. After you set the isOnlineMeeting and onlineMeetingProvider properties to enable a meeting online, Microsoft Graph initializes onlineMeeting. When set, the meeting remains available online, and you cannot change the isOnlineMeeting, onlineMeetingProvider, and onlneMeeting properties again.
 func (m *Event) GetOnlineMeeting()(OnlineMeetingInfoable) {
     return m.onlineMeeting
 }
-// GetOnlineMeetingProvider gets the onlineMeetingProvider property value. The onlineMeetingProvider property
+// GetOnlineMeetingProvider gets the onlineMeetingProvider property value. Represents the online meeting service provider. By default, onlineMeetingProvider is unknown. The possible values are unknown, teamsForBusiness, skypeForBusiness, and skypeForConsumer. Optional.  After you set onlineMeetingProvider, Microsoft Graph initializes onlineMeeting. Subsequently you cannot change onlineMeetingProvider again, and the meeting remains available online.
 func (m *Event) GetOnlineMeetingProvider()(*OnlineMeetingProviderType) {
     return m.onlineMeetingProvider
 }
-// GetOnlineMeetingUrl gets the onlineMeetingUrl property value. The onlineMeetingUrl property
+// GetOnlineMeetingUrl gets the onlineMeetingUrl property value. A URL for an online meeting. The property is set only when an organizer specifies in Outlook that an event is an online meeting such as Skype. Read-only.To access the URL to join an online meeting, use joinUrl which is exposed via the onlineMeeting property of the event. The onlineMeetingUrl property will be deprecated in the future.
 func (m *Event) GetOnlineMeetingUrl()(*string) {
     return m.onlineMeetingUrl
 }
-// GetOrganizer gets the organizer property value. The organizer property
+// GetOrganizer gets the organizer property value. The organizer of the event.
 func (m *Event) GetOrganizer()(Recipientable) {
     return m.organizer
 }
-// GetOriginalEndTimeZone gets the originalEndTimeZone property value. The originalEndTimeZone property
+// GetOriginalEndTimeZone gets the originalEndTimeZone property value. The end time zone that was set when the event was created. A value of tzone://Microsoft/Custom indicates that a legacy custom time zone was set in desktop Outlook.
 func (m *Event) GetOriginalEndTimeZone()(*string) {
     return m.originalEndTimeZone
 }
-// GetOriginalStart gets the originalStart property value. The originalStart property
+// GetOriginalStart gets the originalStart property value. Represents the start time of an event when it is initially created as an occurrence or exception in a recurring series. This property is not returned for events that are single instances. Its date and time information is expressed in ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
 func (m *Event) GetOriginalStart()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.originalStart
 }
-// GetOriginalStartTimeZone gets the originalStartTimeZone property value. The originalStartTimeZone property
+// GetOriginalStartTimeZone gets the originalStartTimeZone property value. The start time zone that was set when the event was created. A value of tzone://Microsoft/Custom indicates that a legacy custom time zone was set in desktop Outlook.
 func (m *Event) GetOriginalStartTimeZone()(*string) {
     return m.originalStartTimeZone
 }
-// GetRecurrence gets the recurrence property value. The recurrence property
+// GetRecurrence gets the recurrence property value. The recurrence pattern for the event.
 func (m *Event) GetRecurrence()(PatternedRecurrenceable) {
     return m.recurrence
 }
-// GetReminderMinutesBeforeStart gets the reminderMinutesBeforeStart property value. The reminderMinutesBeforeStart property
+// GetReminderMinutesBeforeStart gets the reminderMinutesBeforeStart property value. The number of minutes before the event start time that the reminder alert occurs.
 func (m *Event) GetReminderMinutesBeforeStart()(*int32) {
     return m.reminderMinutesBeforeStart
 }
-// GetResponseRequested gets the responseRequested property value. The responseRequested property
+// GetResponseRequested gets the responseRequested property value. Default is true, which represents the organizer would like an invitee to send a response to the event.
 func (m *Event) GetResponseRequested()(*bool) {
     return m.responseRequested
 }
-// GetResponseStatus gets the responseStatus property value. The responseStatus property
+// GetResponseStatus gets the responseStatus property value. Indicates the type of response sent in response to an event message.
 func (m *Event) GetResponseStatus()(ResponseStatusable) {
     return m.responseStatus
 }
-// GetSensitivity gets the sensitivity property value. The sensitivity property
+// GetSensitivity gets the sensitivity property value. Possible values are: normal, personal, private, confidential.
 func (m *Event) GetSensitivity()(*Sensitivity) {
     return m.sensitivity
 }
-// GetSeriesMasterId gets the seriesMasterId property value. The seriesMasterId property
+// GetSeriesMasterId gets the seriesMasterId property value. The ID for the recurring series master item, if this event is part of a recurring series.
 func (m *Event) GetSeriesMasterId()(*string) {
     return m.seriesMasterId
 }
-// GetShowAs gets the showAs property value. The showAs property
+// GetShowAs gets the showAs property value. The status to show. Possible values are: free, tentative, busy, oof, workingElsewhere, unknown.
 func (m *Event) GetShowAs()(*FreeBusyStatus) {
     return m.showAs
 }
@@ -721,23 +721,23 @@ func (m *Event) GetShowAs()(*FreeBusyStatus) {
 func (m *Event) GetSingleValueExtendedProperties()([]SingleValueLegacyExtendedPropertyable) {
     return m.singleValueExtendedProperties
 }
-// GetStart gets the start property value. The start property
+// GetStart gets the start property value. The start date, time, and time zone of the event. By default, the start time is in UTC.
 func (m *Event) GetStart()(DateTimeTimeZoneable) {
     return m.start
 }
-// GetSubject gets the subject property value. The subject property
+// GetSubject gets the subject property value. The text of the event's subject line.
 func (m *Event) GetSubject()(*string) {
     return m.subject
 }
-// GetTransactionId gets the transactionId property value. The transactionId property
+// GetTransactionId gets the transactionId property value. A custom identifier specified by a client app for the server to avoid redundant POST operations in case of client retries to create the same event. This is useful when low network connectivity causes the client to time out before receiving a response from the server for the client's prior create-event request. After you set transactionId when creating an event, you cannot change transactionId in a subsequent update. This property is only returned in a response payload if an app has set it. Optional.
 func (m *Event) GetTransactionId()(*string) {
     return m.transactionId
 }
-// GetTypeEscaped gets the type property value. The type property
+// GetTypeEscaped gets the type property value. The event type. Possible values are: singleInstance, occurrence, exception, seriesMaster. Read-only
 func (m *Event) GetTypeEscaped()(*EventType) {
     return m.typeEscaped
 }
-// GetWebLink gets the webLink property value. The webLink property
+// GetWebLink gets the webLink property value. The URL to open the event in Outlook on the web.Outlook on the web opens the event in the browser if you are signed in to your mailbox. Otherwise, Outlook on the web prompts you to sign in.This URL cannot be accessed from within an iFrame.
 func (m *Event) GetWebLink()(*string) {
     return m.webLink
 }
@@ -1092,7 +1092,7 @@ func (m *Event) SetHideAttendees(value *bool)() {
 func (m *Event) SetICalUId(value *string)() {
     m.iCalUId = value
 }
-// SetImportance sets the importance property value. The importance property
+// SetImportance sets the importance property value. The importance of the event. The possible values are: low, normal, high.
 func (m *Event) SetImportance(value *Importance)() {
     m.importance = value
 }
@@ -1100,35 +1100,35 @@ func (m *Event) SetImportance(value *Importance)() {
 func (m *Event) SetInstances(value []Eventable)() {
     m.instances = value
 }
-// SetIsAllDay sets the isAllDay property value. The isAllDay property
+// SetIsAllDay sets the isAllDay property value. Set to true if the event lasts all day. If true, regardless of whether it's a single-day or multi-day event, start and end time must be set to midnight and be in the same time zone.
 func (m *Event) SetIsAllDay(value *bool)() {
     m.isAllDay = value
 }
-// SetIsCancelled sets the isCancelled property value. The isCancelled property
+// SetIsCancelled sets the isCancelled property value. Set to true if the event has been canceled.
 func (m *Event) SetIsCancelled(value *bool)() {
     m.isCancelled = value
 }
-// SetIsDraft sets the isDraft property value. The isDraft property
+// SetIsDraft sets the isDraft property value. Set to true if the user has updated the meeting in Outlook but has not sent the updates to attendees. Set to false if all changes have been sent, or if the event is an appointment without any attendees.
 func (m *Event) SetIsDraft(value *bool)() {
     m.isDraft = value
 }
-// SetIsOnlineMeeting sets the isOnlineMeeting property value. The isOnlineMeeting property
+// SetIsOnlineMeeting sets the isOnlineMeeting property value. True if this event has online meeting information (that is, onlineMeeting points to an onlineMeetingInfo resource), false otherwise. Default is false (onlineMeeting is null). Optional.  After you set isOnlineMeeting to true, Microsoft Graph initializes onlineMeeting. Subsequently Outlook ignores any further changes to isOnlineMeeting, and the meeting remains available online.
 func (m *Event) SetIsOnlineMeeting(value *bool)() {
     m.isOnlineMeeting = value
 }
-// SetIsOrganizer sets the isOrganizer property value. The isOrganizer property
+// SetIsOrganizer sets the isOrganizer property value. Set to true if the calendar owner (specified by the owner property of the calendar) is the organizer of the event (specified by the organizer property of the event). This also applies if a delegate organized the event on behalf of the owner.
 func (m *Event) SetIsOrganizer(value *bool)() {
     m.isOrganizer = value
 }
-// SetIsReminderOn sets the isReminderOn property value. The isReminderOn property
+// SetIsReminderOn sets the isReminderOn property value. Set to true if an alert is set to remind the user of the event.
 func (m *Event) SetIsReminderOn(value *bool)() {
     m.isReminderOn = value
 }
-// SetLocation sets the location property value. The location property
+// SetLocation sets the location property value. The location of the event.
 func (m *Event) SetLocation(value Locationable)() {
     m.location = value
 }
-// SetLocations sets the locations property value. The locations property
+// SetLocations sets the locations property value. The locations where the event is held or attended from. The location and locations properties always correspond with each other. If you update the location property, any prior locations in the locations collection would be removed and replaced by the new location value.
 func (m *Event) SetLocations(value []Locationable)() {
     m.locations = value
 }
@@ -1136,59 +1136,59 @@ func (m *Event) SetLocations(value []Locationable)() {
 func (m *Event) SetMultiValueExtendedProperties(value []MultiValueLegacyExtendedPropertyable)() {
     m.multiValueExtendedProperties = value
 }
-// SetOnlineMeeting sets the onlineMeeting property value. The onlineMeeting property
+// SetOnlineMeeting sets the onlineMeeting property value. Details for an attendee to join the meeting online. Default is null. Read-only. After you set the isOnlineMeeting and onlineMeetingProvider properties to enable a meeting online, Microsoft Graph initializes onlineMeeting. When set, the meeting remains available online, and you cannot change the isOnlineMeeting, onlineMeetingProvider, and onlneMeeting properties again.
 func (m *Event) SetOnlineMeeting(value OnlineMeetingInfoable)() {
     m.onlineMeeting = value
 }
-// SetOnlineMeetingProvider sets the onlineMeetingProvider property value. The onlineMeetingProvider property
+// SetOnlineMeetingProvider sets the onlineMeetingProvider property value. Represents the online meeting service provider. By default, onlineMeetingProvider is unknown. The possible values are unknown, teamsForBusiness, skypeForBusiness, and skypeForConsumer. Optional.  After you set onlineMeetingProvider, Microsoft Graph initializes onlineMeeting. Subsequently you cannot change onlineMeetingProvider again, and the meeting remains available online.
 func (m *Event) SetOnlineMeetingProvider(value *OnlineMeetingProviderType)() {
     m.onlineMeetingProvider = value
 }
-// SetOnlineMeetingUrl sets the onlineMeetingUrl property value. The onlineMeetingUrl property
+// SetOnlineMeetingUrl sets the onlineMeetingUrl property value. A URL for an online meeting. The property is set only when an organizer specifies in Outlook that an event is an online meeting such as Skype. Read-only.To access the URL to join an online meeting, use joinUrl which is exposed via the onlineMeeting property of the event. The onlineMeetingUrl property will be deprecated in the future.
 func (m *Event) SetOnlineMeetingUrl(value *string)() {
     m.onlineMeetingUrl = value
 }
-// SetOrganizer sets the organizer property value. The organizer property
+// SetOrganizer sets the organizer property value. The organizer of the event.
 func (m *Event) SetOrganizer(value Recipientable)() {
     m.organizer = value
 }
-// SetOriginalEndTimeZone sets the originalEndTimeZone property value. The originalEndTimeZone property
+// SetOriginalEndTimeZone sets the originalEndTimeZone property value. The end time zone that was set when the event was created. A value of tzone://Microsoft/Custom indicates that a legacy custom time zone was set in desktop Outlook.
 func (m *Event) SetOriginalEndTimeZone(value *string)() {
     m.originalEndTimeZone = value
 }
-// SetOriginalStart sets the originalStart property value. The originalStart property
+// SetOriginalStart sets the originalStart property value. Represents the start time of an event when it is initially created as an occurrence or exception in a recurring series. This property is not returned for events that are single instances. Its date and time information is expressed in ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
 func (m *Event) SetOriginalStart(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.originalStart = value
 }
-// SetOriginalStartTimeZone sets the originalStartTimeZone property value. The originalStartTimeZone property
+// SetOriginalStartTimeZone sets the originalStartTimeZone property value. The start time zone that was set when the event was created. A value of tzone://Microsoft/Custom indicates that a legacy custom time zone was set in desktop Outlook.
 func (m *Event) SetOriginalStartTimeZone(value *string)() {
     m.originalStartTimeZone = value
 }
-// SetRecurrence sets the recurrence property value. The recurrence property
+// SetRecurrence sets the recurrence property value. The recurrence pattern for the event.
 func (m *Event) SetRecurrence(value PatternedRecurrenceable)() {
     m.recurrence = value
 }
-// SetReminderMinutesBeforeStart sets the reminderMinutesBeforeStart property value. The reminderMinutesBeforeStart property
+// SetReminderMinutesBeforeStart sets the reminderMinutesBeforeStart property value. The number of minutes before the event start time that the reminder alert occurs.
 func (m *Event) SetReminderMinutesBeforeStart(value *int32)() {
     m.reminderMinutesBeforeStart = value
 }
-// SetResponseRequested sets the responseRequested property value. The responseRequested property
+// SetResponseRequested sets the responseRequested property value. Default is true, which represents the organizer would like an invitee to send a response to the event.
 func (m *Event) SetResponseRequested(value *bool)() {
     m.responseRequested = value
 }
-// SetResponseStatus sets the responseStatus property value. The responseStatus property
+// SetResponseStatus sets the responseStatus property value. Indicates the type of response sent in response to an event message.
 func (m *Event) SetResponseStatus(value ResponseStatusable)() {
     m.responseStatus = value
 }
-// SetSensitivity sets the sensitivity property value. The sensitivity property
+// SetSensitivity sets the sensitivity property value. Possible values are: normal, personal, private, confidential.
 func (m *Event) SetSensitivity(value *Sensitivity)() {
     m.sensitivity = value
 }
-// SetSeriesMasterId sets the seriesMasterId property value. The seriesMasterId property
+// SetSeriesMasterId sets the seriesMasterId property value. The ID for the recurring series master item, if this event is part of a recurring series.
 func (m *Event) SetSeriesMasterId(value *string)() {
     m.seriesMasterId = value
 }
-// SetShowAs sets the showAs property value. The showAs property
+// SetShowAs sets the showAs property value. The status to show. Possible values are: free, tentative, busy, oof, workingElsewhere, unknown.
 func (m *Event) SetShowAs(value *FreeBusyStatus)() {
     m.showAs = value
 }
@@ -1196,23 +1196,23 @@ func (m *Event) SetShowAs(value *FreeBusyStatus)() {
 func (m *Event) SetSingleValueExtendedProperties(value []SingleValueLegacyExtendedPropertyable)() {
     m.singleValueExtendedProperties = value
 }
-// SetStart sets the start property value. The start property
+// SetStart sets the start property value. The start date, time, and time zone of the event. By default, the start time is in UTC.
 func (m *Event) SetStart(value DateTimeTimeZoneable)() {
     m.start = value
 }
-// SetSubject sets the subject property value. The subject property
+// SetSubject sets the subject property value. The text of the event's subject line.
 func (m *Event) SetSubject(value *string)() {
     m.subject = value
 }
-// SetTransactionId sets the transactionId property value. The transactionId property
+// SetTransactionId sets the transactionId property value. A custom identifier specified by a client app for the server to avoid redundant POST operations in case of client retries to create the same event. This is useful when low network connectivity causes the client to time out before receiving a response from the server for the client's prior create-event request. After you set transactionId when creating an event, you cannot change transactionId in a subsequent update. This property is only returned in a response payload if an app has set it. Optional.
 func (m *Event) SetTransactionId(value *string)() {
     m.transactionId = value
 }
-// SetTypeEscaped sets the type property value. The type property
+// SetTypeEscaped sets the type property value. The event type. Possible values are: singleInstance, occurrence, exception, seriesMaster. Read-only
 func (m *Event) SetTypeEscaped(value *EventType)() {
     m.typeEscaped = value
 }
-// SetWebLink sets the webLink property value. The webLink property
+// SetWebLink sets the webLink property value. The URL to open the event in Outlook on the web.Outlook on the web opens the event in the browser if you are signed in to your mailbox. Otherwise, Outlook on the web prompts you to sign in.This URL cannot be accessed from within an iFrame.
 func (m *Event) SetWebLink(value *string)() {
     m.webLink = value
 }

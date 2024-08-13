@@ -8,9 +8,9 @@ import (
 type Identity struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // The display name of the identity. The display name might not always be available or up to date. For example, if a user changes their display name, the API might show the new value in a future response, but the items associated with the user won't show up as having changed when using delta.
+    // The display name of the identity.For drive items, the display name might not always be available or up to date. For example, if a user changes their display name the API might show the new value in a future response, but the items associated with the user don't show up as changed when using delta.
     displayName *string
-    // Unique identifier for the identity.
+    // Unique identifier for the identity or actor. For example, in the access reviews decisions API, this property might record the id of the principal, that is, the group, user, or application that's subject to review.
     id *string
     // The OdataType property
     odataType *string
@@ -54,7 +54,7 @@ func CreateIdentityFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f4
 func (m *Identity) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetDisplayName gets the displayName property value. The display name of the identity. The display name might not always be available or up to date. For example, if a user changes their display name, the API might show the new value in a future response, but the items associated with the user won't show up as having changed when using delta.
+// GetDisplayName gets the displayName property value. The display name of the identity.For drive items, the display name might not always be available or up to date. For example, if a user changes their display name the API might show the new value in a future response, but the items associated with the user don't show up as changed when using delta.
 func (m *Identity) GetDisplayName()(*string) {
     return m.displayName
 }
@@ -93,7 +93,7 @@ func (m *Identity) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896
     }
     return res
 }
-// GetId gets the id property value. Unique identifier for the identity.
+// GetId gets the id property value. Unique identifier for the identity or actor. For example, in the access reviews decisions API, this property might record the id of the principal, that is, the group, user, or application that's subject to review.
 func (m *Identity) GetId()(*string) {
     return m.id
 }
@@ -133,11 +133,11 @@ func (m *Identity) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c01
 func (m *Identity) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetDisplayName sets the displayName property value. The display name of the identity. The display name might not always be available or up to date. For example, if a user changes their display name, the API might show the new value in a future response, but the items associated with the user won't show up as having changed when using delta.
+// SetDisplayName sets the displayName property value. The display name of the identity.For drive items, the display name might not always be available or up to date. For example, if a user changes their display name the API might show the new value in a future response, but the items associated with the user don't show up as changed when using delta.
 func (m *Identity) SetDisplayName(value *string)() {
     m.displayName = value
 }
-// SetId sets the id property value. Unique identifier for the identity.
+// SetId sets the id property value. Unique identifier for the identity or actor. For example, in the access reviews decisions API, this property might record the id of the principal, that is, the group, user, or application that's subject to review.
 func (m *Identity) SetId(value *string)() {
     m.id = value
 }

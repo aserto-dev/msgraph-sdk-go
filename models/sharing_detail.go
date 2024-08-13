@@ -15,11 +15,11 @@ type SharingDetail struct {
     sharedBy InsightIdentityable
     // The date and time the file was last shared. The timestamp represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
     sharedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The sharingReference property
+    // Reference properties of the document, such as the URL and type of the document. Read-only
     sharingReference ResourceReferenceable
     // The subject with which the document was shared.
     sharingSubject *string
-    // Determines the way the document was shared, can be by a 'Link', 'Attachment', 'Group', 'Site'.
+    // Determines the way the document was shared. Can be by a 1Link1, 1Attachment1, 1Group1, 1Site1.
     sharingType *string
 }
 // NewSharingDetail instantiates a new sharingDetail and sets the default values.
@@ -114,7 +114,7 @@ func (m *SharingDetail) GetSharedBy()(InsightIdentityable) {
 func (m *SharingDetail) GetSharedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.sharedDateTime
 }
-// GetSharingReference gets the sharingReference property value. The sharingReference property
+// GetSharingReference gets the sharingReference property value. Reference properties of the document, such as the URL and type of the document. Read-only
 func (m *SharingDetail) GetSharingReference()(ResourceReferenceable) {
     return m.sharingReference
 }
@@ -122,7 +122,7 @@ func (m *SharingDetail) GetSharingReference()(ResourceReferenceable) {
 func (m *SharingDetail) GetSharingSubject()(*string) {
     return m.sharingSubject
 }
-// GetSharingType gets the sharingType property value. Determines the way the document was shared, can be by a 'Link', 'Attachment', 'Group', 'Site'.
+// GetSharingType gets the sharingType property value. Determines the way the document was shared. Can be by a 1Link1, 1Attachment1, 1Group1, 1Site1.
 func (m *SharingDetail) GetSharingType()(*string) {
     return m.sharingType
 }
@@ -182,7 +182,7 @@ func (m *SharingDetail) SetSharedBy(value InsightIdentityable)() {
 func (m *SharingDetail) SetSharedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.sharedDateTime = value
 }
-// SetSharingReference sets the sharingReference property value. The sharingReference property
+// SetSharingReference sets the sharingReference property value. Reference properties of the document, such as the URL and type of the document. Read-only
 func (m *SharingDetail) SetSharingReference(value ResourceReferenceable)() {
     m.sharingReference = value
 }
@@ -190,7 +190,7 @@ func (m *SharingDetail) SetSharingReference(value ResourceReferenceable)() {
 func (m *SharingDetail) SetSharingSubject(value *string)() {
     m.sharingSubject = value
 }
-// SetSharingType sets the sharingType property value. Determines the way the document was shared, can be by a 'Link', 'Attachment', 'Group', 'Site'.
+// SetSharingType sets the sharingType property value. Determines the way the document was shared. Can be by a 1Link1, 1Attachment1, 1Group1, 1Site1.
 func (m *SharingDetail) SetSharingType(value *string)() {
     m.sharingType = value
 }

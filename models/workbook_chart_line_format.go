@@ -7,7 +7,7 @@ import (
 // WorkbookChartLineFormat 
 type WorkbookChartLineFormat struct {
     Entity
-    // HTML color code representing the color of lines in the chart.
+    // The HTML color code that represents the color of lines in the chart.
     color *string
 }
 // NewWorkbookChartLineFormat instantiates a new workbookChartLineFormat and sets the default values.
@@ -21,7 +21,7 @@ func NewWorkbookChartLineFormat()(*WorkbookChartLineFormat) {
 func CreateWorkbookChartLineFormatFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewWorkbookChartLineFormat(), nil
 }
-// GetColor gets the color property value. HTML color code representing the color of lines in the chart.
+// GetColor gets the color property value. The HTML color code that represents the color of lines in the chart.
 func (m *WorkbookChartLineFormat) GetColor()(*string) {
     return m.color
 }
@@ -54,7 +54,7 @@ func (m *WorkbookChartLineFormat) Serialize(writer i878a80d2330e89d26896388a3f48
     }
     return nil
 }
-// SetColor sets the color property value. HTML color code representing the color of lines in the chart.
+// SetColor sets the color property value. The HTML color code that represents the color of lines in the chart.
 func (m *WorkbookChartLineFormat) SetColor(value *string)() {
     m.color = value
 }

@@ -7,17 +7,17 @@ import (
 // WorkbookChartFont 
 type WorkbookChartFont struct {
     Entity
-    // Represents the bold status of font.
+    // Indicates whether the fond is bold.
     bold *bool
-    // HTML color code representation of the text color. for example #FF0000 represents Red.
+    // The HTML color code representation of the text color. For example #FF0000 represents Red.
     color *string
-    // Represents the italic status of the font.
+    // Indicates whether the fond is italic.
     italic *bool
-    // Font name (for example 'Calibri')
+    // The font name. For example 'Calibri'.
     name *string
-    // Size of the font (for example 11)
+    // The size of the font. For example,  11.
     size *float64
-    // Type of underline applied to the font. The possible values are: None, Single.
+    // The type of underlining applied to the font. The possible values are: None, Single.
     underline *string
 }
 // NewWorkbookChartFont instantiates a new workbookChartFont and sets the default values.
@@ -31,11 +31,11 @@ func NewWorkbookChartFont()(*WorkbookChartFont) {
 func CreateWorkbookChartFontFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewWorkbookChartFont(), nil
 }
-// GetBold gets the bold property value. Represents the bold status of font.
+// GetBold gets the bold property value. Indicates whether the fond is bold.
 func (m *WorkbookChartFont) GetBold()(*bool) {
     return m.bold
 }
-// GetColor gets the color property value. HTML color code representation of the text color. for example #FF0000 represents Red.
+// GetColor gets the color property value. The HTML color code representation of the text color. For example #FF0000 represents Red.
 func (m *WorkbookChartFont) GetColor()(*string) {
     return m.color
 }
@@ -104,19 +104,19 @@ func (m *WorkbookChartFont) GetFieldDeserializers()(map[string]func(i878a80d2330
     }
     return res
 }
-// GetItalic gets the italic property value. Represents the italic status of the font.
+// GetItalic gets the italic property value. Indicates whether the fond is italic.
 func (m *WorkbookChartFont) GetItalic()(*bool) {
     return m.italic
 }
-// GetName gets the name property value. Font name (for example 'Calibri')
+// GetName gets the name property value. The font name. For example 'Calibri'.
 func (m *WorkbookChartFont) GetName()(*string) {
     return m.name
 }
-// GetSize gets the size property value. Size of the font (for example 11)
+// GetSize gets the size property value. The size of the font. For example,  11.
 func (m *WorkbookChartFont) GetSize()(*float64) {
     return m.size
 }
-// GetUnderline gets the underline property value. Type of underline applied to the font. The possible values are: None, Single.
+// GetUnderline gets the underline property value. The type of underlining applied to the font. The possible values are: None, Single.
 func (m *WorkbookChartFont) GetUnderline()(*string) {
     return m.underline
 }
@@ -164,27 +164,27 @@ func (m *WorkbookChartFont) Serialize(writer i878a80d2330e89d26896388a3f487eef27
     }
     return nil
 }
-// SetBold sets the bold property value. Represents the bold status of font.
+// SetBold sets the bold property value. Indicates whether the fond is bold.
 func (m *WorkbookChartFont) SetBold(value *bool)() {
     m.bold = value
 }
-// SetColor sets the color property value. HTML color code representation of the text color. for example #FF0000 represents Red.
+// SetColor sets the color property value. The HTML color code representation of the text color. For example #FF0000 represents Red.
 func (m *WorkbookChartFont) SetColor(value *string)() {
     m.color = value
 }
-// SetItalic sets the italic property value. Represents the italic status of the font.
+// SetItalic sets the italic property value. Indicates whether the fond is italic.
 func (m *WorkbookChartFont) SetItalic(value *bool)() {
     m.italic = value
 }
-// SetName sets the name property value. Font name (for example 'Calibri')
+// SetName sets the name property value. The font name. For example 'Calibri'.
 func (m *WorkbookChartFont) SetName(value *string)() {
     m.name = value
 }
-// SetSize sets the size property value. Size of the font (for example 11)
+// SetSize sets the size property value. The size of the font. For example,  11.
 func (m *WorkbookChartFont) SetSize(value *float64)() {
     m.size = value
 }
-// SetUnderline sets the underline property value. Type of underline applied to the font. The possible values are: None, Single.
+// SetUnderline sets the underline property value. The type of underlining applied to the font. The possible values are: None, Single.
 func (m *WorkbookChartFont) SetUnderline(value *string)() {
     m.underline = value
 }

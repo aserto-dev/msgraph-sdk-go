@@ -7,9 +7,9 @@ import (
 // WorkbookPivotTable 
 type WorkbookPivotTable struct {
     Entity
-    // Name of the PivotTable.
+    // The name of the pivot table.
     name *string
-    // The worksheet containing the current PivotTable. Read-only.
+    // The worksheet that contains the current pivot table. Read-only.
     worksheet WorkbookWorksheetable
 }
 // NewWorkbookPivotTable instantiates a new workbookPivotTable and sets the default values.
@@ -48,11 +48,11 @@ func (m *WorkbookPivotTable) GetFieldDeserializers()(map[string]func(i878a80d233
     }
     return res
 }
-// GetName gets the name property value. Name of the PivotTable.
+// GetName gets the name property value. The name of the pivot table.
 func (m *WorkbookPivotTable) GetName()(*string) {
     return m.name
 }
-// GetWorksheet gets the worksheet property value. The worksheet containing the current PivotTable. Read-only.
+// GetWorksheet gets the worksheet property value. The worksheet that contains the current pivot table. Read-only.
 func (m *WorkbookPivotTable) GetWorksheet()(WorkbookWorksheetable) {
     return m.worksheet
 }
@@ -76,11 +76,11 @@ func (m *WorkbookPivotTable) Serialize(writer i878a80d2330e89d26896388a3f487eef2
     }
     return nil
 }
-// SetName sets the name property value. Name of the PivotTable.
+// SetName sets the name property value. The name of the pivot table.
 func (m *WorkbookPivotTable) SetName(value *string)() {
     m.name = value
 }
-// SetWorksheet sets the worksheet property value. The worksheet containing the current PivotTable. Read-only.
+// SetWorksheet sets the worksheet property value. The worksheet that contains the current pivot table. Read-only.
 func (m *WorkbookPivotTable) SetWorksheet(value WorkbookWorksheetable)() {
     m.worksheet = value
 }

@@ -8,11 +8,11 @@ import (
 type WorkbookIcon struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // Represents the index of the icon in the given set.
+    // The index of the icon in the given set.
     index *int32
     // The OdataType property
     odataType *string
-    // Represents the set that the icon is part of. The possible values are: Invalid, ThreeArrows, ThreeArrowsGray, ThreeFlags, ThreeTrafficLights1, ThreeTrafficLights2, ThreeSigns, ThreeSymbols, ThreeSymbols2, FourArrows, FourArrowsGray, FourRedToBlack, FourRating, FourTrafficLights, FiveArrows, FiveArrowsGray, FiveRating, FiveQuarters, ThreeStars, ThreeTriangles, FiveBoxes.
+    // The set that the icon is part of. The possible values are: Invalid, ThreeArrows, ThreeArrowsGray, ThreeFlags, ThreeTrafficLights1, ThreeTrafficLights2, ThreeSigns, ThreeSymbols, ThreeSymbols2, FourArrows, FourArrowsGray, FourRedToBlack, FourRating, FourTrafficLights, FiveArrows, FiveArrowsGray, FiveRating, FiveQuarters, ThreeStars, ThreeTriangles, FiveBoxes.
     set *string
 }
 // NewWorkbookIcon instantiates a new workbookIcon and sets the default values.
@@ -65,7 +65,7 @@ func (m *WorkbookIcon) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
     }
     return res
 }
-// GetIndex gets the index property value. Represents the index of the icon in the given set.
+// GetIndex gets the index property value. The index of the icon in the given set.
 func (m *WorkbookIcon) GetIndex()(*int32) {
     return m.index
 }
@@ -73,7 +73,7 @@ func (m *WorkbookIcon) GetIndex()(*int32) {
 func (m *WorkbookIcon) GetOdataType()(*string) {
     return m.odataType
 }
-// GetSet gets the set property value. Represents the set that the icon is part of. The possible values are: Invalid, ThreeArrows, ThreeArrowsGray, ThreeFlags, ThreeTrafficLights1, ThreeTrafficLights2, ThreeSigns, ThreeSymbols, ThreeSymbols2, FourArrows, FourArrowsGray, FourRedToBlack, FourRating, FourTrafficLights, FiveArrows, FiveArrowsGray, FiveRating, FiveQuarters, ThreeStars, ThreeTriangles, FiveBoxes.
+// GetSet gets the set property value. The set that the icon is part of. The possible values are: Invalid, ThreeArrows, ThreeArrowsGray, ThreeFlags, ThreeTrafficLights1, ThreeTrafficLights2, ThreeSigns, ThreeSymbols, ThreeSymbols2, FourArrows, FourArrowsGray, FourRedToBlack, FourRating, FourTrafficLights, FiveArrows, FiveArrowsGray, FiveRating, FiveQuarters, ThreeStars, ThreeTriangles, FiveBoxes.
 func (m *WorkbookIcon) GetSet()(*string) {
     return m.set
 }
@@ -109,7 +109,7 @@ func (m *WorkbookIcon) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
 func (m *WorkbookIcon) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetIndex sets the index property value. Represents the index of the icon in the given set.
+// SetIndex sets the index property value. The index of the icon in the given set.
 func (m *WorkbookIcon) SetIndex(value *int32)() {
     m.index = value
 }
@@ -117,7 +117,7 @@ func (m *WorkbookIcon) SetIndex(value *int32)() {
 func (m *WorkbookIcon) SetOdataType(value *string)() {
     m.odataType = value
 }
-// SetSet sets the set property value. Represents the set that the icon is part of. The possible values are: Invalid, ThreeArrows, ThreeArrowsGray, ThreeFlags, ThreeTrafficLights1, ThreeTrafficLights2, ThreeSigns, ThreeSymbols, ThreeSymbols2, FourArrows, FourArrowsGray, FourRedToBlack, FourRating, FourTrafficLights, FiveArrows, FiveArrowsGray, FiveRating, FiveQuarters, ThreeStars, ThreeTriangles, FiveBoxes.
+// SetSet sets the set property value. The set that the icon is part of. The possible values are: Invalid, ThreeArrows, ThreeArrowsGray, ThreeFlags, ThreeTrafficLights1, ThreeTrafficLights2, ThreeSigns, ThreeSymbols, ThreeSymbols2, FourArrows, FourArrowsGray, FourRedToBlack, FourRating, FourTrafficLights, FiveArrows, FiveArrowsGray, FiveRating, FiveQuarters, ThreeStars, ThreeTriangles, FiveBoxes.
 func (m *WorkbookIcon) SetSet(value *string)() {
     m.set = value
 }

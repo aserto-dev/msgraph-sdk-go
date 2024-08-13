@@ -22,7 +22,7 @@ type PrinterDefaults struct {
     finishings []PrintFinishing
     // The default fitPdfToPage setting. True to fit each page of a PDF document to a physical sheet of media; false to let the printer decide how to lay out impressions.
     fitPdfToPage *bool
-    // The inputBin property
+    // The default input bin that serves as the paper source.
     inputBin *string
     // The default media (such as paper) color to print the document on.
     mediaColor *string
@@ -279,7 +279,7 @@ func (m *PrinterDefaults) GetFinishings()([]PrintFinishing) {
 func (m *PrinterDefaults) GetFitPdfToPage()(*bool) {
     return m.fitPdfToPage
 }
-// GetInputBin gets the inputBin property value. The inputBin property
+// GetInputBin gets the inputBin property value. The default input bin that serves as the paper source.
 func (m *PrinterDefaults) GetInputBin()(*string) {
     return m.inputBin
 }
@@ -479,7 +479,7 @@ func (m *PrinterDefaults) SetFinishings(value []PrintFinishing)() {
 func (m *PrinterDefaults) SetFitPdfToPage(value *bool)() {
     m.fitPdfToPage = value
 }
-// SetInputBin sets the inputBin property value. The inputBin property
+// SetInputBin sets the inputBin property value. The default input bin that serves as the paper source.
 func (m *PrinterDefaults) SetInputBin(value *string)() {
     m.inputBin = value
 }

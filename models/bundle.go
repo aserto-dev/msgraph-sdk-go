@@ -8,7 +8,7 @@ import (
 type Bundle struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // If the bundle is an [album][], then the album property is included
+    // If the bundle is an album, then the album property is included
     album Albumable
     // Number of children contained immediately within this container.
     childCount *int32
@@ -30,7 +30,7 @@ func CreateBundleFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487
 func (m *Bundle) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetAlbum gets the album property value. If the bundle is an [album][], then the album property is included
+// GetAlbum gets the album property value. If the bundle is an album, then the album property is included
 func (m *Bundle) GetAlbum()(Albumable) {
     return m.album
 }
@@ -109,7 +109,7 @@ func (m *Bundle) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c
 func (m *Bundle) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetAlbum sets the album property value. If the bundle is an [album][], then the album property is included
+// SetAlbum sets the album property value. If the bundle is an album, then the album property is included
 func (m *Bundle) SetAlbum(value Albumable)() {
     m.album = value
 }

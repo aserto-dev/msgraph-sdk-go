@@ -7,7 +7,7 @@ import (
 // Site 
 type Site struct {
     BaseItem
-    // Analytics about the view activities that took place in this site.
+    // Analytics about the view activities that took place on this site.
     analytics ItemAnalyticsable
     // The collection of column definitions reusable across lists under this site.
     columns []ColumnDefinitionable
@@ -23,7 +23,7 @@ type Site struct {
     error PublicErrorable
     // The externalColumns property
     externalColumns []ColumnDefinitionable
-    // The isPersonalSite property
+    // Identifies whether the site is personal or not. Read-only.
     isPersonalSite *bool
     // Used to address any item contained in this site. This collection can't be enumerated.
     items []BaseItemable
@@ -33,9 +33,11 @@ type Site struct {
     onenote Onenoteable
     // The collection of long-running operations on the site.
     operations []RichLongRunningOperationable
+    // The collection of pages in the baseSitePages list in this site.
+    pages []BaseSitePageable
     // The permissions associated with the site. Nullable.
     permissions []Permissionable
-    // If present, indicates that this is the root site in the site collection. Read-only.
+    // If present, provides the root site in the site collection. Read-only.
     root Rootable
     // Returns identifiers useful for SharePoint REST compatibility. Read-only.
     sharepointIds SharepointIdsable
@@ -57,7 +59,7 @@ func NewSite()(*Site) {
 func CreateSiteFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewSite(), nil
 }
-// GetAnalytics gets the analytics property value. Analytics about the view activities that took place in this site.
+// GetAnalytics gets the analytics property value. Analytics about the view activities that took place on this site.
 func (m *Site) GetAnalytics()(ItemAnalyticsable) {
     return m.analytics
 }
@@ -264,6 +266,22 @@ func (m *Site) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
         }
         return nil
     }
+    res["pages"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateBaseSitePageFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]BaseSitePageable, len(val))
+            for i, v := range val {
+                if v != nil {
+                    res[i] = v.(BaseSitePageable)
+                }
+            }
+            m.SetPages(res)
+        }
+        return nil
+    }
     res["permissions"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetCollectionOfObjectValues(CreatePermissionFromDiscriminatorValue)
         if err != nil {
@@ -328,7 +346,7 @@ func (m *Site) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
     }
     return res
 }
-// GetIsPersonalSite gets the isPersonalSite property value. The isPersonalSite property
+// GetIsPersonalSite gets the isPersonalSite property value. Identifies whether the site is personal or not. Read-only.
 func (m *Site) GetIsPersonalSite()(*bool) {
     return m.isPersonalSite
 }
@@ -348,11 +366,15 @@ func (m *Site) GetOnenote()(Onenoteable) {
 func (m *Site) GetOperations()([]RichLongRunningOperationable) {
     return m.operations
 }
+// GetPages gets the pages property value. The collection of pages in the baseSitePages list in this site.
+func (m *Site) GetPages()([]BaseSitePageable) {
+    return m.pages
+}
 // GetPermissions gets the permissions property value. The permissions associated with the site. Nullable.
 func (m *Site) GetPermissions()([]Permissionable) {
     return m.permissions
 }
-// GetRoot gets the root property value. If present, indicates that this is the root site in the site collection. Read-only.
+// GetRoot gets the root property value. If present, provides the root site in the site collection. Read-only.
 func (m *Site) GetRoot()(Rootable) {
     return m.root
 }
@@ -494,6 +516,18 @@ func (m *Site) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
             return err
         }
     }
+    if m.GetPages() != nil {
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPages()))
+        for i, v := range m.GetPages() {
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
+        }
+        err = writer.WriteCollectionOfObjectValues("pages", cast)
+        if err != nil {
+            return err
+        }
+    }
     if m.GetPermissions() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPermissions()))
         for i, v := range m.GetPermissions() {
@@ -538,7 +572,7 @@ func (m *Site) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
     }
     return nil
 }
-// SetAnalytics sets the analytics property value. Analytics about the view activities that took place in this site.
+// SetAnalytics sets the analytics property value. Analytics about the view activities that took place on this site.
 func (m *Site) SetAnalytics(value ItemAnalyticsable)() {
     m.analytics = value
 }
@@ -570,7 +604,7 @@ func (m *Site) SetError(value PublicErrorable)() {
 func (m *Site) SetExternalColumns(value []ColumnDefinitionable)() {
     m.externalColumns = value
 }
-// SetIsPersonalSite sets the isPersonalSite property value. The isPersonalSite property
+// SetIsPersonalSite sets the isPersonalSite property value. Identifies whether the site is personal or not. Read-only.
 func (m *Site) SetIsPersonalSite(value *bool)() {
     m.isPersonalSite = value
 }
@@ -590,11 +624,15 @@ func (m *Site) SetOnenote(value Onenoteable)() {
 func (m *Site) SetOperations(value []RichLongRunningOperationable)() {
     m.operations = value
 }
+// SetPages sets the pages property value. The collection of pages in the baseSitePages list in this site.
+func (m *Site) SetPages(value []BaseSitePageable)() {
+    m.pages = value
+}
 // SetPermissions sets the permissions property value. The permissions associated with the site. Nullable.
 func (m *Site) SetPermissions(value []Permissionable)() {
     m.permissions = value
 }
-// SetRoot sets the root property value. If present, indicates that this is the root site in the site collection. Read-only.
+// SetRoot sets the root property value. If present, provides the root site in the site collection. Read-only.
 func (m *Site) SetRoot(value Rootable)() {
     m.root = value
 }
@@ -627,6 +665,7 @@ type Siteable interface {
     GetLists()([]Listable)
     GetOnenote()(Onenoteable)
     GetOperations()([]RichLongRunningOperationable)
+    GetPages()([]BaseSitePageable)
     GetPermissions()([]Permissionable)
     GetRoot()(Rootable)
     GetSharepointIds()(SharepointIdsable)
@@ -645,6 +684,7 @@ type Siteable interface {
     SetLists(value []Listable)()
     SetOnenote(value Onenoteable)()
     SetOperations(value []RichLongRunningOperationable)()
+    SetPages(value []BaseSitePageable)()
     SetPermissions(value []Permissionable)()
     SetRoot(value Rootable)()
     SetSharepointIds(value SharepointIdsable)()

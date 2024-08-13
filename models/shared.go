@@ -13,7 +13,7 @@ type Shared struct {
     odataType *string
     // The identity of the owner of the shared item. Read-only.
     owner IdentitySetable
-    // Indicates the scope of how the item is shared: anonymous, organization, or users. Read-only.
+    // Indicates the scope of how the item is shared. The possible values are: anonymous, organization, or users. Read-only.
     scope *string
     // The identity of the user who shared the item. Read-only.
     sharedBy IdentitySetable
@@ -98,7 +98,7 @@ func (m *Shared) GetOdataType()(*string) {
 func (m *Shared) GetOwner()(IdentitySetable) {
     return m.owner
 }
-// GetScope gets the scope property value. Indicates the scope of how the item is shared: anonymous, organization, or users. Read-only.
+// GetScope gets the scope property value. Indicates the scope of how the item is shared. The possible values are: anonymous, organization, or users. Read-only.
 func (m *Shared) GetScope()(*string) {
     return m.scope
 }
@@ -162,7 +162,7 @@ func (m *Shared) SetOdataType(value *string)() {
 func (m *Shared) SetOwner(value IdentitySetable)() {
     m.owner = value
 }
-// SetScope sets the scope property value. Indicates the scope of how the item is shared: anonymous, organization, or users. Read-only.
+// SetScope sets the scope property value. Indicates the scope of how the item is shared. The possible values are: anonymous, organization, or users. Read-only.
 func (m *Shared) SetScope(value *string)() {
     m.scope = value
 }

@@ -9,11 +9,11 @@ import (
 type AssignedLicense struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // A collection of the unique identifiers for plans that have been disabled.
+    // A collection of the unique identifiers for plans that have been disabled. IDs are available in servicePlans > servicePlanId in the tenant's subscribedSkus or serviceStatus > servicePlanId in the tenant's companySubscription.
     disabledPlans []i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // The OdataType property
     odataType *string
-    // The unique identifier for the SKU.
+    // The unique identifier for the SKU. Corresponds to the skuId from subscribedSkus or companySubscription.
     skuId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
 }
 // NewAssignedLicense instantiates a new assignedLicense and sets the default values.
@@ -31,7 +31,7 @@ func CreateAssignedLicenseFromDiscriminatorValue(parseNode i878a80d2330e89d26896
 func (m *AssignedLicense) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetDisabledPlans gets the disabledPlans property value. A collection of the unique identifiers for plans that have been disabled.
+// GetDisabledPlans gets the disabledPlans property value. A collection of the unique identifiers for plans that have been disabled. IDs are available in servicePlans > servicePlanId in the tenant's subscribedSkus or serviceStatus > servicePlanId in the tenant's companySubscription.
 func (m *AssignedLicense) GetDisabledPlans()([]i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
     return m.disabledPlans
 }
@@ -80,7 +80,7 @@ func (m *AssignedLicense) GetFieldDeserializers()(map[string]func(i878a80d2330e8
 func (m *AssignedLicense) GetOdataType()(*string) {
     return m.odataType
 }
-// GetSkuId gets the skuId property value. The unique identifier for the SKU.
+// GetSkuId gets the skuId property value. The unique identifier for the SKU. Corresponds to the skuId from subscribedSkus or companySubscription.
 func (m *AssignedLicense) GetSkuId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
     return m.skuId
 }
@@ -116,7 +116,7 @@ func (m *AssignedLicense) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
 func (m *AssignedLicense) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetDisabledPlans sets the disabledPlans property value. A collection of the unique identifiers for plans that have been disabled.
+// SetDisabledPlans sets the disabledPlans property value. A collection of the unique identifiers for plans that have been disabled. IDs are available in servicePlans > servicePlanId in the tenant's subscribedSkus or serviceStatus > servicePlanId in the tenant's companySubscription.
 func (m *AssignedLicense) SetDisabledPlans(value []i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
     m.disabledPlans = value
 }
@@ -124,7 +124,7 @@ func (m *AssignedLicense) SetDisabledPlans(value []i561e97a8befe7661a44c8f546009
 func (m *AssignedLicense) SetOdataType(value *string)() {
     m.odataType = value
 }
-// SetSkuId sets the skuId property value. The unique identifier for the SKU.
+// SetSkuId sets the skuId property value. The unique identifier for the SKU. Corresponds to the skuId from subscribedSkus or companySubscription.
 func (m *AssignedLicense) SetSkuId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
     m.skuId = value
 }

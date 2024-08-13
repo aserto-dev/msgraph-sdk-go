@@ -50,6 +50,8 @@ type ManagedDevice struct {
     emailAddress *string
     // Enrollment time of the device. Supports $filter operator 'lt' and 'gt'. This property is read-only.
     enrolledDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+    // Name of the enrollment profile assigned to the device. Default value is empty string, indicating no enrollment profile was assgined. This property is read-only.
+    enrollmentProfileName *string
     // Indicates Ethernet MAC Address of the device. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity. Individual get call with select query options is needed to retrieve actual values. Example: deviceManagement/managedDevices({managedDeviceId})?$select=ethernetMacAddress Supports: $select. $Search is not supported. Read-only. This property is read-only.
     ethernetMacAddress *string
     // Device Exchange Access State.
@@ -221,6 +223,10 @@ func (m *ManagedDevice) GetEmailAddress()(*string) {
 // GetEnrolledDateTime gets the enrolledDateTime property value. Enrollment time of the device. Supports $filter operator 'lt' and 'gt'. This property is read-only.
 func (m *ManagedDevice) GetEnrolledDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.enrolledDateTime
+}
+// GetEnrollmentProfileName gets the enrollmentProfileName property value. Name of the enrollment profile assigned to the device. Default value is empty string, indicating no enrollment profile was assgined. This property is read-only.
+func (m *ManagedDevice) GetEnrollmentProfileName()(*string) {
+    return m.enrollmentProfileName
 }
 // GetEthernetMacAddress gets the ethernetMacAddress property value. Indicates Ethernet MAC Address of the device. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity. Individual get call with select query options is needed to retrieve actual values. Example: deviceManagement/managedDevices({managedDeviceId})?$select=ethernetMacAddress Supports: $select. $Search is not supported. Read-only. This property is read-only.
 func (m *ManagedDevice) GetEthernetMacAddress()(*string) {
@@ -466,6 +472,16 @@ func (m *ManagedDevice) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         }
         if val != nil {
             m.SetEnrolledDateTime(val)
+        }
+        return nil
+    }
+    res["enrollmentProfileName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetEnrollmentProfileName(val)
         }
         return nil
     }
@@ -1219,6 +1235,10 @@ func (m *ManagedDevice) SetEmailAddress(value *string)() {
 func (m *ManagedDevice) SetEnrolledDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.enrolledDateTime = value
 }
+// SetEnrollmentProfileName sets the enrollmentProfileName property value. Name of the enrollment profile assigned to the device. Default value is empty string, indicating no enrollment profile was assgined. This property is read-only.
+func (m *ManagedDevice) SetEnrollmentProfileName(value *string)() {
+    m.enrollmentProfileName = value
+}
 // SetEthernetMacAddress sets the ethernetMacAddress property value. Indicates Ethernet MAC Address of the device. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity. Individual get call with select query options is needed to retrieve actual values. Example: deviceManagement/managedDevices({managedDeviceId})?$select=ethernetMacAddress Supports: $select. $Search is not supported. Read-only. This property is read-only.
 func (m *ManagedDevice) SetEthernetMacAddress(value *string)() {
     m.ethernetMacAddress = value
@@ -1396,6 +1416,7 @@ type ManagedDeviceable interface {
     GetEasDeviceId()(*string)
     GetEmailAddress()(*string)
     GetEnrolledDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetEnrollmentProfileName()(*string)
     GetEthernetMacAddress()(*string)
     GetExchangeAccessState()(*DeviceManagementExchangeAccessState)
     GetExchangeAccessStateReason()(*DeviceManagementExchangeAccessStateReason)
@@ -1455,6 +1476,7 @@ type ManagedDeviceable interface {
     SetEasDeviceId(value *string)()
     SetEmailAddress(value *string)()
     SetEnrolledDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetEnrollmentProfileName(value *string)()
     SetEthernetMacAddress(value *string)()
     SetExchangeAccessState(value *DeviceManagementExchangeAccessState)()
     SetExchangeAccessStateReason(value *DeviceManagementExchangeAccessStateReason)()

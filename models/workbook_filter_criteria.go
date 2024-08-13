@@ -8,24 +8,22 @@ import (
 type WorkbookFilterCriteria struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // The color property
+    // The color applied to the cell.
     color *string
-    // The criterion1 property
+    // A custom criterion.
     criterion1 *string
-    // The criterion2 property
+    // A custom criterion.
     criterion2 *string
-    // The dynamicCriteria property
+    // A dynamic formula specified in a custom filter.
     dynamicCriteria *string
-    // The filterOn property
+    // Indicates whether a filter is applied to a column.
     filterOn *string
-    // The icon property
+    // An icon applied to a cell via conditional formatting.
     icon WorkbookIconable
     // The OdataType property
     odataType *string
-    // The operator property
+    // An operator in a cell; for example, =, >, <, <=, or <>.
     operator *string
-    // The values property
-    values Jsonable
 }
 // NewWorkbookFilterCriteria instantiates a new workbookFilterCriteria and sets the default values.
 func NewWorkbookFilterCriteria()(*WorkbookFilterCriteria) {
@@ -42,19 +40,19 @@ func CreateWorkbookFilterCriteriaFromDiscriminatorValue(parseNode i878a80d2330e8
 func (m *WorkbookFilterCriteria) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetColor gets the color property value. The color property
+// GetColor gets the color property value. The color applied to the cell.
 func (m *WorkbookFilterCriteria) GetColor()(*string) {
     return m.color
 }
-// GetCriterion1 gets the criterion1 property value. The criterion1 property
+// GetCriterion1 gets the criterion1 property value. A custom criterion.
 func (m *WorkbookFilterCriteria) GetCriterion1()(*string) {
     return m.criterion1
 }
-// GetCriterion2 gets the criterion2 property value. The criterion2 property
+// GetCriterion2 gets the criterion2 property value. A custom criterion.
 func (m *WorkbookFilterCriteria) GetCriterion2()(*string) {
     return m.criterion2
 }
-// GetDynamicCriteria gets the dynamicCriteria property value. The dynamicCriteria property
+// GetDynamicCriteria gets the dynamicCriteria property value. A dynamic formula specified in a custom filter.
 func (m *WorkbookFilterCriteria) GetDynamicCriteria()(*string) {
     return m.dynamicCriteria
 }
@@ -141,23 +139,13 @@ func (m *WorkbookFilterCriteria) GetFieldDeserializers()(map[string]func(i878a80
         }
         return nil
     }
-    res["values"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateJsonFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetValues(val.(Jsonable))
-        }
-        return nil
-    }
     return res
 }
-// GetFilterOn gets the filterOn property value. The filterOn property
+// GetFilterOn gets the filterOn property value. Indicates whether a filter is applied to a column.
 func (m *WorkbookFilterCriteria) GetFilterOn()(*string) {
     return m.filterOn
 }
-// GetIcon gets the icon property value. The icon property
+// GetIcon gets the icon property value. An icon applied to a cell via conditional formatting.
 func (m *WorkbookFilterCriteria) GetIcon()(WorkbookIconable) {
     return m.icon
 }
@@ -165,13 +153,9 @@ func (m *WorkbookFilterCriteria) GetIcon()(WorkbookIconable) {
 func (m *WorkbookFilterCriteria) GetOdataType()(*string) {
     return m.odataType
 }
-// GetOperator gets the operator property value. The operator property
+// GetOperator gets the operator property value. An operator in a cell; for example, =, >, <, <=, or <>.
 func (m *WorkbookFilterCriteria) GetOperator()(*string) {
     return m.operator
-}
-// GetValues gets the values property value. The values property
-func (m *WorkbookFilterCriteria) GetValues()(Jsonable) {
-    return m.values
 }
 // Serialize serializes information the current object
 func (m *WorkbookFilterCriteria) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -224,12 +208,6 @@ func (m *WorkbookFilterCriteria) Serialize(writer i878a80d2330e89d26896388a3f487
         }
     }
     {
-        err := writer.WriteObjectValue("values", m.GetValues())
-        if err != nil {
-            return err
-        }
-    }
-    {
         err := writer.WriteAdditionalData(m.GetAdditionalData())
         if err != nil {
             return err
@@ -241,27 +219,27 @@ func (m *WorkbookFilterCriteria) Serialize(writer i878a80d2330e89d26896388a3f487
 func (m *WorkbookFilterCriteria) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetColor sets the color property value. The color property
+// SetColor sets the color property value. The color applied to the cell.
 func (m *WorkbookFilterCriteria) SetColor(value *string)() {
     m.color = value
 }
-// SetCriterion1 sets the criterion1 property value. The criterion1 property
+// SetCriterion1 sets the criterion1 property value. A custom criterion.
 func (m *WorkbookFilterCriteria) SetCriterion1(value *string)() {
     m.criterion1 = value
 }
-// SetCriterion2 sets the criterion2 property value. The criterion2 property
+// SetCriterion2 sets the criterion2 property value. A custom criterion.
 func (m *WorkbookFilterCriteria) SetCriterion2(value *string)() {
     m.criterion2 = value
 }
-// SetDynamicCriteria sets the dynamicCriteria property value. The dynamicCriteria property
+// SetDynamicCriteria sets the dynamicCriteria property value. A dynamic formula specified in a custom filter.
 func (m *WorkbookFilterCriteria) SetDynamicCriteria(value *string)() {
     m.dynamicCriteria = value
 }
-// SetFilterOn sets the filterOn property value. The filterOn property
+// SetFilterOn sets the filterOn property value. Indicates whether a filter is applied to a column.
 func (m *WorkbookFilterCriteria) SetFilterOn(value *string)() {
     m.filterOn = value
 }
-// SetIcon sets the icon property value. The icon property
+// SetIcon sets the icon property value. An icon applied to a cell via conditional formatting.
 func (m *WorkbookFilterCriteria) SetIcon(value WorkbookIconable)() {
     m.icon = value
 }
@@ -269,13 +247,9 @@ func (m *WorkbookFilterCriteria) SetIcon(value WorkbookIconable)() {
 func (m *WorkbookFilterCriteria) SetOdataType(value *string)() {
     m.odataType = value
 }
-// SetOperator sets the operator property value. The operator property
+// SetOperator sets the operator property value. An operator in a cell; for example, =, >, <, <=, or <>.
 func (m *WorkbookFilterCriteria) SetOperator(value *string)() {
     m.operator = value
-}
-// SetValues sets the values property value. The values property
-func (m *WorkbookFilterCriteria) SetValues(value Jsonable)() {
-    m.values = value
 }
 // WorkbookFilterCriteriaable 
 type WorkbookFilterCriteriaable interface {
@@ -289,7 +263,6 @@ type WorkbookFilterCriteriaable interface {
     GetIcon()(WorkbookIconable)
     GetOdataType()(*string)
     GetOperator()(*string)
-    GetValues()(Jsonable)
     SetColor(value *string)()
     SetCriterion1(value *string)()
     SetCriterion2(value *string)()
@@ -298,5 +271,4 @@ type WorkbookFilterCriteriaable interface {
     SetIcon(value WorkbookIconable)()
     SetOdataType(value *string)()
     SetOperator(value *string)()
-    SetValues(value Jsonable)()
 }

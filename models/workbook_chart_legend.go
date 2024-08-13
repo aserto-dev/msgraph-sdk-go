@@ -9,11 +9,11 @@ type WorkbookChartLegend struct {
     Entity
     // Represents the formatting of a chart legend, which includes fill and font formatting. Read-only.
     format WorkbookChartLegendFormatable
-    // Boolean value for whether the chart legend should overlap with the main body of the chart.
+    // Indicates whether the chart legend should overlap with the main body of the chart.
     overlay *bool
     // Represents the position of the legend on the chart. The possible values are: Top, Bottom, Left, Right, Corner, Custom.
     position *string
-    // A boolean value the represents the visibility of a ChartLegend object.
+    // Indicates whether the chart legend is visible.
     visible *bool
 }
 // NewWorkbookChartLegend instantiates a new workbookChartLegend and sets the default values.
@@ -76,7 +76,7 @@ func (m *WorkbookChartLegend) GetFieldDeserializers()(map[string]func(i878a80d23
 func (m *WorkbookChartLegend) GetFormat()(WorkbookChartLegendFormatable) {
     return m.format
 }
-// GetOverlay gets the overlay property value. Boolean value for whether the chart legend should overlap with the main body of the chart.
+// GetOverlay gets the overlay property value. Indicates whether the chart legend should overlap with the main body of the chart.
 func (m *WorkbookChartLegend) GetOverlay()(*bool) {
     return m.overlay
 }
@@ -84,7 +84,7 @@ func (m *WorkbookChartLegend) GetOverlay()(*bool) {
 func (m *WorkbookChartLegend) GetPosition()(*string) {
     return m.position
 }
-// GetVisible gets the visible property value. A boolean value the represents the visibility of a ChartLegend object.
+// GetVisible gets the visible property value. Indicates whether the chart legend is visible.
 func (m *WorkbookChartLegend) GetVisible()(*bool) {
     return m.visible
 }
@@ -124,7 +124,7 @@ func (m *WorkbookChartLegend) Serialize(writer i878a80d2330e89d26896388a3f487eef
 func (m *WorkbookChartLegend) SetFormat(value WorkbookChartLegendFormatable)() {
     m.format = value
 }
-// SetOverlay sets the overlay property value. Boolean value for whether the chart legend should overlap with the main body of the chart.
+// SetOverlay sets the overlay property value. Indicates whether the chart legend should overlap with the main body of the chart.
 func (m *WorkbookChartLegend) SetOverlay(value *bool)() {
     m.overlay = value
 }
@@ -132,7 +132,7 @@ func (m *WorkbookChartLegend) SetOverlay(value *bool)() {
 func (m *WorkbookChartLegend) SetPosition(value *string)() {
     m.position = value
 }
-// SetVisible sets the visible property value. A boolean value the represents the visibility of a ChartLegend object.
+// SetVisible sets the visible property value. Indicates whether the chart legend is visible.
 func (m *WorkbookChartLegend) SetVisible(value *bool)() {
     m.visible = value
 }
