@@ -11,7 +11,7 @@ import (
 type UsersRequestBuilder struct {
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
-// UsersRequestBuilderGetQueryParameters retrieve a list of user objects.
+// UsersRequestBuilderGetQueryParameters list properties and relationships of the user objects.
 type UsersRequestBuilderGetQueryParameters struct {
     // Include count of items
     Count *bool `uriparametername:"%24count"`
@@ -61,10 +61,10 @@ func NewUsersRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263371cb
     urlParams["request-raw-url"] = rawUrl
     return NewUsersRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Get retrieve a list of user objects.
+// Get list properties and relationships of the user objects.
 // [Find more info here]
 // 
-// [Find more info here]: https://learn.microsoft.com/graph/api/user-list?view=graph-rest-1.0
+// [Find more info here]: https://learn.microsoft.com/graph/api/intune-onboarding-user-list?view=graph-rest-1.0
 func (m *UsersRequestBuilder) Get(ctx context.Context, requestConfiguration *UsersRequestBuilderGetRequestConfiguration)(ie5faf868346cbd3c75e1e8329117d648c5f48d3737fa46dd1a10043c93c23754.UserCollectionResponseable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
@@ -83,7 +83,7 @@ func (m *UsersRequestBuilder) Get(ctx context.Context, requestConfiguration *Use
     }
     return res.(ie5faf868346cbd3c75e1e8329117d648c5f48d3737fa46dd1a10043c93c23754.UserCollectionResponseable), nil
 }
-// ToGetRequestInformation retrieve a list of user objects.
+// ToGetRequestInformation list properties and relationships of the user objects.
 func (m *UsersRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *UsersRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformationWithMethodAndUrlTemplateAndPathParameters(i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.GET, m.BaseRequestBuilder.UrlTemplate, m.BaseRequestBuilder.PathParameters)
     if requestConfiguration != nil {

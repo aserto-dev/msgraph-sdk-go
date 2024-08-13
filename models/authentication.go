@@ -15,13 +15,13 @@ type Authentication struct {
     methods []AuthenticationMethodable
     // The details of the Microsoft Authenticator app registered to a user for authentication.
     microsoftAuthenticatorMethods []MicrosoftAuthenticatorAuthenticationMethodable
-    // Represents the status of a long-running operation.
+    // Represents the status of a long-running operation, such as a password reset operation.
     operations []LongRunningOperationable
-    // Represents the password that's registered to a user for authentication. For security, the password itself will never be returned in the object, but action can be taken to reset a password.
+    // Represents the password registered to a user for authentication. For security, the password itself is never returned in the object, but action can be taken to reset a password.
     passwordMethods []PasswordAuthenticationMethodable
     // The phone numbers registered to a user for authentication.
     phoneMethods []PhoneAuthenticationMethodable
-    // The software OATH TOTP applications registered to a user for authentication.
+    // The software OATH time-based one-time password (TOTP) applications registered to a user for authentication.
     softwareOathMethods []SoftwareOathAuthenticationMethodable
     // Represents a Temporary Access Pass registered to a user for authentication through time-limited passcodes.
     temporaryAccessPassMethods []TemporaryAccessPassAuthenticationMethodable
@@ -220,11 +220,11 @@ func (m *Authentication) GetMethods()([]AuthenticationMethodable) {
 func (m *Authentication) GetMicrosoftAuthenticatorMethods()([]MicrosoftAuthenticatorAuthenticationMethodable) {
     return m.microsoftAuthenticatorMethods
 }
-// GetOperations gets the operations property value. Represents the status of a long-running operation.
+// GetOperations gets the operations property value. Represents the status of a long-running operation, such as a password reset operation.
 func (m *Authentication) GetOperations()([]LongRunningOperationable) {
     return m.operations
 }
-// GetPasswordMethods gets the passwordMethods property value. Represents the password that's registered to a user for authentication. For security, the password itself will never be returned in the object, but action can be taken to reset a password.
+// GetPasswordMethods gets the passwordMethods property value. Represents the password registered to a user for authentication. For security, the password itself is never returned in the object, but action can be taken to reset a password.
 func (m *Authentication) GetPasswordMethods()([]PasswordAuthenticationMethodable) {
     return m.passwordMethods
 }
@@ -232,7 +232,7 @@ func (m *Authentication) GetPasswordMethods()([]PasswordAuthenticationMethodable
 func (m *Authentication) GetPhoneMethods()([]PhoneAuthenticationMethodable) {
     return m.phoneMethods
 }
-// GetSoftwareOathMethods gets the softwareOathMethods property value. The software OATH TOTP applications registered to a user for authentication.
+// GetSoftwareOathMethods gets the softwareOathMethods property value. The software OATH time-based one-time password (TOTP) applications registered to a user for authentication.
 func (m *Authentication) GetSoftwareOathMethods()([]SoftwareOathAuthenticationMethodable) {
     return m.softwareOathMethods
 }
@@ -388,11 +388,11 @@ func (m *Authentication) SetMethods(value []AuthenticationMethodable)() {
 func (m *Authentication) SetMicrosoftAuthenticatorMethods(value []MicrosoftAuthenticatorAuthenticationMethodable)() {
     m.microsoftAuthenticatorMethods = value
 }
-// SetOperations sets the operations property value. Represents the status of a long-running operation.
+// SetOperations sets the operations property value. Represents the status of a long-running operation, such as a password reset operation.
 func (m *Authentication) SetOperations(value []LongRunningOperationable)() {
     m.operations = value
 }
-// SetPasswordMethods sets the passwordMethods property value. Represents the password that's registered to a user for authentication. For security, the password itself will never be returned in the object, but action can be taken to reset a password.
+// SetPasswordMethods sets the passwordMethods property value. Represents the password registered to a user for authentication. For security, the password itself is never returned in the object, but action can be taken to reset a password.
 func (m *Authentication) SetPasswordMethods(value []PasswordAuthenticationMethodable)() {
     m.passwordMethods = value
 }
@@ -400,7 +400,7 @@ func (m *Authentication) SetPasswordMethods(value []PasswordAuthenticationMethod
 func (m *Authentication) SetPhoneMethods(value []PhoneAuthenticationMethodable)() {
     m.phoneMethods = value
 }
-// SetSoftwareOathMethods sets the softwareOathMethods property value. The software OATH TOTP applications registered to a user for authentication.
+// SetSoftwareOathMethods sets the softwareOathMethods property value. The software OATH time-based one-time password (TOTP) applications registered to a user for authentication.
 func (m *Authentication) SetSoftwareOathMethods(value []SoftwareOathAuthenticationMethodable)() {
     m.softwareOathMethods = value
 }

@@ -10,19 +10,19 @@ type ChatMessageAttachment struct {
     additionalData map[string]any
     // The content of the attachment. If the attachment is a rich card, set the property to the rich card object. This property and contentUrl are mutually exclusive.
     content *string
-    // The media type of the content attachment. It can have the following values: reference: Attachment is a link to another file. Populate the contentURL with the link to the object.Any contentTypes supported by the Bot Framework's Attachment objectapplication/vnd.microsoft.card.codesnippet: A code snippet. application/vnd.microsoft.card.announcement: An announcement header.
+    // The media type of the content attachment. It can have the following values: reference: Attachment is a link to another file. Populate the contentURL with the link to the object.Any contentType that is supported by the Bot Framework's Attachment objectapplication/vnd.microsoft.card.codesnippet: A code snippet. application/vnd.microsoft.card.announcement: An announcement header.
     contentType *string
-    // URL for the content of the attachment. Supported protocols: http, https, file and data.
+    // The URL for the content of the attachment.
     contentUrl *string
-    // Read-only. Unique id of the attachment.
+    // Read-only. The unique id of the attachment.
     id *string
-    // Name of the attachment.
+    // The name of the attachment.
     name *string
     // The OdataType property
     odataType *string
-    // The ID of the Teams app that is associated with the attachment. The property is specifically used to attribute a Teams message card to the specified app.
+    // The ID of the Teams app that is associated with the attachment. The property is used to attribute a Teams message card to the specified app.
     teamsAppId *string
-    // URL to a thumbnail image that the channel can use if it supports using an alternative, smaller form of content or contentUrl. For example, if you set contentType to application/word and set contentUrl to the location of the Word document, you might include a thumbnail image that represents the document. The channel could display the thumbnail image instead of the document. When the user clicks the image, the channel would open the document.
+    // The URL to a thumbnail image that the channel can use if it supports using an alternative, smaller form of content or contentUrl. For example, if you set contentType to application/word and set contentUrl to the location of the Word document, you might include a thumbnail image that represents the document. The channel could display the thumbnail image instead of the document. When the user selects the image, the channel would open the document.
     thumbnailUrl *string
 }
 // NewChatMessageAttachment instantiates a new chatMessageAttachment and sets the default values.
@@ -44,11 +44,11 @@ func (m *ChatMessageAttachment) GetAdditionalData()(map[string]any) {
 func (m *ChatMessageAttachment) GetContent()(*string) {
     return m.content
 }
-// GetContentType gets the contentType property value. The media type of the content attachment. It can have the following values: reference: Attachment is a link to another file. Populate the contentURL with the link to the object.Any contentTypes supported by the Bot Framework's Attachment objectapplication/vnd.microsoft.card.codesnippet: A code snippet. application/vnd.microsoft.card.announcement: An announcement header.
+// GetContentType gets the contentType property value. The media type of the content attachment. It can have the following values: reference: Attachment is a link to another file. Populate the contentURL with the link to the object.Any contentType that is supported by the Bot Framework's Attachment objectapplication/vnd.microsoft.card.codesnippet: A code snippet. application/vnd.microsoft.card.announcement: An announcement header.
 func (m *ChatMessageAttachment) GetContentType()(*string) {
     return m.contentType
 }
-// GetContentUrl gets the contentUrl property value. URL for the content of the attachment. Supported protocols: http, https, file and data.
+// GetContentUrl gets the contentUrl property value. The URL for the content of the attachment.
 func (m *ChatMessageAttachment) GetContentUrl()(*string) {
     return m.contentUrl
 }
@@ -137,11 +137,11 @@ func (m *ChatMessageAttachment) GetFieldDeserializers()(map[string]func(i878a80d
     }
     return res
 }
-// GetId gets the id property value. Read-only. Unique id of the attachment.
+// GetId gets the id property value. Read-only. The unique id of the attachment.
 func (m *ChatMessageAttachment) GetId()(*string) {
     return m.id
 }
-// GetName gets the name property value. Name of the attachment.
+// GetName gets the name property value. The name of the attachment.
 func (m *ChatMessageAttachment) GetName()(*string) {
     return m.name
 }
@@ -149,11 +149,11 @@ func (m *ChatMessageAttachment) GetName()(*string) {
 func (m *ChatMessageAttachment) GetOdataType()(*string) {
     return m.odataType
 }
-// GetTeamsAppId gets the teamsAppId property value. The ID of the Teams app that is associated with the attachment. The property is specifically used to attribute a Teams message card to the specified app.
+// GetTeamsAppId gets the teamsAppId property value. The ID of the Teams app that is associated with the attachment. The property is used to attribute a Teams message card to the specified app.
 func (m *ChatMessageAttachment) GetTeamsAppId()(*string) {
     return m.teamsAppId
 }
-// GetThumbnailUrl gets the thumbnailUrl property value. URL to a thumbnail image that the channel can use if it supports using an alternative, smaller form of content or contentUrl. For example, if you set contentType to application/word and set contentUrl to the location of the Word document, you might include a thumbnail image that represents the document. The channel could display the thumbnail image instead of the document. When the user clicks the image, the channel would open the document.
+// GetThumbnailUrl gets the thumbnailUrl property value. The URL to a thumbnail image that the channel can use if it supports using an alternative, smaller form of content or contentUrl. For example, if you set contentType to application/word and set contentUrl to the location of the Word document, you might include a thumbnail image that represents the document. The channel could display the thumbnail image instead of the document. When the user selects the image, the channel would open the document.
 func (m *ChatMessageAttachment) GetThumbnailUrl()(*string) {
     return m.thumbnailUrl
 }
@@ -223,19 +223,19 @@ func (m *ChatMessageAttachment) SetAdditionalData(value map[string]any)() {
 func (m *ChatMessageAttachment) SetContent(value *string)() {
     m.content = value
 }
-// SetContentType sets the contentType property value. The media type of the content attachment. It can have the following values: reference: Attachment is a link to another file. Populate the contentURL with the link to the object.Any contentTypes supported by the Bot Framework's Attachment objectapplication/vnd.microsoft.card.codesnippet: A code snippet. application/vnd.microsoft.card.announcement: An announcement header.
+// SetContentType sets the contentType property value. The media type of the content attachment. It can have the following values: reference: Attachment is a link to another file. Populate the contentURL with the link to the object.Any contentType that is supported by the Bot Framework's Attachment objectapplication/vnd.microsoft.card.codesnippet: A code snippet. application/vnd.microsoft.card.announcement: An announcement header.
 func (m *ChatMessageAttachment) SetContentType(value *string)() {
     m.contentType = value
 }
-// SetContentUrl sets the contentUrl property value. URL for the content of the attachment. Supported protocols: http, https, file and data.
+// SetContentUrl sets the contentUrl property value. The URL for the content of the attachment.
 func (m *ChatMessageAttachment) SetContentUrl(value *string)() {
     m.contentUrl = value
 }
-// SetId sets the id property value. Read-only. Unique id of the attachment.
+// SetId sets the id property value. Read-only. The unique id of the attachment.
 func (m *ChatMessageAttachment) SetId(value *string)() {
     m.id = value
 }
-// SetName sets the name property value. Name of the attachment.
+// SetName sets the name property value. The name of the attachment.
 func (m *ChatMessageAttachment) SetName(value *string)() {
     m.name = value
 }
@@ -243,11 +243,11 @@ func (m *ChatMessageAttachment) SetName(value *string)() {
 func (m *ChatMessageAttachment) SetOdataType(value *string)() {
     m.odataType = value
 }
-// SetTeamsAppId sets the teamsAppId property value. The ID of the Teams app that is associated with the attachment. The property is specifically used to attribute a Teams message card to the specified app.
+// SetTeamsAppId sets the teamsAppId property value. The ID of the Teams app that is associated with the attachment. The property is used to attribute a Teams message card to the specified app.
 func (m *ChatMessageAttachment) SetTeamsAppId(value *string)() {
     m.teamsAppId = value
 }
-// SetThumbnailUrl sets the thumbnailUrl property value. URL to a thumbnail image that the channel can use if it supports using an alternative, smaller form of content or contentUrl. For example, if you set contentType to application/word and set contentUrl to the location of the Word document, you might include a thumbnail image that represents the document. The channel could display the thumbnail image instead of the document. When the user clicks the image, the channel would open the document.
+// SetThumbnailUrl sets the thumbnailUrl property value. The URL to a thumbnail image that the channel can use if it supports using an alternative, smaller form of content or contentUrl. For example, if you set contentType to application/word and set contentUrl to the location of the Word document, you might include a thumbnail image that represents the document. The channel could display the thumbnail image instead of the document. When the user selects the image, the channel would open the document.
 func (m *ChatMessageAttachment) SetThumbnailUrl(value *string)() {
     m.thumbnailUrl = value
 }

@@ -8,7 +8,7 @@ import (
 type Album struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // Unique identifier of the [driveItem][] that is the cover of the album.
+    // Unique identifier of the driveItem that is the cover of the album.
     coverImageItemId *string
     // The OdataType property
     odataType *string
@@ -28,7 +28,7 @@ func CreateAlbumFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487e
 func (m *Album) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetCoverImageItemId gets the coverImageItemId property value. Unique identifier of the [driveItem][] that is the cover of the album.
+// GetCoverImageItemId gets the coverImageItemId property value. Unique identifier of the driveItem that is the cover of the album.
 func (m *Album) GetCoverImageItemId()(*string) {
     return m.coverImageItemId
 }
@@ -87,7 +87,7 @@ func (m *Album) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
 func (m *Album) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetCoverImageItemId sets the coverImageItemId property value. Unique identifier of the [driveItem][] that is the cover of the album.
+// SetCoverImageItemId sets the coverImageItemId property value. Unique identifier of the driveItem that is the cover of the album.
 func (m *Album) SetCoverImageItemId(value *string)() {
     m.coverImageItemId = value
 }

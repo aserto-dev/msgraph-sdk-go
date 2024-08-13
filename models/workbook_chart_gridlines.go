@@ -9,7 +9,7 @@ type WorkbookChartGridlines struct {
     Entity
     // Represents the formatting of chart gridlines. Read-only.
     format WorkbookChartGridlinesFormatable
-    // Boolean value representing if the axis gridlines are visible or not.
+    // Indicates whether the axis gridlines are visible.
     visible *bool
 }
 // NewWorkbookChartGridlines instantiates a new workbookChartGridlines and sets the default values.
@@ -52,7 +52,7 @@ func (m *WorkbookChartGridlines) GetFieldDeserializers()(map[string]func(i878a80
 func (m *WorkbookChartGridlines) GetFormat()(WorkbookChartGridlinesFormatable) {
     return m.format
 }
-// GetVisible gets the visible property value. Boolean value representing if the axis gridlines are visible or not.
+// GetVisible gets the visible property value. Indicates whether the axis gridlines are visible.
 func (m *WorkbookChartGridlines) GetVisible()(*bool) {
     return m.visible
 }
@@ -80,7 +80,7 @@ func (m *WorkbookChartGridlines) Serialize(writer i878a80d2330e89d26896388a3f487
 func (m *WorkbookChartGridlines) SetFormat(value WorkbookChartGridlinesFormatable)() {
     m.format = value
 }
-// SetVisible sets the visible property value. Boolean value representing if the axis gridlines are visible or not.
+// SetVisible sets the visible property value. Indicates whether the axis gridlines are visible.
 func (m *WorkbookChartGridlines) SetVisible(value *bool)() {
     m.visible = value
 }

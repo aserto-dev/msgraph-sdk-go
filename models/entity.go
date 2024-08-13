@@ -58,6 +58,8 @@ func CreateEntityFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487
                         return NewBaseItem(), nil
                     case "#microsoft.graph.baseItemVersion":
                         return NewBaseItemVersion(), nil
+                    case "#microsoft.graph.baseSitePage":
+                        return NewBaseSitePage(), nil
                     case "#microsoft.graph.calendar":
                         return NewCalendar(), nil
                     case "#microsoft.graph.calendarGroup":
@@ -82,6 +84,10 @@ func CreateEntityFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487
                         return NewChatMessageInfo(), nil
                     case "#microsoft.graph.checklistItem":
                         return NewChecklistItem(), nil
+                    case "#microsoft.graph.cloudClipboardItem":
+                        return NewCloudClipboardItem(), nil
+                    case "#microsoft.graph.cloudClipboardRoot":
+                        return NewCloudClipboardRoot(), nil
                     case "#microsoft.graph.columnDefinition":
                         return NewColumnDefinition(), nil
                     case "#microsoft.graph.columnLink":
@@ -148,6 +154,8 @@ func CreateEntityFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487
                         return NewItemActivityStat(), nil
                     case "#microsoft.graph.itemAnalytics":
                         return NewItemAnalytics(), nil
+                    case "#microsoft.graph.itemInsights":
+                        return NewItemInsights(), nil
                     case "#microsoft.graph.itemRetentionLabel":
                         return NewItemRetentionLabel(), nil
                     case "#microsoft.graph.learningCourseActivity":
@@ -292,6 +300,8 @@ func CreateEntityFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487
                         return NewScopedRoleMembership(), nil
                     case "#microsoft.graph.sectionGroup":
                         return NewSectionGroup(), nil
+                    case "#microsoft.graph.serviceStorageQuotaBreakdown":
+                        return NewServiceStorageQuotaBreakdown(), nil
                     case "#microsoft.graph.sharedInsight":
                         return NewSharedInsight(), nil
                     case "#microsoft.graph.sharedWithChannelTeamInfo":
@@ -306,6 +316,8 @@ func CreateEntityFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487
                         return NewSite(), nil
                     case "#microsoft.graph.softwareOathAuthenticationMethod":
                         return NewSoftwareOathAuthenticationMethod(), nil
+                    case "#microsoft.graph.storageQuotaBreakdown":
+                        return NewStorageQuotaBreakdown(), nil
                     case "#microsoft.graph.subscription":
                         return NewSubscription(), nil
                     case "#microsoft.graph.swapShiftsChangeRequest":
@@ -352,16 +364,22 @@ func CreateEntityFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487
                         return NewTodoTaskList(), nil
                     case "#microsoft.graph.trending":
                         return NewTrending(), nil
+                    case "#microsoft.graph.unifiedStorageQuota":
+                        return NewUnifiedStorageQuota(), nil
                     case "#microsoft.graph.usedInsight":
                         return NewUsedInsight(), nil
                     case "#microsoft.graph.user":
                         return NewUser(), nil
                     case "#microsoft.graph.userActivity":
                         return NewUserActivity(), nil
+                    case "#microsoft.graph.userInsightsSettings":
+                        return NewUserInsightsSettings(), nil
                     case "#microsoft.graph.userScopeTeamsAppInstallation":
                         return NewUserScopeTeamsAppInstallation(), nil
                     case "#microsoft.graph.userSettings":
                         return NewUserSettings(), nil
+                    case "#microsoft.graph.userStorage":
+                        return NewUserStorage(), nil
                     case "#microsoft.graph.userTeamwork":
                         return NewUserTeamwork(), nil
                     case "#microsoft.graph.windowsDeviceMalwareState":
@@ -370,6 +388,10 @@ func CreateEntityFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487
                         return NewWindowsHelloForBusinessAuthenticationMethod(), nil
                     case "#microsoft.graph.windowsProtectionState":
                         return NewWindowsProtectionState(), nil
+                    case "#microsoft.graph.windowsSetting":
+                        return NewWindowsSetting(), nil
+                    case "#microsoft.graph.windowsSettingInstance":
+                        return NewWindowsSettingInstance(), nil
                     case "#microsoft.graph.workbook":
                         return NewWorkbook(), nil
                     case "#microsoft.graph.workbookApplication":

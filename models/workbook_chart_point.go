@@ -7,10 +7,8 @@ import (
 // WorkbookChartPoint 
 type WorkbookChartPoint struct {
     Entity
-    // Encapsulates the format properties chart point. Read-only.
+    // The format properties of the chart point. Read-only.
     format WorkbookChartPointFormatable
-    // Returns the value of a chart point. Read-only.
-    value Jsonable
 }
 // NewWorkbookChartPoint instantiates a new workbookChartPoint and sets the default values.
 func NewWorkbookChartPoint()(*WorkbookChartPoint) {
@@ -36,25 +34,11 @@ func (m *WorkbookChartPoint) GetFieldDeserializers()(map[string]func(i878a80d233
         }
         return nil
     }
-    res["value"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateJsonFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetValue(val.(Jsonable))
-        }
-        return nil
-    }
     return res
 }
-// GetFormat gets the format property value. Encapsulates the format properties chart point. Read-only.
+// GetFormat gets the format property value. The format properties of the chart point. Read-only.
 func (m *WorkbookChartPoint) GetFormat()(WorkbookChartPointFormatable) {
     return m.format
-}
-// GetValue gets the value property value. Returns the value of a chart point. Read-only.
-func (m *WorkbookChartPoint) GetValue()(Jsonable) {
-    return m.value
 }
 // Serialize serializes information the current object
 func (m *WorkbookChartPoint) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -68,28 +52,16 @@ func (m *WorkbookChartPoint) Serialize(writer i878a80d2330e89d26896388a3f487eef2
             return err
         }
     }
-    {
-        err = writer.WriteObjectValue("value", m.GetValue())
-        if err != nil {
-            return err
-        }
-    }
     return nil
 }
-// SetFormat sets the format property value. Encapsulates the format properties chart point. Read-only.
+// SetFormat sets the format property value. The format properties of the chart point. Read-only.
 func (m *WorkbookChartPoint) SetFormat(value WorkbookChartPointFormatable)() {
     m.format = value
-}
-// SetValue sets the value property value. Returns the value of a chart point. Read-only.
-func (m *WorkbookChartPoint) SetValue(value Jsonable)() {
-    m.value = value
 }
 // WorkbookChartPointable 
 type WorkbookChartPointable interface {
     Entityable
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetFormat()(WorkbookChartPointFormatable)
-    GetValue()(Jsonable)
     SetFormat(value WorkbookChartPointFormatable)()
-    SetValue(value Jsonable)()
 }

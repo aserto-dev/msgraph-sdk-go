@@ -18,7 +18,9 @@ type Channel struct {
     email *string
     // Metadata for the location where the channel's files are stored.
     filesFolder DriveItemable
-    // Indicates whether the channel should automatically be marked 'favorite' for all members of the team. Can only be set programmatically with Create team. Default: false.
+    // Indicates whether the channel is archived. Read-only.
+    isArchived *bool
+    // Indicates whether the channel should be marked as recommended for all members of the team to show in their channel list. Note: All recommended channels automatically show in the channels list for education and frontline worker users. The property can only be set programmatically via the Create team method. The default value is false.
     isFavoriteByDefault *bool
     // A collection of membership records associated with the channel.
     members []ConversationMemberable
@@ -114,6 +116,16 @@ func (m *Channel) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268963
         }
         if val != nil {
             m.SetFilesFolder(val.(DriveItemable))
+        }
+        return nil
+    }
+    res["isArchived"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsArchived(val)
         }
         return nil
     }
@@ -237,7 +249,11 @@ func (m *Channel) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268963
 func (m *Channel) GetFilesFolder()(DriveItemable) {
     return m.filesFolder
 }
-// GetIsFavoriteByDefault gets the isFavoriteByDefault property value. Indicates whether the channel should automatically be marked 'favorite' for all members of the team. Can only be set programmatically with Create team. Default: false.
+// GetIsArchived gets the isArchived property value. Indicates whether the channel is archived. Read-only.
+func (m *Channel) GetIsArchived()(*bool) {
+    return m.isArchived
+}
+// GetIsFavoriteByDefault gets the isFavoriteByDefault property value. Indicates whether the channel should be marked as recommended for all members of the team to show in their channel list. Note: All recommended channels automatically show in the channels list for education and frontline worker users. The property can only be set programmatically via the Create team method. The default value is false.
 func (m *Channel) GetIsFavoriteByDefault()(*bool) {
     return m.isFavoriteByDefault
 }
@@ -305,6 +321,12 @@ func (m *Channel) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010
     }
     {
         err = writer.WriteObjectValue("filesFolder", m.GetFilesFolder())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err = writer.WriteBoolValue("isArchived", m.GetIsArchived())
         if err != nil {
             return err
         }
@@ -410,7 +432,11 @@ func (m *Channel) SetEmail(value *string)() {
 func (m *Channel) SetFilesFolder(value DriveItemable)() {
     m.filesFolder = value
 }
-// SetIsFavoriteByDefault sets the isFavoriteByDefault property value. Indicates whether the channel should automatically be marked 'favorite' for all members of the team. Can only be set programmatically with Create team. Default: false.
+// SetIsArchived sets the isArchived property value. Indicates whether the channel is archived. Read-only.
+func (m *Channel) SetIsArchived(value *bool)() {
+    m.isArchived = value
+}
+// SetIsFavoriteByDefault sets the isFavoriteByDefault property value. Indicates whether the channel should be marked as recommended for all members of the team to show in their channel list. Note: All recommended channels automatically show in the channels list for education and frontline worker users. The property can only be set programmatically via the Create team method. The default value is false.
 func (m *Channel) SetIsFavoriteByDefault(value *bool)() {
     m.isFavoriteByDefault = value
 }
@@ -455,6 +481,7 @@ type Channelable interface {
     GetDisplayName()(*string)
     GetEmail()(*string)
     GetFilesFolder()(DriveItemable)
+    GetIsArchived()(*bool)
     GetIsFavoriteByDefault()(*bool)
     GetMembers()([]ConversationMemberable)
     GetMembershipType()(*ChannelMembershipType)
@@ -469,6 +496,7 @@ type Channelable interface {
     SetDisplayName(value *string)()
     SetEmail(value *string)()
     SetFilesFolder(value DriveItemable)()
+    SetIsArchived(value *bool)()
     SetIsFavoriteByDefault(value *bool)()
     SetMembers(value []ConversationMemberable)()
     SetMembershipType(value *ChannelMembershipType)()

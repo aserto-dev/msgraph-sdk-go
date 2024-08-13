@@ -8,17 +8,17 @@ import (
 // OnlineMeeting 
 type OnlineMeeting struct {
     OnlineMeetingBase
-    // The attendeeReport property
+    // The content stream of the attendee report of a Microsoft Teams live event. Read-only.
     attendeeReport []byte
-    // The broadcastSettings property
+    // Settings related to a live event.
     broadcastSettings BroadcastMeetingSettingsable
     // The meeting creation time in UTC. Read-only.
     creationDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The meeting end time in UTC.
+    // The meeting end time in UTC. Required when you create an online meeting.
     endDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The externalId property
     externalId *string
-    // The isBroadcast property
+    // Indicates whether this meeting is a Teams live event.
     isBroadcast *bool
     // The participants associated with the online meeting, including the organizer and the attendees.
     participants MeetingParticipantsable
@@ -42,11 +42,11 @@ func NewOnlineMeeting()(*OnlineMeeting) {
 func CreateOnlineMeetingFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewOnlineMeeting(), nil
 }
-// GetAttendeeReport gets the attendeeReport property value. The attendeeReport property
+// GetAttendeeReport gets the attendeeReport property value. The content stream of the attendee report of a Microsoft Teams live event. Read-only.
 func (m *OnlineMeeting) GetAttendeeReport()([]byte) {
     return m.attendeeReport
 }
-// GetBroadcastSettings gets the broadcastSettings property value. The broadcastSettings property
+// GetBroadcastSettings gets the broadcastSettings property value. Settings related to a live event.
 func (m *OnlineMeeting) GetBroadcastSettings()(BroadcastMeetingSettingsable) {
     return m.broadcastSettings
 }
@@ -54,7 +54,7 @@ func (m *OnlineMeeting) GetBroadcastSettings()(BroadcastMeetingSettingsable) {
 func (m *OnlineMeeting) GetCreationDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.creationDateTime
 }
-// GetEndDateTime gets the endDateTime property value. The meeting end time in UTC.
+// GetEndDateTime gets the endDateTime property value. The meeting end time in UTC. Required when you create an online meeting.
 func (m *OnlineMeeting) GetEndDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.endDateTime
 }
@@ -179,7 +179,7 @@ func (m *OnlineMeeting) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
     }
     return res
 }
-// GetIsBroadcast gets the isBroadcast property value. The isBroadcast property
+// GetIsBroadcast gets the isBroadcast property value. Indicates whether this meeting is a Teams live event.
 func (m *OnlineMeeting) GetIsBroadcast()(*bool) {
     return m.isBroadcast
 }
@@ -279,11 +279,11 @@ func (m *OnlineMeeting) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
     }
     return nil
 }
-// SetAttendeeReport sets the attendeeReport property value. The attendeeReport property
+// SetAttendeeReport sets the attendeeReport property value. The content stream of the attendee report of a Microsoft Teams live event. Read-only.
 func (m *OnlineMeeting) SetAttendeeReport(value []byte)() {
     m.attendeeReport = value
 }
-// SetBroadcastSettings sets the broadcastSettings property value. The broadcastSettings property
+// SetBroadcastSettings sets the broadcastSettings property value. Settings related to a live event.
 func (m *OnlineMeeting) SetBroadcastSettings(value BroadcastMeetingSettingsable)() {
     m.broadcastSettings = value
 }
@@ -291,7 +291,7 @@ func (m *OnlineMeeting) SetBroadcastSettings(value BroadcastMeetingSettingsable)
 func (m *OnlineMeeting) SetCreationDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.creationDateTime = value
 }
-// SetEndDateTime sets the endDateTime property value. The meeting end time in UTC.
+// SetEndDateTime sets the endDateTime property value. The meeting end time in UTC. Required when you create an online meeting.
 func (m *OnlineMeeting) SetEndDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.endDateTime = value
 }
@@ -299,7 +299,7 @@ func (m *OnlineMeeting) SetEndDateTime(value *i336074805fc853987abe6f7fe3ad97a6a
 func (m *OnlineMeeting) SetExternalId(value *string)() {
     m.externalId = value
 }
-// SetIsBroadcast sets the isBroadcast property value. The isBroadcast property
+// SetIsBroadcast sets the isBroadcast property value. Indicates whether this meeting is a Teams live event.
 func (m *OnlineMeeting) SetIsBroadcast(value *bool)() {
     m.isBroadcast = value
 }

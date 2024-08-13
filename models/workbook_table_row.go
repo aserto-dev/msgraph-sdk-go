@@ -7,10 +7,8 @@ import (
 // WorkbookTableRow 
 type WorkbookTableRow struct {
     Entity
-    // Returns the index number of the row within the rows collection of the table. Zero-indexed. Read-only.
+    // The index of the row within the rows collection of the table. Zero-based. Read-only.
     index *int32
-    // Represents the raw values of the specified range. The data returned could be of type string, number, or a boolean. Cell that contain an error will return the error string.
-    values Jsonable
 }
 // NewWorkbookTableRow instantiates a new workbookTableRow and sets the default values.
 func NewWorkbookTableRow()(*WorkbookTableRow) {
@@ -36,25 +34,11 @@ func (m *WorkbookTableRow) GetFieldDeserializers()(map[string]func(i878a80d2330e
         }
         return nil
     }
-    res["values"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateJsonFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetValues(val.(Jsonable))
-        }
-        return nil
-    }
     return res
 }
-// GetIndex gets the index property value. Returns the index number of the row within the rows collection of the table. Zero-indexed. Read-only.
+// GetIndex gets the index property value. The index of the row within the rows collection of the table. Zero-based. Read-only.
 func (m *WorkbookTableRow) GetIndex()(*int32) {
     return m.index
-}
-// GetValues gets the values property value. Represents the raw values of the specified range. The data returned could be of type string, number, or a boolean. Cell that contain an error will return the error string.
-func (m *WorkbookTableRow) GetValues()(Jsonable) {
-    return m.values
 }
 // Serialize serializes information the current object
 func (m *WorkbookTableRow) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -68,28 +52,16 @@ func (m *WorkbookTableRow) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
             return err
         }
     }
-    {
-        err = writer.WriteObjectValue("values", m.GetValues())
-        if err != nil {
-            return err
-        }
-    }
     return nil
 }
-// SetIndex sets the index property value. Returns the index number of the row within the rows collection of the table. Zero-indexed. Read-only.
+// SetIndex sets the index property value. The index of the row within the rows collection of the table. Zero-based. Read-only.
 func (m *WorkbookTableRow) SetIndex(value *int32)() {
     m.index = value
-}
-// SetValues sets the values property value. Represents the raw values of the specified range. The data returned could be of type string, number, or a boolean. Cell that contain an error will return the error string.
-func (m *WorkbookTableRow) SetValues(value Jsonable)() {
-    m.values = value
 }
 // WorkbookTableRowable 
 type WorkbookTableRowable interface {
     Entityable
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetIndex()(*int32)
-    GetValues()(Jsonable)
     SetIndex(value *int32)()
-    SetValues(value Jsonable)()
 }

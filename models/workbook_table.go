@@ -7,17 +7,17 @@ import (
 // WorkbookTable 
 type WorkbookTable struct {
     Entity
-    // Represents a collection of all the columns in the table. Read-only.
+    // The list of all the columns in the table. Read-only.
     columns []WorkbookTableColumnable
     // Indicates whether the first column contains special formatting.
     highlightFirstColumn *bool
     // Indicates whether the last column contains special formatting.
     highlightLastColumn *bool
-    // Legacy ID used in older Excel clients. The value of the identifier remains the same even when the table is renamed. This property should be interpreted as an opaque string value and shouldn't be parsed to any other type. Read-only.
+    // A legacy identifier used in older Excel clients. The value of the identifier remains the same even when the table is renamed. This property should be interpreted as an opaque string value and shouldn't be parsed to any other type. Read-only.
     legacyId *string
-    // Name of the table.
+    // The name of the table.
     name *string
-    // Represents a collection of all the rows in the table. Read-only.
+    // The list of all the rows in the table. Read-only.
     rows []WorkbookTableRowable
     // Indicates whether the columns show banded formatting in which odd columns are highlighted differently from even ones to make reading the table easier.
     showBandedColumns *bool
@@ -29,9 +29,9 @@ type WorkbookTable struct {
     showHeaders *bool
     // Indicates whether the total row is visible or not. This value can be set to show or remove the total row.
     showTotals *bool
-    // Represents the sorting for the table. Read-only.
+    // The sorting for the table. Read-only.
     sort WorkbookTableSortable
-    // Constant value that represents the Table style. The possible values are: TableStyleLight1 through TableStyleLight21, TableStyleMedium1 through TableStyleMedium28, TableStyleStyleDark1 through TableStyleStyleDark11. A custom user-defined style present in the workbook can also be specified.
+    // A constant value that represents the Table style. Possible values are: TableStyleLight1 through TableStyleLight21, TableStyleMedium1 through TableStyleMedium28, TableStyleStyleDark1 through TableStyleStyleDark11. A custom user-defined style present in the workbook can also be specified.
     style *string
     // The worksheet containing the current table. Read-only.
     worksheet WorkbookWorksheetable
@@ -47,7 +47,7 @@ func NewWorkbookTable()(*WorkbookTable) {
 func CreateWorkbookTableFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewWorkbookTable(), nil
 }
-// GetColumns gets the columns property value. Represents a collection of all the columns in the table. Read-only.
+// GetColumns gets the columns property value. The list of all the columns in the table. Read-only.
 func (m *WorkbookTable) GetColumns()([]WorkbookTableColumnable) {
     return m.columns
 }
@@ -216,15 +216,15 @@ func (m *WorkbookTable) GetHighlightFirstColumn()(*bool) {
 func (m *WorkbookTable) GetHighlightLastColumn()(*bool) {
     return m.highlightLastColumn
 }
-// GetLegacyId gets the legacyId property value. Legacy ID used in older Excel clients. The value of the identifier remains the same even when the table is renamed. This property should be interpreted as an opaque string value and shouldn't be parsed to any other type. Read-only.
+// GetLegacyId gets the legacyId property value. A legacy identifier used in older Excel clients. The value of the identifier remains the same even when the table is renamed. This property should be interpreted as an opaque string value and shouldn't be parsed to any other type. Read-only.
 func (m *WorkbookTable) GetLegacyId()(*string) {
     return m.legacyId
 }
-// GetName gets the name property value. Name of the table.
+// GetName gets the name property value. The name of the table.
 func (m *WorkbookTable) GetName()(*string) {
     return m.name
 }
-// GetRows gets the rows property value. Represents a collection of all the rows in the table. Read-only.
+// GetRows gets the rows property value. The list of all the rows in the table. Read-only.
 func (m *WorkbookTable) GetRows()([]WorkbookTableRowable) {
     return m.rows
 }
@@ -248,11 +248,11 @@ func (m *WorkbookTable) GetShowHeaders()(*bool) {
 func (m *WorkbookTable) GetShowTotals()(*bool) {
     return m.showTotals
 }
-// GetSort gets the sort property value. Represents the sorting for the table. Read-only.
+// GetSort gets the sort property value. The sorting for the table. Read-only.
 func (m *WorkbookTable) GetSort()(WorkbookTableSortable) {
     return m.sort
 }
-// GetStyle gets the style property value. Constant value that represents the Table style. The possible values are: TableStyleLight1 through TableStyleLight21, TableStyleMedium1 through TableStyleMedium28, TableStyleStyleDark1 through TableStyleStyleDark11. A custom user-defined style present in the workbook can also be specified.
+// GetStyle gets the style property value. A constant value that represents the Table style. Possible values are: TableStyleLight1 through TableStyleLight21, TableStyleMedium1 through TableStyleMedium28, TableStyleStyleDark1 through TableStyleStyleDark11. A custom user-defined style present in the workbook can also be specified.
 func (m *WorkbookTable) GetStyle()(*string) {
     return m.style
 }
@@ -364,7 +364,7 @@ func (m *WorkbookTable) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
     }
     return nil
 }
-// SetColumns sets the columns property value. Represents a collection of all the columns in the table. Read-only.
+// SetColumns sets the columns property value. The list of all the columns in the table. Read-only.
 func (m *WorkbookTable) SetColumns(value []WorkbookTableColumnable)() {
     m.columns = value
 }
@@ -376,15 +376,15 @@ func (m *WorkbookTable) SetHighlightFirstColumn(value *bool)() {
 func (m *WorkbookTable) SetHighlightLastColumn(value *bool)() {
     m.highlightLastColumn = value
 }
-// SetLegacyId sets the legacyId property value. Legacy ID used in older Excel clients. The value of the identifier remains the same even when the table is renamed. This property should be interpreted as an opaque string value and shouldn't be parsed to any other type. Read-only.
+// SetLegacyId sets the legacyId property value. A legacy identifier used in older Excel clients. The value of the identifier remains the same even when the table is renamed. This property should be interpreted as an opaque string value and shouldn't be parsed to any other type. Read-only.
 func (m *WorkbookTable) SetLegacyId(value *string)() {
     m.legacyId = value
 }
-// SetName sets the name property value. Name of the table.
+// SetName sets the name property value. The name of the table.
 func (m *WorkbookTable) SetName(value *string)() {
     m.name = value
 }
-// SetRows sets the rows property value. Represents a collection of all the rows in the table. Read-only.
+// SetRows sets the rows property value. The list of all the rows in the table. Read-only.
 func (m *WorkbookTable) SetRows(value []WorkbookTableRowable)() {
     m.rows = value
 }
@@ -408,11 +408,11 @@ func (m *WorkbookTable) SetShowHeaders(value *bool)() {
 func (m *WorkbookTable) SetShowTotals(value *bool)() {
     m.showTotals = value
 }
-// SetSort sets the sort property value. Represents the sorting for the table. Read-only.
+// SetSort sets the sort property value. The sorting for the table. Read-only.
 func (m *WorkbookTable) SetSort(value WorkbookTableSortable)() {
     m.sort = value
 }
-// SetStyle sets the style property value. Constant value that represents the Table style. The possible values are: TableStyleLight1 through TableStyleLight21, TableStyleMedium1 through TableStyleMedium28, TableStyleStyleDark1 through TableStyleStyleDark11. A custom user-defined style present in the workbook can also be specified.
+// SetStyle sets the style property value. A constant value that represents the Table style. Possible values are: TableStyleLight1 through TableStyleLight21, TableStyleMedium1 through TableStyleMedium28, TableStyleStyleDark1 through TableStyleStyleDark11. A custom user-defined style present in the workbook can also be specified.
 func (m *WorkbookTable) SetStyle(value *string)() {
     m.style = value
 }

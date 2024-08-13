@@ -8,7 +8,7 @@ import (
 // Device 
 type Device struct {
     DirectoryObject
-    // true if the account is enabled; otherwise, false. Required. Default is true.  Supports $filter (eq, ne, not, in). Only callers in Global Administrator and Cloud Device Administrator roles can set this property.
+    // true if the account is enabled; otherwise, false. Required. Default is true.  Supports $filter (eq, ne, not, in). Only callers with at least the Cloud Device Administrator role can set this property.
     accountEnabled *bool
     // For internal use only. Not nullable. Supports $filter (eq, not, ge, le).
     alternativeSecurityIds []AlternativeSecurityIdable
@@ -18,11 +18,11 @@ type Device struct {
     complianceExpirationDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // User-defined property set by Intune to automatically add devices to groups and simplify managing devices.
     deviceCategory *string
-    // Unique identifier set by Azure Device Registration Service at the time of registration. This is an alternate key that can be used to reference the device object. Supports $filter (eq, ne, not, startsWith).
+    // Unique identifier set by Azure Device Registration Service at the time of registration. This alternate key can be used to reference the device object. Supports $filter (eq, ne, not, startsWith).
     deviceId *string
     // For internal use only. Set to null.
     deviceMetadata *string
-    // Ownership of the device. This property is set by Intune. Possible values are: unknown, company, personal.
+    // Ownership of the device. Intune sets this property. Possible values are: unknown, company, personal.
     deviceOwnership *string
     // For internal use only.
     deviceVersion *int32
@@ -30,18 +30,30 @@ type Device struct {
     displayName *string
     // Enrollment profile applied to the device. For example, Apple Device Enrollment Profile, Device enrollment - Corporate device identifiers, or Windows Autopilot profile name. This property is set by Intune.
     enrollmentProfileName *string
+    // Enrollment type of the device. Intune sets this property. Possible values are: unknown, userEnrollment, deviceEnrollmentManager, appleBulkWithUser, appleBulkWithoutUser, windowsAzureADJoin, windowsBulkUserless, windowsAutoEnrollment, windowsBulkAzureDomainJoin, windowsCoManagement, windowsAzureADJoinUsingDeviceAuth,appleUserEnrollment, appleUserEnrollmentWithServiceAccount. NOTE: This property might return other values apart from those listed.
+    enrollmentType *string
     // The collection of open extensions defined for the device. Read-only. Nullable.
     extensions []Extensionable
     // true if the device complies with Mobile Device Management (MDM) policies; otherwise, false. Read-only. This can only be updated by Intune for any device OS type or by an approved MDM app for Windows OS devices. Supports $filter (eq, ne, not).
     isCompliant *bool
     // true if the device is managed by a Mobile Device Management (MDM) app; otherwise, false. This can only be updated by Intune for any device OS type or by an approved MDM app for Windows OS devices. Supports $filter (eq, ne, not).
     isManaged *bool
+    // true if the device is rooted or jail-broken. This property can only be updated by Intune.
+    isRooted *bool
+    // The management channel of the device. This property is set by Intune. Possible values are: eas, mdm, easMdm, intuneClient, easIntuneClient, configurationManagerClient, configurationManagerClientMdm, configurationManagerClientMdmEas, unknown, jamf, googleCloudDevicePolicyController.
+    managementType *string
+    // Manufacturer of the device. Read-only.
+    manufacturer *string
     // Application identifier used to register device into MDM. Read-only. Supports $filter (eq, ne, not, startsWith).
     mdmAppId *string
     // Groups and administrative units that this device is a member of. Read-only. Nullable. Supports $expand.
     memberOf []DirectoryObjectable
+    // Model of the device. Read-only.
+    model *string
     // The last time at which the object was synced with the on-premises directory. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z Read-only. Supports $filter (eq, ne, not, ge, le, in).
     onPremisesLastSyncDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+    // The on-premises security identifier (SID) for the user who was synchronized from on-premises to the cloud. Read-only. Returned only on $select. Supports $filter (eq).
+    onPremisesSecurityIdentifier *string
     // true if this object is synced from an on-premises directory; false if this object was originally synced from an on-premises directory but is no longer synced; null if this object has never been synced from an on-premises directory (default). Read-only. Supports $filter (eq, ne, not, in, and eq on null values).
     onPremisesSyncEnabled *bool
     // The type of operating system on the device. Required. Supports $filter (eq, ne, not, ge, le, startsWith, and eq on null values).
@@ -62,7 +74,7 @@ type Device struct {
     systemLabels []string
     // Groups and administrative units that the device is a member of. This operation is transitive. Supports $expand.
     transitiveMemberOf []DirectoryObjectable
-    // Type of trust for the joined device. Read-only. Possible values:  Workplace (indicates bring your own personal devices), AzureAd (Cloud only joined devices), ServerAd (on-premises domain joined devices joined to Microsoft Entra ID). For more details, see Introduction to device management in Microsoft Entra ID.
+    // Type of trust for the joined device. Read-only. Possible values:  Workplace (indicates bring your own personal devices), AzureAd (Cloud-only joined devices), ServerAd (on-premises domain joined devices joined to Microsoft Entra ID). For more information, see Introduction to device management in Microsoft Entra ID.
     trustType *string
 }
 // NewDevice instantiates a new device and sets the default values.
@@ -78,7 +90,7 @@ func NewDevice()(*Device) {
 func CreateDeviceFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewDevice(), nil
 }
-// GetAccountEnabled gets the accountEnabled property value. true if the account is enabled; otherwise, false. Required. Default is true.  Supports $filter (eq, ne, not, in). Only callers in Global Administrator and Cloud Device Administrator roles can set this property.
+// GetAccountEnabled gets the accountEnabled property value. true if the account is enabled; otherwise, false. Required. Default is true.  Supports $filter (eq, ne, not, in). Only callers with at least the Cloud Device Administrator role can set this property.
 func (m *Device) GetAccountEnabled()(*bool) {
     return m.accountEnabled
 }
@@ -98,7 +110,7 @@ func (m *Device) GetComplianceExpirationDateTime()(*i336074805fc853987abe6f7fe3a
 func (m *Device) GetDeviceCategory()(*string) {
     return m.deviceCategory
 }
-// GetDeviceId gets the deviceId property value. Unique identifier set by Azure Device Registration Service at the time of registration. This is an alternate key that can be used to reference the device object. Supports $filter (eq, ne, not, startsWith).
+// GetDeviceId gets the deviceId property value. Unique identifier set by Azure Device Registration Service at the time of registration. This alternate key can be used to reference the device object. Supports $filter (eq, ne, not, startsWith).
 func (m *Device) GetDeviceId()(*string) {
     return m.deviceId
 }
@@ -106,7 +118,7 @@ func (m *Device) GetDeviceId()(*string) {
 func (m *Device) GetDeviceMetadata()(*string) {
     return m.deviceMetadata
 }
-// GetDeviceOwnership gets the deviceOwnership property value. Ownership of the device. This property is set by Intune. Possible values are: unknown, company, personal.
+// GetDeviceOwnership gets the deviceOwnership property value. Ownership of the device. Intune sets this property. Possible values are: unknown, company, personal.
 func (m *Device) GetDeviceOwnership()(*string) {
     return m.deviceOwnership
 }
@@ -121,6 +133,10 @@ func (m *Device) GetDisplayName()(*string) {
 // GetEnrollmentProfileName gets the enrollmentProfileName property value. Enrollment profile applied to the device. For example, Apple Device Enrollment Profile, Device enrollment - Corporate device identifiers, or Windows Autopilot profile name. This property is set by Intune.
 func (m *Device) GetEnrollmentProfileName()(*string) {
     return m.enrollmentProfileName
+}
+// GetEnrollmentType gets the enrollmentType property value. Enrollment type of the device. Intune sets this property. Possible values are: unknown, userEnrollment, deviceEnrollmentManager, appleBulkWithUser, appleBulkWithoutUser, windowsAzureADJoin, windowsBulkUserless, windowsAutoEnrollment, windowsBulkAzureDomainJoin, windowsCoManagement, windowsAzureADJoinUsingDeviceAuth,appleUserEnrollment, appleUserEnrollmentWithServiceAccount. NOTE: This property might return other values apart from those listed.
+func (m *Device) GetEnrollmentType()(*string) {
+    return m.enrollmentType
 }
 // GetExtensions gets the extensions property value. The collection of open extensions defined for the device. Read-only. Nullable.
 func (m *Device) GetExtensions()([]Extensionable) {
@@ -245,6 +261,16 @@ func (m *Device) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689638
         }
         return nil
     }
+    res["enrollmentType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetEnrollmentType(val)
+        }
+        return nil
+    }
     res["extensions"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetCollectionOfObjectValues(CreateExtensionFromDiscriminatorValue)
         if err != nil {
@@ -281,6 +307,36 @@ func (m *Device) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689638
         }
         return nil
     }
+    res["isRooted"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsRooted(val)
+        }
+        return nil
+    }
+    res["managementType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetManagementType(val)
+        }
+        return nil
+    }
+    res["manufacturer"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetManufacturer(val)
+        }
+        return nil
+    }
     res["mdmAppId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -307,6 +363,16 @@ func (m *Device) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689638
         }
         return nil
     }
+    res["model"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetModel(val)
+        }
+        return nil
+    }
     res["onPremisesLastSyncDateTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetTimeValue()
         if err != nil {
@@ -314,6 +380,16 @@ func (m *Device) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689638
         }
         if val != nil {
             m.SetOnPremisesLastSyncDateTime(val)
+        }
+        return nil
+    }
+    res["onPremisesSecurityIdentifier"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOnPremisesSecurityIdentifier(val)
         }
         return nil
     }
@@ -467,6 +543,18 @@ func (m *Device) GetIsCompliant()(*bool) {
 func (m *Device) GetIsManaged()(*bool) {
     return m.isManaged
 }
+// GetIsRooted gets the isRooted property value. true if the device is rooted or jail-broken. This property can only be updated by Intune.
+func (m *Device) GetIsRooted()(*bool) {
+    return m.isRooted
+}
+// GetManagementType gets the managementType property value. The management channel of the device. This property is set by Intune. Possible values are: eas, mdm, easMdm, intuneClient, easIntuneClient, configurationManagerClient, configurationManagerClientMdm, configurationManagerClientMdmEas, unknown, jamf, googleCloudDevicePolicyController.
+func (m *Device) GetManagementType()(*string) {
+    return m.managementType
+}
+// GetManufacturer gets the manufacturer property value. Manufacturer of the device. Read-only.
+func (m *Device) GetManufacturer()(*string) {
+    return m.manufacturer
+}
 // GetMdmAppId gets the mdmAppId property value. Application identifier used to register device into MDM. Read-only. Supports $filter (eq, ne, not, startsWith).
 func (m *Device) GetMdmAppId()(*string) {
     return m.mdmAppId
@@ -475,9 +563,17 @@ func (m *Device) GetMdmAppId()(*string) {
 func (m *Device) GetMemberOf()([]DirectoryObjectable) {
     return m.memberOf
 }
+// GetModel gets the model property value. Model of the device. Read-only.
+func (m *Device) GetModel()(*string) {
+    return m.model
+}
 // GetOnPremisesLastSyncDateTime gets the onPremisesLastSyncDateTime property value. The last time at which the object was synced with the on-premises directory. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z Read-only. Supports $filter (eq, ne, not, ge, le, in).
 func (m *Device) GetOnPremisesLastSyncDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.onPremisesLastSyncDateTime
+}
+// GetOnPremisesSecurityIdentifier gets the onPremisesSecurityIdentifier property value. The on-premises security identifier (SID) for the user who was synchronized from on-premises to the cloud. Read-only. Returned only on $select. Supports $filter (eq).
+func (m *Device) GetOnPremisesSecurityIdentifier()(*string) {
+    return m.onPremisesSecurityIdentifier
 }
 // GetOnPremisesSyncEnabled gets the onPremisesSyncEnabled property value. true if this object is synced from an on-premises directory; false if this object was originally synced from an on-premises directory but is no longer synced; null if this object has never been synced from an on-premises directory (default). Read-only. Supports $filter (eq, ne, not, in, and eq on null values).
 func (m *Device) GetOnPremisesSyncEnabled()(*bool) {
@@ -519,7 +615,7 @@ func (m *Device) GetSystemLabels()([]string) {
 func (m *Device) GetTransitiveMemberOf()([]DirectoryObjectable) {
     return m.transitiveMemberOf
 }
-// GetTrustType gets the trustType property value. Type of trust for the joined device. Read-only. Possible values:  Workplace (indicates bring your own personal devices), AzureAd (Cloud only joined devices), ServerAd (on-premises domain joined devices joined to Microsoft Entra ID). For more details, see Introduction to device management in Microsoft Entra ID.
+// GetTrustType gets the trustType property value. Type of trust for the joined device. Read-only. Possible values:  Workplace (indicates bring your own personal devices), AzureAd (Cloud-only joined devices), ServerAd (on-premises domain joined devices joined to Microsoft Entra ID). For more information, see Introduction to device management in Microsoft Entra ID.
 func (m *Device) GetTrustType()(*string) {
     return m.trustType
 }
@@ -601,6 +697,12 @@ func (m *Device) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c
             return err
         }
     }
+    {
+        err = writer.WriteStringValue("enrollmentType", m.GetEnrollmentType())
+        if err != nil {
+            return err
+        }
+    }
     if m.GetExtensions() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetExtensions()))
         for i, v := range m.GetExtensions() {
@@ -626,6 +728,24 @@ func (m *Device) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c
         }
     }
     {
+        err = writer.WriteBoolValue("isRooted", m.GetIsRooted())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err = writer.WriteStringValue("managementType", m.GetManagementType())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err = writer.WriteStringValue("manufacturer", m.GetManufacturer())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err = writer.WriteStringValue("mdmAppId", m.GetMdmAppId())
         if err != nil {
             return err
@@ -644,7 +764,19 @@ func (m *Device) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c
         }
     }
     {
+        err = writer.WriteStringValue("model", m.GetModel())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err = writer.WriteTimeValue("onPremisesLastSyncDateTime", m.GetOnPremisesLastSyncDateTime())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err = writer.WriteStringValue("onPremisesSecurityIdentifier", m.GetOnPremisesSecurityIdentifier())
         if err != nil {
             return err
         }
@@ -735,7 +867,7 @@ func (m *Device) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c
     }
     return nil
 }
-// SetAccountEnabled sets the accountEnabled property value. true if the account is enabled; otherwise, false. Required. Default is true.  Supports $filter (eq, ne, not, in). Only callers in Global Administrator and Cloud Device Administrator roles can set this property.
+// SetAccountEnabled sets the accountEnabled property value. true if the account is enabled; otherwise, false. Required. Default is true.  Supports $filter (eq, ne, not, in). Only callers with at least the Cloud Device Administrator role can set this property.
 func (m *Device) SetAccountEnabled(value *bool)() {
     m.accountEnabled = value
 }
@@ -755,7 +887,7 @@ func (m *Device) SetComplianceExpirationDateTime(value *i336074805fc853987abe6f7
 func (m *Device) SetDeviceCategory(value *string)() {
     m.deviceCategory = value
 }
-// SetDeviceId sets the deviceId property value. Unique identifier set by Azure Device Registration Service at the time of registration. This is an alternate key that can be used to reference the device object. Supports $filter (eq, ne, not, startsWith).
+// SetDeviceId sets the deviceId property value. Unique identifier set by Azure Device Registration Service at the time of registration. This alternate key can be used to reference the device object. Supports $filter (eq, ne, not, startsWith).
 func (m *Device) SetDeviceId(value *string)() {
     m.deviceId = value
 }
@@ -763,7 +895,7 @@ func (m *Device) SetDeviceId(value *string)() {
 func (m *Device) SetDeviceMetadata(value *string)() {
     m.deviceMetadata = value
 }
-// SetDeviceOwnership sets the deviceOwnership property value. Ownership of the device. This property is set by Intune. Possible values are: unknown, company, personal.
+// SetDeviceOwnership sets the deviceOwnership property value. Ownership of the device. Intune sets this property. Possible values are: unknown, company, personal.
 func (m *Device) SetDeviceOwnership(value *string)() {
     m.deviceOwnership = value
 }
@@ -779,6 +911,10 @@ func (m *Device) SetDisplayName(value *string)() {
 func (m *Device) SetEnrollmentProfileName(value *string)() {
     m.enrollmentProfileName = value
 }
+// SetEnrollmentType sets the enrollmentType property value. Enrollment type of the device. Intune sets this property. Possible values are: unknown, userEnrollment, deviceEnrollmentManager, appleBulkWithUser, appleBulkWithoutUser, windowsAzureADJoin, windowsBulkUserless, windowsAutoEnrollment, windowsBulkAzureDomainJoin, windowsCoManagement, windowsAzureADJoinUsingDeviceAuth,appleUserEnrollment, appleUserEnrollmentWithServiceAccount. NOTE: This property might return other values apart from those listed.
+func (m *Device) SetEnrollmentType(value *string)() {
+    m.enrollmentType = value
+}
 // SetExtensions sets the extensions property value. The collection of open extensions defined for the device. Read-only. Nullable.
 func (m *Device) SetExtensions(value []Extensionable)() {
     m.extensions = value
@@ -791,6 +927,18 @@ func (m *Device) SetIsCompliant(value *bool)() {
 func (m *Device) SetIsManaged(value *bool)() {
     m.isManaged = value
 }
+// SetIsRooted sets the isRooted property value. true if the device is rooted or jail-broken. This property can only be updated by Intune.
+func (m *Device) SetIsRooted(value *bool)() {
+    m.isRooted = value
+}
+// SetManagementType sets the managementType property value. The management channel of the device. This property is set by Intune. Possible values are: eas, mdm, easMdm, intuneClient, easIntuneClient, configurationManagerClient, configurationManagerClientMdm, configurationManagerClientMdmEas, unknown, jamf, googleCloudDevicePolicyController.
+func (m *Device) SetManagementType(value *string)() {
+    m.managementType = value
+}
+// SetManufacturer sets the manufacturer property value. Manufacturer of the device. Read-only.
+func (m *Device) SetManufacturer(value *string)() {
+    m.manufacturer = value
+}
 // SetMdmAppId sets the mdmAppId property value. Application identifier used to register device into MDM. Read-only. Supports $filter (eq, ne, not, startsWith).
 func (m *Device) SetMdmAppId(value *string)() {
     m.mdmAppId = value
@@ -799,9 +947,17 @@ func (m *Device) SetMdmAppId(value *string)() {
 func (m *Device) SetMemberOf(value []DirectoryObjectable)() {
     m.memberOf = value
 }
+// SetModel sets the model property value. Model of the device. Read-only.
+func (m *Device) SetModel(value *string)() {
+    m.model = value
+}
 // SetOnPremisesLastSyncDateTime sets the onPremisesLastSyncDateTime property value. The last time at which the object was synced with the on-premises directory. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z Read-only. Supports $filter (eq, ne, not, ge, le, in).
 func (m *Device) SetOnPremisesLastSyncDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.onPremisesLastSyncDateTime = value
+}
+// SetOnPremisesSecurityIdentifier sets the onPremisesSecurityIdentifier property value. The on-premises security identifier (SID) for the user who was synchronized from on-premises to the cloud. Read-only. Returned only on $select. Supports $filter (eq).
+func (m *Device) SetOnPremisesSecurityIdentifier(value *string)() {
+    m.onPremisesSecurityIdentifier = value
 }
 // SetOnPremisesSyncEnabled sets the onPremisesSyncEnabled property value. true if this object is synced from an on-premises directory; false if this object was originally synced from an on-premises directory but is no longer synced; null if this object has never been synced from an on-premises directory (default). Read-only. Supports $filter (eq, ne, not, in, and eq on null values).
 func (m *Device) SetOnPremisesSyncEnabled(value *bool)() {
@@ -843,7 +999,7 @@ func (m *Device) SetSystemLabels(value []string)() {
 func (m *Device) SetTransitiveMemberOf(value []DirectoryObjectable)() {
     m.transitiveMemberOf = value
 }
-// SetTrustType sets the trustType property value. Type of trust for the joined device. Read-only. Possible values:  Workplace (indicates bring your own personal devices), AzureAd (Cloud only joined devices), ServerAd (on-premises domain joined devices joined to Microsoft Entra ID). For more details, see Introduction to device management in Microsoft Entra ID.
+// SetTrustType sets the trustType property value. Type of trust for the joined device. Read-only. Possible values:  Workplace (indicates bring your own personal devices), AzureAd (Cloud-only joined devices), ServerAd (on-premises domain joined devices joined to Microsoft Entra ID). For more information, see Introduction to device management in Microsoft Entra ID.
 func (m *Device) SetTrustType(value *string)() {
     m.trustType = value
 }
@@ -862,12 +1018,18 @@ type Deviceable interface {
     GetDeviceVersion()(*int32)
     GetDisplayName()(*string)
     GetEnrollmentProfileName()(*string)
+    GetEnrollmentType()(*string)
     GetExtensions()([]Extensionable)
     GetIsCompliant()(*bool)
     GetIsManaged()(*bool)
+    GetIsRooted()(*bool)
+    GetManagementType()(*string)
+    GetManufacturer()(*string)
     GetMdmAppId()(*string)
     GetMemberOf()([]DirectoryObjectable)
+    GetModel()(*string)
     GetOnPremisesLastSyncDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetOnPremisesSecurityIdentifier()(*string)
     GetOnPremisesSyncEnabled()(*bool)
     GetOperatingSystem()(*string)
     GetOperatingSystemVersion()(*string)
@@ -890,12 +1052,18 @@ type Deviceable interface {
     SetDeviceVersion(value *int32)()
     SetDisplayName(value *string)()
     SetEnrollmentProfileName(value *string)()
+    SetEnrollmentType(value *string)()
     SetExtensions(value []Extensionable)()
     SetIsCompliant(value *bool)()
     SetIsManaged(value *bool)()
+    SetIsRooted(value *bool)()
+    SetManagementType(value *string)()
+    SetManufacturer(value *string)()
     SetMdmAppId(value *string)()
     SetMemberOf(value []DirectoryObjectable)()
+    SetModel(value *string)()
     SetOnPremisesLastSyncDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetOnPremisesSecurityIdentifier(value *string)()
     SetOnPremisesSyncEnabled(value *bool)()
     SetOperatingSystem(value *string)()
     SetOperatingSystemVersion(value *string)()

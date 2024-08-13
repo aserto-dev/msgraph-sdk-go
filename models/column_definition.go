@@ -7,7 +7,7 @@ import (
 // ColumnDefinition 
 type ColumnDefinition struct {
     Entity
-    // This column stores boolean values.
+    // This column stores Boolean values.
     boolean BooleanColumnable
     // This column's data is calculated based on other columns.
     calculated CalculatedColumnable
@@ -45,7 +45,7 @@ type ColumnDefinition struct {
     isSealed *bool
     // This column's data is looked up from another source in the site.
     lookup LookupColumnable
-    // The API-facing name of the column as it appears in the [fields][] on a [listItem][]. For the user-facing name, see displayName.
+    // The API-facing name of the column as it appears in the fields on a listItem. For the user-facing name, see displayName.
     name *string
     // This column stores number values.
     number NumberColumnable
@@ -83,7 +83,7 @@ func NewColumnDefinition()(*ColumnDefinition) {
 func CreateColumnDefinitionFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewColumnDefinition(), nil
 }
-// GetBoolean gets the boolean property value. This column stores boolean values.
+// GetBoolean gets the boolean property value. This column stores Boolean values.
 func (m *ColumnDefinition) GetBoolean()(BooleanColumnable) {
     return m.boolean
 }
@@ -484,7 +484,7 @@ func (m *ColumnDefinition) GetIsSealed()(*bool) {
 func (m *ColumnDefinition) GetLookup()(LookupColumnable) {
     return m.lookup
 }
-// GetName gets the name property value. The API-facing name of the column as it appears in the [fields][] on a [listItem][]. For the user-facing name, see displayName.
+// GetName gets the name property value. The API-facing name of the column as it appears in the fields on a listItem. For the user-facing name, see displayName.
 func (m *ColumnDefinition) GetName()(*string) {
     return m.name
 }
@@ -737,7 +737,7 @@ func (m *ColumnDefinition) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
     }
     return nil
 }
-// SetBoolean sets the boolean property value. This column stores boolean values.
+// SetBoolean sets the boolean property value. This column stores Boolean values.
 func (m *ColumnDefinition) SetBoolean(value BooleanColumnable)() {
     m.boolean = value
 }
@@ -813,7 +813,7 @@ func (m *ColumnDefinition) SetIsSealed(value *bool)() {
 func (m *ColumnDefinition) SetLookup(value LookupColumnable)() {
     m.lookup = value
 }
-// SetName sets the name property value. The API-facing name of the column as it appears in the [fields][] on a [listItem][]. For the user-facing name, see displayName.
+// SetName sets the name property value. The API-facing name of the column as it appears in the fields on a listItem. For the user-facing name, see displayName.
 func (m *ColumnDefinition) SetName(value *string)() {
     m.name = value
 }

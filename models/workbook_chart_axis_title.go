@@ -11,7 +11,7 @@ type WorkbookChartAxisTitle struct {
     format WorkbookChartAxisTitleFormatable
     // Represents the axis title.
     text *string
-    // A boolean that specifies the visibility of an axis title.
+    // A Boolean that specifies the visibility of an axis title.
     visible *bool
 }
 // NewWorkbookChartAxisTitle instantiates a new workbookChartAxisTitle and sets the default values.
@@ -68,7 +68,7 @@ func (m *WorkbookChartAxisTitle) GetFormat()(WorkbookChartAxisTitleFormatable) {
 func (m *WorkbookChartAxisTitle) GetText()(*string) {
     return m.text
 }
-// GetVisible gets the visible property value. A boolean that specifies the visibility of an axis title.
+// GetVisible gets the visible property value. A Boolean that specifies the visibility of an axis title.
 func (m *WorkbookChartAxisTitle) GetVisible()(*bool) {
     return m.visible
 }
@@ -106,7 +106,7 @@ func (m *WorkbookChartAxisTitle) SetFormat(value WorkbookChartAxisTitleFormatabl
 func (m *WorkbookChartAxisTitle) SetText(value *string)() {
     m.text = value
 }
-// SetVisible sets the visible property value. A boolean that specifies the visibility of an axis title.
+// SetVisible sets the visible property value. A Boolean that specifies the visibility of an axis title.
 func (m *WorkbookChartAxisTitle) SetVisible(value *bool)() {
     m.visible = value
 }

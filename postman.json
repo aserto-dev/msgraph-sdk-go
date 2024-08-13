@@ -1,49 +1,10 @@
 {
     "info": {
-        "_postman_id": "cfd32ee0-55b4-56ac-4fc5-0bf2f4fd3fb1",
+        "_postman_id": "97d83c8c-c397-3d3f-8052-948992075b17",
         "name": "Graph-Collection",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
     },
     "item": [
-        {
-            "name": "groups-v1.0",
-            "request": {
-                "method": "GET",
-                "url": {
-                    "raw": "https://graph.microsoft.com/v1.0/groups",
-                    "protocol": "https",
-                    "host": [
-                        "graph",
-                        "microsoft",
-                        "com"
-                    ],
-                    "path": [
-                        "v1.0",
-                        "groups"
-                    ]
-                }
-            }
-        },
-        {
-            "name": "{group-id}-v1.0",
-            "request": {
-                "method": "GET",
-                "url": {
-                    "raw": "https://graph.microsoft.com/v1.0/groups/{group-id}",
-                    "protocol": "https",
-                    "host": [
-                        "graph",
-                        "microsoft",
-                        "com"
-                    ],
-                    "path": [
-                        "v1.0",
-                        "groups",
-                        "{group-id}"
-                    ]
-                }
-            }
-        },
         {
             "name": "users-v1.0",
             "request": {
@@ -79,6 +40,66 @@
                         "v1.0",
                         "users",
                         "{user-id}"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "microsoft.graph.getMemberGroups-v1.0",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "https://graph.microsoft.com/v1.0/users/{user-id}/microsoft.graph.getMemberGroups",
+                    "protocol": "https",
+                    "host": [
+                        "graph",
+                        "microsoft",
+                        "com"
+                    ],
+                    "path": [
+                        "v1.0",
+                        "users",
+                        "{user-id}",
+                        "microsoft.graph.getMemberGroups"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "groups-v1.0",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "https://graph.microsoft.com/v1.0/groups",
+                    "protocol": "https",
+                    "host": [
+                        "graph",
+                        "microsoft",
+                        "com"
+                    ],
+                    "path": [
+                        "v1.0",
+                        "groups"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "{group-id}-v1.0",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "https://graph.microsoft.com/v1.0/groups/{group-id}",
+                    "protocol": "https",
+                    "host": [
+                        "graph",
+                        "microsoft",
+                        "com"
+                    ],
+                    "path": [
+                        "v1.0",
+                        "groups",
+                        "{group-id}"
                     ]
                 }
             }
@@ -122,6 +143,27 @@
                         "{user-id}",
                         "memberOf",
                         "microsoft.graph.group"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "members-v1.0",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "https://graph.microsoft.com/v1.0/groups/{group-id}/members",
+                    "protocol": "https",
+                    "host": [
+                        "graph",
+                        "microsoft",
+                        "com"
+                    ],
+                    "path": [
+                        "v1.0",
+                        "groups",
+                        "{group-id}",
+                        "members"
                     ]
                 }
             }

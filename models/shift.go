@@ -7,11 +7,11 @@ import (
 // Shift 
 type Shift struct {
     ChangeTrackedEntity
-    // The draft version of this shift that is viewable by managers. Required.
+    // Draft changes in the shift. Draft changes are only visible to managers. The changes are visible to employees when they are shared, which copies the changes from the draftShift to the sharedShift property.
     draftShift ShiftItemable
     // ID of the scheduling group the shift is part of. Required.
     schedulingGroupId *string
-    // The shared version of this shift that is viewable by both employees and managers. Required.
+    // The shared version of this shift that is viewable by both employees and managers. Updates to the sharedShift property send notifications to users in the Teams client.
     sharedShift ShiftItemable
     // ID of the user assigned to the shift. Required.
     userId *string
@@ -29,7 +29,7 @@ func NewShift()(*Shift) {
 func CreateShiftFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewShift(), nil
 }
-// GetDraftShift gets the draftShift property value. The draft version of this shift that is viewable by managers. Required.
+// GetDraftShift gets the draftShift property value. Draft changes in the shift. Draft changes are only visible to managers. The changes are visible to employees when they are shared, which copies the changes from the draftShift to the sharedShift property.
 func (m *Shift) GetDraftShift()(ShiftItemable) {
     return m.draftShift
 }
@@ -82,7 +82,7 @@ func (m *Shift) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
 func (m *Shift) GetSchedulingGroupId()(*string) {
     return m.schedulingGroupId
 }
-// GetSharedShift gets the sharedShift property value. The shared version of this shift that is viewable by both employees and managers. Required.
+// GetSharedShift gets the sharedShift property value. The shared version of this shift that is viewable by both employees and managers. Updates to the sharedShift property send notifications to users in the Teams client.
 func (m *Shift) GetSharedShift()(ShiftItemable) {
     return m.sharedShift
 }
@@ -122,7 +122,7 @@ func (m *Shift) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     }
     return nil
 }
-// SetDraftShift sets the draftShift property value. The draft version of this shift that is viewable by managers. Required.
+// SetDraftShift sets the draftShift property value. Draft changes in the shift. Draft changes are only visible to managers. The changes are visible to employees when they are shared, which copies the changes from the draftShift to the sharedShift property.
 func (m *Shift) SetDraftShift(value ShiftItemable)() {
     m.draftShift = value
 }
@@ -130,7 +130,7 @@ func (m *Shift) SetDraftShift(value ShiftItemable)() {
 func (m *Shift) SetSchedulingGroupId(value *string)() {
     m.schedulingGroupId = value
 }
-// SetSharedShift sets the sharedShift property value. The shared version of this shift that is viewable by both employees and managers. Required.
+// SetSharedShift sets the sharedShift property value. The shared version of this shift that is viewable by both employees and managers. Updates to the sharedShift property send notifications to users in the Teams client.
 func (m *Shift) SetSharedShift(value ShiftItemable)() {
     m.sharedShift = value
 }

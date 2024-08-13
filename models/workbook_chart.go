@@ -9,7 +9,7 @@ type WorkbookChart struct {
     Entity
     // Represents chart axes. Read-only.
     axes WorkbookChartAxesable
-    // Represents the datalabels on the chart. Read-only.
+    // Represents the data labels on the chart. Read-only.
     dataLabels WorkbookChartDataLabelsable
     // Encapsulates the format properties for the chart area. Read-only.
     format WorkbookChartAreaFormatable
@@ -23,7 +23,7 @@ type WorkbookChart struct {
     name *string
     // Represents either a single series or collection of series in the chart. Read-only.
     series []WorkbookChartSeriesable
-    // Represents the title of the specified chart, including the text, visibility, position and formating of the title. Read-only.
+    // Represents the title of the specified chart, including the text, visibility, position and formatting of the title. Read-only.
     title WorkbookChartTitleable
     // Represents the distance, in points, from the top edge of the object to the top of row 1 (on a worksheet) or the top of the chart area (on a chart).
     top *float64
@@ -47,7 +47,7 @@ func CreateWorkbookChartFromDiscriminatorValue(parseNode i878a80d2330e89d2689638
 func (m *WorkbookChart) GetAxes()(WorkbookChartAxesable) {
     return m.axes
 }
-// GetDataLabels gets the dataLabels property value. Represents the datalabels on the chart. Read-only.
+// GetDataLabels gets the dataLabels property value. Represents the data labels on the chart. Read-only.
 func (m *WorkbookChart) GetDataLabels()(WorkbookChartDataLabelsable) {
     return m.dataLabels
 }
@@ -206,7 +206,7 @@ func (m *WorkbookChart) GetName()(*string) {
 func (m *WorkbookChart) GetSeries()([]WorkbookChartSeriesable) {
     return m.series
 }
-// GetTitle gets the title property value. Represents the title of the specified chart, including the text, visibility, position and formating of the title. Read-only.
+// GetTitle gets the title property value. Represents the title of the specified chart, including the text, visibility, position and formatting of the title. Read-only.
 func (m *WorkbookChart) GetTitle()(WorkbookChartTitleable) {
     return m.title
 }
@@ -312,7 +312,7 @@ func (m *WorkbookChart) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
 func (m *WorkbookChart) SetAxes(value WorkbookChartAxesable)() {
     m.axes = value
 }
-// SetDataLabels sets the dataLabels property value. Represents the datalabels on the chart. Read-only.
+// SetDataLabels sets the dataLabels property value. Represents the data labels on the chart. Read-only.
 func (m *WorkbookChart) SetDataLabels(value WorkbookChartDataLabelsable)() {
     m.dataLabels = value
 }
@@ -340,7 +340,7 @@ func (m *WorkbookChart) SetName(value *string)() {
 func (m *WorkbookChart) SetSeries(value []WorkbookChartSeriesable)() {
     m.series = value
 }
-// SetTitle sets the title property value. Represents the title of the specified chart, including the text, visibility, position and formating of the title. Read-only.
+// SetTitle sets the title property value. Represents the title of the specified chart, including the text, visibility, position and formatting of the title. Read-only.
 func (m *WorkbookChart) SetTitle(value WorkbookChartTitleable)() {
     m.title = value
 }

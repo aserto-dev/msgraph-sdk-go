@@ -7,21 +7,21 @@ import (
 // WorkbookWorksheet 
 type WorkbookWorksheet struct {
     Entity
-    // Returns collection of charts that are part of the worksheet. Read-only.
+    // The list of charts that are part of the worksheet. Read-only.
     charts []WorkbookChartable
     // The display name of the worksheet.
     name *string
-    // Returns collection of names that are associated with the worksheet. Read-only.
+    // The list of names that are associated with the worksheet. Read-only.
     names []WorkbookNamedItemable
-    // Collection of PivotTables that are part of the worksheet.
+    // The list of piot tables that are part of the worksheet.
     pivotTables []WorkbookPivotTableable
     // The zero-based position of the worksheet within the workbook.
     position *int32
-    // Returns sheet protection object for a worksheet. Read-only.
+    // The sheet protection object for a worksheet. Read-only.
     protection WorkbookWorksheetProtectionable
-    // Collection of tables that are part of the worksheet. Read-only.
+    // The list of tables that are part of the worksheet. Read-only.
     tables []WorkbookTableable
-    // The Visibility of the worksheet. The possible values are: Visible, Hidden, VeryHidden.
+    // The visibility of the worksheet. The possible values are: Visible, Hidden, VeryHidden.
     visibility *string
 }
 // NewWorkbookWorksheet instantiates a new workbookWorksheet and sets the default values.
@@ -35,7 +35,7 @@ func NewWorkbookWorksheet()(*WorkbookWorksheet) {
 func CreateWorkbookWorksheetFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewWorkbookWorksheet(), nil
 }
-// GetCharts gets the charts property value. Returns collection of charts that are part of the worksheet. Read-only.
+// GetCharts gets the charts property value. The list of charts that are part of the worksheet. Read-only.
 func (m *WorkbookWorksheet) GetCharts()([]WorkbookChartable) {
     return m.charts
 }
@@ -152,11 +152,11 @@ func (m *WorkbookWorksheet) GetFieldDeserializers()(map[string]func(i878a80d2330
 func (m *WorkbookWorksheet) GetName()(*string) {
     return m.name
 }
-// GetNames gets the names property value. Returns collection of names that are associated with the worksheet. Read-only.
+// GetNames gets the names property value. The list of names that are associated with the worksheet. Read-only.
 func (m *WorkbookWorksheet) GetNames()([]WorkbookNamedItemable) {
     return m.names
 }
-// GetPivotTables gets the pivotTables property value. Collection of PivotTables that are part of the worksheet.
+// GetPivotTables gets the pivotTables property value. The list of piot tables that are part of the worksheet.
 func (m *WorkbookWorksheet) GetPivotTables()([]WorkbookPivotTableable) {
     return m.pivotTables
 }
@@ -164,15 +164,15 @@ func (m *WorkbookWorksheet) GetPivotTables()([]WorkbookPivotTableable) {
 func (m *WorkbookWorksheet) GetPosition()(*int32) {
     return m.position
 }
-// GetProtection gets the protection property value. Returns sheet protection object for a worksheet. Read-only.
+// GetProtection gets the protection property value. The sheet protection object for a worksheet. Read-only.
 func (m *WorkbookWorksheet) GetProtection()(WorkbookWorksheetProtectionable) {
     return m.protection
 }
-// GetTables gets the tables property value. Collection of tables that are part of the worksheet. Read-only.
+// GetTables gets the tables property value. The list of tables that are part of the worksheet. Read-only.
 func (m *WorkbookWorksheet) GetTables()([]WorkbookTableable) {
     return m.tables
 }
-// GetVisibility gets the visibility property value. The Visibility of the worksheet. The possible values are: Visible, Hidden, VeryHidden.
+// GetVisibility gets the visibility property value. The visibility of the worksheet. The possible values are: Visible, Hidden, VeryHidden.
 func (m *WorkbookWorksheet) GetVisibility()(*string) {
     return m.visibility
 }
@@ -256,7 +256,7 @@ func (m *WorkbookWorksheet) Serialize(writer i878a80d2330e89d26896388a3f487eef27
     }
     return nil
 }
-// SetCharts sets the charts property value. Returns collection of charts that are part of the worksheet. Read-only.
+// SetCharts sets the charts property value. The list of charts that are part of the worksheet. Read-only.
 func (m *WorkbookWorksheet) SetCharts(value []WorkbookChartable)() {
     m.charts = value
 }
@@ -264,11 +264,11 @@ func (m *WorkbookWorksheet) SetCharts(value []WorkbookChartable)() {
 func (m *WorkbookWorksheet) SetName(value *string)() {
     m.name = value
 }
-// SetNames sets the names property value. Returns collection of names that are associated with the worksheet. Read-only.
+// SetNames sets the names property value. The list of names that are associated with the worksheet. Read-only.
 func (m *WorkbookWorksheet) SetNames(value []WorkbookNamedItemable)() {
     m.names = value
 }
-// SetPivotTables sets the pivotTables property value. Collection of PivotTables that are part of the worksheet.
+// SetPivotTables sets the pivotTables property value. The list of piot tables that are part of the worksheet.
 func (m *WorkbookWorksheet) SetPivotTables(value []WorkbookPivotTableable)() {
     m.pivotTables = value
 }
@@ -276,15 +276,15 @@ func (m *WorkbookWorksheet) SetPivotTables(value []WorkbookPivotTableable)() {
 func (m *WorkbookWorksheet) SetPosition(value *int32)() {
     m.position = value
 }
-// SetProtection sets the protection property value. Returns sheet protection object for a worksheet. Read-only.
+// SetProtection sets the protection property value. The sheet protection object for a worksheet. Read-only.
 func (m *WorkbookWorksheet) SetProtection(value WorkbookWorksheetProtectionable)() {
     m.protection = value
 }
-// SetTables sets the tables property value. Collection of tables that are part of the worksheet. Read-only.
+// SetTables sets the tables property value. The list of tables that are part of the worksheet. Read-only.
 func (m *WorkbookWorksheet) SetTables(value []WorkbookTableable)() {
     m.tables = value
 }
-// SetVisibility sets the visibility property value. The Visibility of the worksheet. The possible values are: Visible, Hidden, VeryHidden.
+// SetVisibility sets the visibility property value. The visibility of the worksheet. The possible values are: Visible, Hidden, VeryHidden.
 func (m *WorkbookWorksheet) SetVisibility(value *string)() {
     m.visibility = value
 }

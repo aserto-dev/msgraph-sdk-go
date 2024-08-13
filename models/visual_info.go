@@ -12,8 +12,6 @@ type VisualInfo struct {
     attribution ImageInfoable
     // Optional. Background color used to render the activity in the UI - brand color for the application source of the activity. Must be a valid hex color
     backgroundColor *string
-    // Optional. Custom piece of data - JSON object used to provide custom content to render the activity in the Windows Shell UI
-    content Jsonable
     // Optional. Longer text description of the user's unique activity (example: document name, first sentence, and/or metadata)
     description *string
     // Required. Short text description of the user's unique activity (for example, document name in cases where an activity refers to document creation)
@@ -44,10 +42,6 @@ func (m *VisualInfo) GetAttribution()(ImageInfoable) {
 func (m *VisualInfo) GetBackgroundColor()(*string) {
     return m.backgroundColor
 }
-// GetContent gets the content property value. Optional. Custom piece of data - JSON object used to provide custom content to render the activity in the Windows Shell UI
-func (m *VisualInfo) GetContent()(Jsonable) {
-    return m.content
-}
 // GetDescription gets the description property value. Optional. Longer text description of the user's unique activity (example: document name, first sentence, and/or metadata)
 func (m *VisualInfo) GetDescription()(*string) {
     return m.description
@@ -76,16 +70,6 @@ func (m *VisualInfo) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         }
         if val != nil {
             m.SetBackgroundColor(val)
-        }
-        return nil
-    }
-    res["content"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateJsonFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetContent(val.(Jsonable))
         }
         return nil
     }
@@ -140,12 +124,6 @@ func (m *VisualInfo) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
         }
     }
     {
-        err := writer.WriteObjectValue("content", m.GetContent())
-        if err != nil {
-            return err
-        }
-    }
-    {
         err := writer.WriteStringValue("description", m.GetDescription())
         if err != nil {
             return err
@@ -183,10 +161,6 @@ func (m *VisualInfo) SetAttribution(value ImageInfoable)() {
 func (m *VisualInfo) SetBackgroundColor(value *string)() {
     m.backgroundColor = value
 }
-// SetContent sets the content property value. Optional. Custom piece of data - JSON object used to provide custom content to render the activity in the Windows Shell UI
-func (m *VisualInfo) SetContent(value Jsonable)() {
-    m.content = value
-}
 // SetDescription sets the description property value. Optional. Longer text description of the user's unique activity (example: document name, first sentence, and/or metadata)
 func (m *VisualInfo) SetDescription(value *string)() {
     m.description = value
@@ -205,13 +179,11 @@ type VisualInfoable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetAttribution()(ImageInfoable)
     GetBackgroundColor()(*string)
-    GetContent()(Jsonable)
     GetDescription()(*string)
     GetDisplayText()(*string)
     GetOdataType()(*string)
     SetAttribution(value ImageInfoable)()
     SetBackgroundColor(value *string)()
-    SetContent(value Jsonable)()
     SetDescription(value *string)()
     SetDisplayText(value *string)()
     SetOdataType(value *string)()

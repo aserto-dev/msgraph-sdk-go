@@ -7,11 +7,11 @@ import (
 // WorkbookChartSeries 
 type WorkbookChartSeries struct {
     Entity
-    // Represents the formatting of a chart series, which includes fill and line formatting. Read-only.
+    // The formatting of a chart series, which includes fill and line formatting. Read-only.
     format WorkbookChartSeriesFormatable
-    // Represents the name of a series in a chart.
+    // The name of a series in a chart.
     name *string
-    // Represents a collection of all points in the series. Read-only.
+    // A collection of all points in the series. Read-only.
     points []WorkbookChartPointable
 }
 // NewWorkbookChartSeries instantiates a new workbookChartSeries and sets the default values.
@@ -66,15 +66,15 @@ func (m *WorkbookChartSeries) GetFieldDeserializers()(map[string]func(i878a80d23
     }
     return res
 }
-// GetFormat gets the format property value. Represents the formatting of a chart series, which includes fill and line formatting. Read-only.
+// GetFormat gets the format property value. The formatting of a chart series, which includes fill and line formatting. Read-only.
 func (m *WorkbookChartSeries) GetFormat()(WorkbookChartSeriesFormatable) {
     return m.format
 }
-// GetName gets the name property value. Represents the name of a series in a chart.
+// GetName gets the name property value. The name of a series in a chart.
 func (m *WorkbookChartSeries) GetName()(*string) {
     return m.name
 }
-// GetPoints gets the points property value. Represents a collection of all points in the series. Read-only.
+// GetPoints gets the points property value. A collection of all points in the series. Read-only.
 func (m *WorkbookChartSeries) GetPoints()([]WorkbookChartPointable) {
     return m.points
 }
@@ -110,15 +110,15 @@ func (m *WorkbookChartSeries) Serialize(writer i878a80d2330e89d26896388a3f487eef
     }
     return nil
 }
-// SetFormat sets the format property value. Represents the formatting of a chart series, which includes fill and line formatting. Read-only.
+// SetFormat sets the format property value. The formatting of a chart series, which includes fill and line formatting. Read-only.
 func (m *WorkbookChartSeries) SetFormat(value WorkbookChartSeriesFormatable)() {
     m.format = value
 }
-// SetName sets the name property value. Represents the name of a series in a chart.
+// SetName sets the name property value. The name of a series in a chart.
 func (m *WorkbookChartSeries) SetName(value *string)() {
     m.name = value
 }
-// SetPoints sets the points property value. Represents a collection of all points in the series. Read-only.
+// SetPoints sets the points property value. A collection of all points in the series. Read-only.
 func (m *WorkbookChartSeries) SetPoints(value []WorkbookChartPointable)() {
     m.points = value
 }

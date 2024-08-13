@@ -13,7 +13,7 @@ type ListItem struct {
     contentType ContentTypeInfoable
     // Version information for a document set version created by a user.
     documentSetVersions []DocumentSetVersionable
-    // For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]
+    // For document libraries, the driveItem relationship exposes the listItem as a driveItem
     driveItem DriveItemable
     // The values of the columns set on this list item.
     fields FieldValueSetable
@@ -47,7 +47,7 @@ func (m *ListItem) GetContentType()(ContentTypeInfoable) {
 func (m *ListItem) GetDocumentSetVersions()([]DocumentSetVersionable) {
     return m.documentSetVersions
 }
-// GetDriveItem gets the driveItem property value. For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]
+// GetDriveItem gets the driveItem property value. For document libraries, the driveItem relationship exposes the listItem as a driveItem
 func (m *ListItem) GetDriveItem()(DriveItemable) {
     return m.driveItem
 }
@@ -224,7 +224,7 @@ func (m *ListItem) SetContentType(value ContentTypeInfoable)() {
 func (m *ListItem) SetDocumentSetVersions(value []DocumentSetVersionable)() {
     m.documentSetVersions = value
 }
-// SetDriveItem sets the driveItem property value. For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]
+// SetDriveItem sets the driveItem property value. For document libraries, the driveItem relationship exposes the listItem as a driveItem
 func (m *ListItem) SetDriveItem(value DriveItemable)() {
     m.driveItem = value
 }

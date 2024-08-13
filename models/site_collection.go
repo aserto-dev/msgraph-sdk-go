@@ -8,7 +8,9 @@ import (
 type SiteCollection struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // The geographic region code for where this site collection resides. Read-only.
+    // Represents whether the site collection is recently archived, fully archived, or reactivating. Possible values are: recentlyArchived, fullyArchived, reactivating, unknownFutureValue.
+    archivalDetails SiteArchivalDetailsable
+    // The geographic region code for where this site collection resides. Only present for multi-geo tenants. Read-only.
     dataLocationCode *string
     // The hostname for the site collection. Read-only.
     hostname *string
@@ -32,13 +34,27 @@ func CreateSiteCollectionFromDiscriminatorValue(parseNode i878a80d2330e89d268963
 func (m *SiteCollection) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetDataLocationCode gets the dataLocationCode property value. The geographic region code for where this site collection resides. Read-only.
+// GetArchivalDetails gets the archivalDetails property value. Represents whether the site collection is recently archived, fully archived, or reactivating. Possible values are: recentlyArchived, fullyArchived, reactivating, unknownFutureValue.
+func (m *SiteCollection) GetArchivalDetails()(SiteArchivalDetailsable) {
+    return m.archivalDetails
+}
+// GetDataLocationCode gets the dataLocationCode property value. The geographic region code for where this site collection resides. Only present for multi-geo tenants. Read-only.
 func (m *SiteCollection) GetDataLocationCode()(*string) {
     return m.dataLocationCode
 }
 // GetFieldDeserializers the deserialization information for the current model
 func (m *SiteCollection) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["archivalDetails"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateSiteArchivalDetailsFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetArchivalDetails(val.(SiteArchivalDetailsable))
+        }
+        return nil
+    }
     res["dataLocationCode"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -96,6 +112,12 @@ func (m *SiteCollection) GetRoot()(Rootable) {
 // Serialize serializes information the current object
 func (m *SiteCollection) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
+        err := writer.WriteObjectValue("archivalDetails", m.GetArchivalDetails())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteStringValue("dataLocationCode", m.GetDataLocationCode())
         if err != nil {
             return err
@@ -131,7 +153,11 @@ func (m *SiteCollection) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
 func (m *SiteCollection) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetDataLocationCode sets the dataLocationCode property value. The geographic region code for where this site collection resides. Read-only.
+// SetArchivalDetails sets the archivalDetails property value. Represents whether the site collection is recently archived, fully archived, or reactivating. Possible values are: recentlyArchived, fullyArchived, reactivating, unknownFutureValue.
+func (m *SiteCollection) SetArchivalDetails(value SiteArchivalDetailsable)() {
+    m.archivalDetails = value
+}
+// SetDataLocationCode sets the dataLocationCode property value. The geographic region code for where this site collection resides. Only present for multi-geo tenants. Read-only.
 func (m *SiteCollection) SetDataLocationCode(value *string)() {
     m.dataLocationCode = value
 }
@@ -151,10 +177,12 @@ func (m *SiteCollection) SetRoot(value Rootable)() {
 type SiteCollectionable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetArchivalDetails()(SiteArchivalDetailsable)
     GetDataLocationCode()(*string)
     GetHostname()(*string)
     GetOdataType()(*string)
     GetRoot()(Rootable)
+    SetArchivalDetails(value SiteArchivalDetailsable)()
     SetDataLocationCode(value *string)()
     SetHostname(value *string)()
     SetOdataType(value *string)()

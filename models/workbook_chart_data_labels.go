@@ -11,19 +11,19 @@ type WorkbookChartDataLabels struct {
     format WorkbookChartDataLabelFormatable
     // DataLabelPosition value that represents the position of the data label. The possible values are: None, Center, InsideEnd, InsideBase, OutsideEnd, Left, Right, Top, Bottom, BestFit, Callout.
     position *string
-    // String representing the separator used for the data labels on a chart.
+    // String that represents the separator used for the data labels on a chart.
     separator *string
-    // Boolean value representing if the data label bubble size is visible or not.
+    // Boolean value that represents whether the data label bubble size is visible.
     showBubbleSize *bool
-    // Boolean value representing if the data label category name is visible or not.
+    // Boolean value that represents whether the data label category name is visible.
     showCategoryName *bool
-    // Boolean value representing if the data label legend key is visible or not.
+    // Boolean value that represents whether the data label legend key is visible.
     showLegendKey *bool
-    // Boolean value representing if the data label percentage is visible or not.
+    // Boolean value that represents whether the data label percentage is visible.
     showPercentage *bool
-    // Boolean value representing if the data label series name is visible or not.
+    // Boolean value that represents whether the data label series name is visible.
     showSeriesName *bool
-    // Boolean value representing if the data label value is visible or not.
+    // Boolean value that represents whether the data label value is visible.
     showValue *bool
 }
 // NewWorkbookChartDataLabels instantiates a new workbookChartDataLabels and sets the default values.
@@ -140,31 +140,31 @@ func (m *WorkbookChartDataLabels) GetFormat()(WorkbookChartDataLabelFormatable) 
 func (m *WorkbookChartDataLabels) GetPosition()(*string) {
     return m.position
 }
-// GetSeparator gets the separator property value. String representing the separator used for the data labels on a chart.
+// GetSeparator gets the separator property value. String that represents the separator used for the data labels on a chart.
 func (m *WorkbookChartDataLabels) GetSeparator()(*string) {
     return m.separator
 }
-// GetShowBubbleSize gets the showBubbleSize property value. Boolean value representing if the data label bubble size is visible or not.
+// GetShowBubbleSize gets the showBubbleSize property value. Boolean value that represents whether the data label bubble size is visible.
 func (m *WorkbookChartDataLabels) GetShowBubbleSize()(*bool) {
     return m.showBubbleSize
 }
-// GetShowCategoryName gets the showCategoryName property value. Boolean value representing if the data label category name is visible or not.
+// GetShowCategoryName gets the showCategoryName property value. Boolean value that represents whether the data label category name is visible.
 func (m *WorkbookChartDataLabels) GetShowCategoryName()(*bool) {
     return m.showCategoryName
 }
-// GetShowLegendKey gets the showLegendKey property value. Boolean value representing if the data label legend key is visible or not.
+// GetShowLegendKey gets the showLegendKey property value. Boolean value that represents whether the data label legend key is visible.
 func (m *WorkbookChartDataLabels) GetShowLegendKey()(*bool) {
     return m.showLegendKey
 }
-// GetShowPercentage gets the showPercentage property value. Boolean value representing if the data label percentage is visible or not.
+// GetShowPercentage gets the showPercentage property value. Boolean value that represents whether the data label percentage is visible.
 func (m *WorkbookChartDataLabels) GetShowPercentage()(*bool) {
     return m.showPercentage
 }
-// GetShowSeriesName gets the showSeriesName property value. Boolean value representing if the data label series name is visible or not.
+// GetShowSeriesName gets the showSeriesName property value. Boolean value that represents whether the data label series name is visible.
 func (m *WorkbookChartDataLabels) GetShowSeriesName()(*bool) {
     return m.showSeriesName
 }
-// GetShowValue gets the showValue property value. Boolean value representing if the data label value is visible or not.
+// GetShowValue gets the showValue property value. Boolean value that represents whether the data label value is visible.
 func (m *WorkbookChartDataLabels) GetShowValue()(*bool) {
     return m.showValue
 }
@@ -238,31 +238,31 @@ func (m *WorkbookChartDataLabels) SetFormat(value WorkbookChartDataLabelFormatab
 func (m *WorkbookChartDataLabels) SetPosition(value *string)() {
     m.position = value
 }
-// SetSeparator sets the separator property value. String representing the separator used for the data labels on a chart.
+// SetSeparator sets the separator property value. String that represents the separator used for the data labels on a chart.
 func (m *WorkbookChartDataLabels) SetSeparator(value *string)() {
     m.separator = value
 }
-// SetShowBubbleSize sets the showBubbleSize property value. Boolean value representing if the data label bubble size is visible or not.
+// SetShowBubbleSize sets the showBubbleSize property value. Boolean value that represents whether the data label bubble size is visible.
 func (m *WorkbookChartDataLabels) SetShowBubbleSize(value *bool)() {
     m.showBubbleSize = value
 }
-// SetShowCategoryName sets the showCategoryName property value. Boolean value representing if the data label category name is visible or not.
+// SetShowCategoryName sets the showCategoryName property value. Boolean value that represents whether the data label category name is visible.
 func (m *WorkbookChartDataLabels) SetShowCategoryName(value *bool)() {
     m.showCategoryName = value
 }
-// SetShowLegendKey sets the showLegendKey property value. Boolean value representing if the data label legend key is visible or not.
+// SetShowLegendKey sets the showLegendKey property value. Boolean value that represents whether the data label legend key is visible.
 func (m *WorkbookChartDataLabels) SetShowLegendKey(value *bool)() {
     m.showLegendKey = value
 }
-// SetShowPercentage sets the showPercentage property value. Boolean value representing if the data label percentage is visible or not.
+// SetShowPercentage sets the showPercentage property value. Boolean value that represents whether the data label percentage is visible.
 func (m *WorkbookChartDataLabels) SetShowPercentage(value *bool)() {
     m.showPercentage = value
 }
-// SetShowSeriesName sets the showSeriesName property value. Boolean value representing if the data label series name is visible or not.
+// SetShowSeriesName sets the showSeriesName property value. Boolean value that represents whether the data label series name is visible.
 func (m *WorkbookChartDataLabels) SetShowSeriesName(value *bool)() {
     m.showSeriesName = value
 }
-// SetShowValue sets the showValue property value. Boolean value representing if the data label value is visible or not.
+// SetShowValue sets the showValue property value. Boolean value that represents whether the data label value is visible.
 func (m *WorkbookChartDataLabels) SetShowValue(value *bool)() {
     m.showValue = value
 }

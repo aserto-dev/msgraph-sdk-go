@@ -32,7 +32,7 @@ type Contact struct {
     extensions []Extensionable
     // The name the contact is filed under.
     fileAs *string
-    // The contact's generation.
+    // The contact's suffix.
     generation *string
     // The contact's given name.
     givenName *string
@@ -40,47 +40,47 @@ type Contact struct {
     homeAddress PhysicalAddressable
     // The contact's home phone numbers.
     homePhones []string
-    // The imAddresses property
+    // The contact's instant messaging (IM) addresses.
     imAddresses []string
-    // The initials property
+    // The contact's initials.
     initials *string
-    // The jobTitle property
+    // The contact’s job title.
     jobTitle *string
-    // The manager property
+    // The name of the contact's manager.
     manager *string
-    // The middleName property
+    // The contact's middle name.
     middleName *string
-    // The mobilePhone property
+    // The contact's mobile phone number.
     mobilePhone *string
     // The collection of multi-value extended properties defined for the contact. Read-only. Nullable.
     multiValueExtendedProperties []MultiValueLegacyExtendedPropertyable
-    // The nickName property
+    // The contact's nickname.
     nickName *string
-    // The officeLocation property
+    // The location of the contact's office.
     officeLocation *string
-    // The otherAddress property
+    // Other addresses for the contact.
     otherAddress PhysicalAddressable
-    // The parentFolderId property
+    // The ID of the contact's parent folder.
     parentFolderId *string
-    // The personalNotes property
+    // The user's notes about the contact.
     personalNotes *string
     // Optional contact picture. You can get or set a photo for a contact.
     photo ProfilePhotoable
-    // The profession property
+    // The contact's profession.
     profession *string
     // The collection of single-value extended properties defined for the contact. Read-only. Nullable.
     singleValueExtendedProperties []SingleValueLegacyExtendedPropertyable
-    // The spouseName property
+    // The name of the contact's spouse/partner.
     spouseName *string
-    // The surname property
+    // The contact's surname.
     surname *string
-    // The title property
+    // The contact's title.
     title *string
-    // The yomiCompanyName property
+    // The phonetic Japanese company name of the contact.
     yomiCompanyName *string
-    // The yomiGivenName property
+    // The phonetic Japanese given name (first name) of the contact.
     yomiGivenName *string
-    // The yomiSurname property
+    // The phonetic Japanese surname (last name)  of the contact.
     yomiSurname *string
 }
 // NewContact instantiates a new contact and sets the default values.
@@ -567,7 +567,7 @@ func (m *Contact) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268963
 func (m *Contact) GetFileAs()(*string) {
     return m.fileAs
 }
-// GetGeneration gets the generation property value. The contact's generation.
+// GetGeneration gets the generation property value. The contact's suffix.
 func (m *Contact) GetGeneration()(*string) {
     return m.generation
 }
@@ -583,27 +583,27 @@ func (m *Contact) GetHomeAddress()(PhysicalAddressable) {
 func (m *Contact) GetHomePhones()([]string) {
     return m.homePhones
 }
-// GetImAddresses gets the imAddresses property value. The imAddresses property
+// GetImAddresses gets the imAddresses property value. The contact's instant messaging (IM) addresses.
 func (m *Contact) GetImAddresses()([]string) {
     return m.imAddresses
 }
-// GetInitials gets the initials property value. The initials property
+// GetInitials gets the initials property value. The contact's initials.
 func (m *Contact) GetInitials()(*string) {
     return m.initials
 }
-// GetJobTitle gets the jobTitle property value. The jobTitle property
+// GetJobTitle gets the jobTitle property value. The contact’s job title.
 func (m *Contact) GetJobTitle()(*string) {
     return m.jobTitle
 }
-// GetManager gets the manager property value. The manager property
+// GetManager gets the manager property value. The name of the contact's manager.
 func (m *Contact) GetManager()(*string) {
     return m.manager
 }
-// GetMiddleName gets the middleName property value. The middleName property
+// GetMiddleName gets the middleName property value. The contact's middle name.
 func (m *Contact) GetMiddleName()(*string) {
     return m.middleName
 }
-// GetMobilePhone gets the mobilePhone property value. The mobilePhone property
+// GetMobilePhone gets the mobilePhone property value. The contact's mobile phone number.
 func (m *Contact) GetMobilePhone()(*string) {
     return m.mobilePhone
 }
@@ -611,23 +611,23 @@ func (m *Contact) GetMobilePhone()(*string) {
 func (m *Contact) GetMultiValueExtendedProperties()([]MultiValueLegacyExtendedPropertyable) {
     return m.multiValueExtendedProperties
 }
-// GetNickName gets the nickName property value. The nickName property
+// GetNickName gets the nickName property value. The contact's nickname.
 func (m *Contact) GetNickName()(*string) {
     return m.nickName
 }
-// GetOfficeLocation gets the officeLocation property value. The officeLocation property
+// GetOfficeLocation gets the officeLocation property value. The location of the contact's office.
 func (m *Contact) GetOfficeLocation()(*string) {
     return m.officeLocation
 }
-// GetOtherAddress gets the otherAddress property value. The otherAddress property
+// GetOtherAddress gets the otherAddress property value. Other addresses for the contact.
 func (m *Contact) GetOtherAddress()(PhysicalAddressable) {
     return m.otherAddress
 }
-// GetParentFolderId gets the parentFolderId property value. The parentFolderId property
+// GetParentFolderId gets the parentFolderId property value. The ID of the contact's parent folder.
 func (m *Contact) GetParentFolderId()(*string) {
     return m.parentFolderId
 }
-// GetPersonalNotes gets the personalNotes property value. The personalNotes property
+// GetPersonalNotes gets the personalNotes property value. The user's notes about the contact.
 func (m *Contact) GetPersonalNotes()(*string) {
     return m.personalNotes
 }
@@ -635,7 +635,7 @@ func (m *Contact) GetPersonalNotes()(*string) {
 func (m *Contact) GetPhoto()(ProfilePhotoable) {
     return m.photo
 }
-// GetProfession gets the profession property value. The profession property
+// GetProfession gets the profession property value. The contact's profession.
 func (m *Contact) GetProfession()(*string) {
     return m.profession
 }
@@ -643,27 +643,27 @@ func (m *Contact) GetProfession()(*string) {
 func (m *Contact) GetSingleValueExtendedProperties()([]SingleValueLegacyExtendedPropertyable) {
     return m.singleValueExtendedProperties
 }
-// GetSpouseName gets the spouseName property value. The spouseName property
+// GetSpouseName gets the spouseName property value. The name of the contact's spouse/partner.
 func (m *Contact) GetSpouseName()(*string) {
     return m.spouseName
 }
-// GetSurname gets the surname property value. The surname property
+// GetSurname gets the surname property value. The contact's surname.
 func (m *Contact) GetSurname()(*string) {
     return m.surname
 }
-// GetTitle gets the title property value. The title property
+// GetTitle gets the title property value. The contact's title.
 func (m *Contact) GetTitle()(*string) {
     return m.title
 }
-// GetYomiCompanyName gets the yomiCompanyName property value. The yomiCompanyName property
+// GetYomiCompanyName gets the yomiCompanyName property value. The phonetic Japanese company name of the contact.
 func (m *Contact) GetYomiCompanyName()(*string) {
     return m.yomiCompanyName
 }
-// GetYomiGivenName gets the yomiGivenName property value. The yomiGivenName property
+// GetYomiGivenName gets the yomiGivenName property value. The phonetic Japanese given name (first name) of the contact.
 func (m *Contact) GetYomiGivenName()(*string) {
     return m.yomiGivenName
 }
-// GetYomiSurname gets the yomiSurname property value. The yomiSurname property
+// GetYomiSurname gets the yomiSurname property value. The phonetic Japanese surname (last name)  of the contact.
 func (m *Contact) GetYomiSurname()(*string) {
     return m.yomiSurname
 }
@@ -969,7 +969,7 @@ func (m *Contact) SetExtensions(value []Extensionable)() {
 func (m *Contact) SetFileAs(value *string)() {
     m.fileAs = value
 }
-// SetGeneration sets the generation property value. The contact's generation.
+// SetGeneration sets the generation property value. The contact's suffix.
 func (m *Contact) SetGeneration(value *string)() {
     m.generation = value
 }
@@ -985,27 +985,27 @@ func (m *Contact) SetHomeAddress(value PhysicalAddressable)() {
 func (m *Contact) SetHomePhones(value []string)() {
     m.homePhones = value
 }
-// SetImAddresses sets the imAddresses property value. The imAddresses property
+// SetImAddresses sets the imAddresses property value. The contact's instant messaging (IM) addresses.
 func (m *Contact) SetImAddresses(value []string)() {
     m.imAddresses = value
 }
-// SetInitials sets the initials property value. The initials property
+// SetInitials sets the initials property value. The contact's initials.
 func (m *Contact) SetInitials(value *string)() {
     m.initials = value
 }
-// SetJobTitle sets the jobTitle property value. The jobTitle property
+// SetJobTitle sets the jobTitle property value. The contact’s job title.
 func (m *Contact) SetJobTitle(value *string)() {
     m.jobTitle = value
 }
-// SetManager sets the manager property value. The manager property
+// SetManager sets the manager property value. The name of the contact's manager.
 func (m *Contact) SetManager(value *string)() {
     m.manager = value
 }
-// SetMiddleName sets the middleName property value. The middleName property
+// SetMiddleName sets the middleName property value. The contact's middle name.
 func (m *Contact) SetMiddleName(value *string)() {
     m.middleName = value
 }
-// SetMobilePhone sets the mobilePhone property value. The mobilePhone property
+// SetMobilePhone sets the mobilePhone property value. The contact's mobile phone number.
 func (m *Contact) SetMobilePhone(value *string)() {
     m.mobilePhone = value
 }
@@ -1013,23 +1013,23 @@ func (m *Contact) SetMobilePhone(value *string)() {
 func (m *Contact) SetMultiValueExtendedProperties(value []MultiValueLegacyExtendedPropertyable)() {
     m.multiValueExtendedProperties = value
 }
-// SetNickName sets the nickName property value. The nickName property
+// SetNickName sets the nickName property value. The contact's nickname.
 func (m *Contact) SetNickName(value *string)() {
     m.nickName = value
 }
-// SetOfficeLocation sets the officeLocation property value. The officeLocation property
+// SetOfficeLocation sets the officeLocation property value. The location of the contact's office.
 func (m *Contact) SetOfficeLocation(value *string)() {
     m.officeLocation = value
 }
-// SetOtherAddress sets the otherAddress property value. The otherAddress property
+// SetOtherAddress sets the otherAddress property value. Other addresses for the contact.
 func (m *Contact) SetOtherAddress(value PhysicalAddressable)() {
     m.otherAddress = value
 }
-// SetParentFolderId sets the parentFolderId property value. The parentFolderId property
+// SetParentFolderId sets the parentFolderId property value. The ID of the contact's parent folder.
 func (m *Contact) SetParentFolderId(value *string)() {
     m.parentFolderId = value
 }
-// SetPersonalNotes sets the personalNotes property value. The personalNotes property
+// SetPersonalNotes sets the personalNotes property value. The user's notes about the contact.
 func (m *Contact) SetPersonalNotes(value *string)() {
     m.personalNotes = value
 }
@@ -1037,7 +1037,7 @@ func (m *Contact) SetPersonalNotes(value *string)() {
 func (m *Contact) SetPhoto(value ProfilePhotoable)() {
     m.photo = value
 }
-// SetProfession sets the profession property value. The profession property
+// SetProfession sets the profession property value. The contact's profession.
 func (m *Contact) SetProfession(value *string)() {
     m.profession = value
 }
@@ -1045,27 +1045,27 @@ func (m *Contact) SetProfession(value *string)() {
 func (m *Contact) SetSingleValueExtendedProperties(value []SingleValueLegacyExtendedPropertyable)() {
     m.singleValueExtendedProperties = value
 }
-// SetSpouseName sets the spouseName property value. The spouseName property
+// SetSpouseName sets the spouseName property value. The name of the contact's spouse/partner.
 func (m *Contact) SetSpouseName(value *string)() {
     m.spouseName = value
 }
-// SetSurname sets the surname property value. The surname property
+// SetSurname sets the surname property value. The contact's surname.
 func (m *Contact) SetSurname(value *string)() {
     m.surname = value
 }
-// SetTitle sets the title property value. The title property
+// SetTitle sets the title property value. The contact's title.
 func (m *Contact) SetTitle(value *string)() {
     m.title = value
 }
-// SetYomiCompanyName sets the yomiCompanyName property value. The yomiCompanyName property
+// SetYomiCompanyName sets the yomiCompanyName property value. The phonetic Japanese company name of the contact.
 func (m *Contact) SetYomiCompanyName(value *string)() {
     m.yomiCompanyName = value
 }
-// SetYomiGivenName sets the yomiGivenName property value. The yomiGivenName property
+// SetYomiGivenName sets the yomiGivenName property value. The phonetic Japanese given name (first name) of the contact.
 func (m *Contact) SetYomiGivenName(value *string)() {
     m.yomiGivenName = value
 }
-// SetYomiSurname sets the yomiSurname property value. The yomiSurname property
+// SetYomiSurname sets the yomiSurname property value. The phonetic Japanese surname (last name)  of the contact.
 func (m *Contact) SetYomiSurname(value *string)() {
     m.yomiSurname = value
 }

@@ -14,9 +14,9 @@ type Chat struct {
     createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // A collection of all the apps in the chat. Nullable.
     installedApps []TeamsAppInstallationable
-    // Preview of the last message sent in the chat. Null if no messages have been sent in the chat. Currently, only the list chats operation supports this property.
+    // Preview of the last message sent in the chat. Null if no messages were sent in the chat. Currently, only the list chats operation supports this property.
     lastMessagePreview ChatMessageInfoable
-    // Date and time at which the chat was renamed or list of members were last changed. Read-only.
+    // Date and time at which the chat was renamed or the list of members was last changed. Read-only.
     lastUpdatedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // A collection of all the members in the chat. Nullable.
     members []ConversationMemberable
@@ -34,7 +34,7 @@ type Chat struct {
     tenantId *string
     // (Optional) Subject or topic for the chat. Only available for group chats.
     topic *string
-    // Represents caller-specific information about the chat, such as last message read date and time. This property is populated only when the request is made in a delegated context.
+    // Represents caller-specific information about the chat, such as the last message read date and time. This property is populated only when the request is made in a delegated context.
     viewpoint ChatViewpointable
     // The URL for the chat in Microsoft Teams. The URL should be treated as an opaque blob, and not parsed. Read-only.
     webUrl *string
@@ -253,11 +253,11 @@ func (m *Chat) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
 func (m *Chat) GetInstalledApps()([]TeamsAppInstallationable) {
     return m.installedApps
 }
-// GetLastMessagePreview gets the lastMessagePreview property value. Preview of the last message sent in the chat. Null if no messages have been sent in the chat. Currently, only the list chats operation supports this property.
+// GetLastMessagePreview gets the lastMessagePreview property value. Preview of the last message sent in the chat. Null if no messages were sent in the chat. Currently, only the list chats operation supports this property.
 func (m *Chat) GetLastMessagePreview()(ChatMessageInfoable) {
     return m.lastMessagePreview
 }
-// GetLastUpdatedDateTime gets the lastUpdatedDateTime property value. Date and time at which the chat was renamed or list of members were last changed. Read-only.
+// GetLastUpdatedDateTime gets the lastUpdatedDateTime property value. Date and time at which the chat was renamed or the list of members was last changed. Read-only.
 func (m *Chat) GetLastUpdatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.lastUpdatedDateTime
 }
@@ -293,7 +293,7 @@ func (m *Chat) GetTenantId()(*string) {
 func (m *Chat) GetTopic()(*string) {
     return m.topic
 }
-// GetViewpoint gets the viewpoint property value. Represents caller-specific information about the chat, such as last message read date and time. This property is populated only when the request is made in a delegated context.
+// GetViewpoint gets the viewpoint property value. Represents caller-specific information about the chat, such as the last message read date and time. This property is populated only when the request is made in a delegated context.
 func (m *Chat) GetViewpoint()(ChatViewpointable) {
     return m.viewpoint
 }
@@ -448,11 +448,11 @@ func (m *Chat) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f307
 func (m *Chat) SetInstalledApps(value []TeamsAppInstallationable)() {
     m.installedApps = value
 }
-// SetLastMessagePreview sets the lastMessagePreview property value. Preview of the last message sent in the chat. Null if no messages have been sent in the chat. Currently, only the list chats operation supports this property.
+// SetLastMessagePreview sets the lastMessagePreview property value. Preview of the last message sent in the chat. Null if no messages were sent in the chat. Currently, only the list chats operation supports this property.
 func (m *Chat) SetLastMessagePreview(value ChatMessageInfoable)() {
     m.lastMessagePreview = value
 }
-// SetLastUpdatedDateTime sets the lastUpdatedDateTime property value. Date and time at which the chat was renamed or list of members were last changed. Read-only.
+// SetLastUpdatedDateTime sets the lastUpdatedDateTime property value. Date and time at which the chat was renamed or the list of members was last changed. Read-only.
 func (m *Chat) SetLastUpdatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.lastUpdatedDateTime = value
 }
@@ -488,7 +488,7 @@ func (m *Chat) SetTenantId(value *string)() {
 func (m *Chat) SetTopic(value *string)() {
     m.topic = value
 }
-// SetViewpoint sets the viewpoint property value. Represents caller-specific information about the chat, such as last message read date and time. This property is populated only when the request is made in a delegated context.
+// SetViewpoint sets the viewpoint property value. Represents caller-specific information about the chat, such as the last message read date and time. This property is populated only when the request is made in a delegated context.
 func (m *Chat) SetViewpoint(value ChatViewpointable)() {
     m.viewpoint = value
 }

@@ -9,7 +9,7 @@ type MessageRule struct {
     Entity
     // Actions to be taken on a message when the corresponding conditions are fulfilled.
     actions MessageRuleActionsable
-    // Conditions that when fulfilled, will trigger the corresponding actions for that rule.
+    // Conditions that when fulfilled trigger the corresponding actions for that rule.
     conditions MessageRulePredicatesable
     // The display name of the rule.
     displayName *string
@@ -39,7 +39,7 @@ func CreateMessageRuleFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a
 func (m *MessageRule) GetActions()(MessageRuleActionsable) {
     return m.actions
 }
-// GetConditions gets the conditions property value. Conditions that when fulfilled, will trigger the corresponding actions for that rule.
+// GetConditions gets the conditions property value. Conditions that when fulfilled trigger the corresponding actions for that rule.
 func (m *MessageRule) GetConditions()(MessageRulePredicatesable) {
     return m.conditions
 }
@@ -212,7 +212,7 @@ func (m *MessageRule) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
 func (m *MessageRule) SetActions(value MessageRuleActionsable)() {
     m.actions = value
 }
-// SetConditions sets the conditions property value. Conditions that when fulfilled, will trigger the corresponding actions for that rule.
+// SetConditions sets the conditions property value. Conditions that when fulfilled trigger the corresponding actions for that rule.
 func (m *MessageRule) SetConditions(value MessageRulePredicatesable)() {
     m.conditions = value
 }

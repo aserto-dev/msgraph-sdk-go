@@ -16,7 +16,7 @@ type DocumentSetVersion struct {
     createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // Items within the document set that are captured as part of this version.
     items []DocumentSetVersionItemable
-    // If true, minor versions of items are also captured; otherwise, only major versions will be captured. Default value is false.
+    // If true, minor versions of items are also captured; otherwise, only major versions are captured. The default value is false.
     shouldCaptureMinorVersion *bool
 }
 // NewDocumentSetVersion instantiates a new documentSetVersion and sets the default values.
@@ -109,7 +109,7 @@ func (m *DocumentSetVersion) GetFieldDeserializers()(map[string]func(i878a80d233
 func (m *DocumentSetVersion) GetItems()([]DocumentSetVersionItemable) {
     return m.items
 }
-// GetShouldCaptureMinorVersion gets the shouldCaptureMinorVersion property value. If true, minor versions of items are also captured; otherwise, only major versions will be captured. Default value is false.
+// GetShouldCaptureMinorVersion gets the shouldCaptureMinorVersion property value. If true, minor versions of items are also captured; otherwise, only major versions are captured. The default value is false.
 func (m *DocumentSetVersion) GetShouldCaptureMinorVersion()(*bool) {
     return m.shouldCaptureMinorVersion
 }
@@ -173,7 +173,7 @@ func (m *DocumentSetVersion) SetCreatedDateTime(value *i336074805fc853987abe6f7f
 func (m *DocumentSetVersion) SetItems(value []DocumentSetVersionItemable)() {
     m.items = value
 }
-// SetShouldCaptureMinorVersion sets the shouldCaptureMinorVersion property value. If true, minor versions of items are also captured; otherwise, only major versions will be captured. Default value is false.
+// SetShouldCaptureMinorVersion sets the shouldCaptureMinorVersion property value. If true, minor versions of items are also captured; otherwise, only major versions are captured. The default value is false.
 func (m *DocumentSetVersion) SetShouldCaptureMinorVersion(value *bool)() {
     m.shouldCaptureMinorVersion = value
 }

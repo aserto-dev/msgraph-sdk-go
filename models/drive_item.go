@@ -63,9 +63,9 @@ type DriveItem struct {
     specialFolder SpecialFolderable
     // The set of subscriptions on the item. Only supported on the root of a drive.
     subscriptions []Subscriptionable
-    // Collection of [thumbnailSet][] objects associated with the item. For more information, see [getting thumbnails][]. Read-only. Nullable.
+    // Collection of thumbnailSet objects associated with the item. For more information, see getting thumbnails. Read-only. Nullable.
     thumbnails []ThumbnailSetable
-    // The list of previous versions of the item. For more info, see [getting previous versions][]. Read-only. Nullable.
+    // The list of previous versions of the item. For more info, see getting previous versions. Read-only. Nullable.
     versions []DriveItemVersionable
     // Video metadata, if the item is a video. Read-only.
     video Videoable
@@ -564,11 +564,11 @@ func (m *DriveItem) GetSpecialFolder()(SpecialFolderable) {
 func (m *DriveItem) GetSubscriptions()([]Subscriptionable) {
     return m.subscriptions
 }
-// GetThumbnails gets the thumbnails property value. Collection of [thumbnailSet][] objects associated with the item. For more information, see [getting thumbnails][]. Read-only. Nullable.
+// GetThumbnails gets the thumbnails property value. Collection of thumbnailSet objects associated with the item. For more information, see getting thumbnails. Read-only. Nullable.
 func (m *DriveItem) GetThumbnails()([]ThumbnailSetable) {
     return m.thumbnails
 }
-// GetVersions gets the versions property value. The list of previous versions of the item. For more info, see [getting previous versions][]. Read-only. Nullable.
+// GetVersions gets the versions property value. The list of previous versions of the item. For more info, see getting previous versions. Read-only. Nullable.
 func (m *DriveItem) GetVersions()([]DriveItemVersionable) {
     return m.versions
 }
@@ -932,11 +932,11 @@ func (m *DriveItem) SetSpecialFolder(value SpecialFolderable)() {
 func (m *DriveItem) SetSubscriptions(value []Subscriptionable)() {
     m.subscriptions = value
 }
-// SetThumbnails sets the thumbnails property value. Collection of [thumbnailSet][] objects associated with the item. For more information, see [getting thumbnails][]. Read-only. Nullable.
+// SetThumbnails sets the thumbnails property value. Collection of thumbnailSet objects associated with the item. For more information, see getting thumbnails. Read-only. Nullable.
 func (m *DriveItem) SetThumbnails(value []ThumbnailSetable)() {
     m.thumbnails = value
 }
-// SetVersions sets the versions property value. The list of previous versions of the item. For more info, see [getting previous versions][]. Read-only. Nullable.
+// SetVersions sets the versions property value. The list of previous versions of the item. For more info, see getting previous versions. Read-only. Nullable.
 func (m *DriveItem) SetVersions(value []DriveItemVersionable)() {
     m.versions = value
 }
